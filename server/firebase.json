@@ -1,1 +1,19 @@
-{}
+{
+  "hosting": {
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "app"
+      }
+    ]
+  },
+  "emulators": {
+    "hosting": {
+      "host": "127.0.0.1",
+      "port": "8080"
+    }
+  },
+  "functions": {
+    "source": "functions"
+  }
+}
