@@ -1,4 +1,7 @@
 config.json
+ipfs.json
+name.json
+*.key
 *.bkp
 *.bak
 # Logs
