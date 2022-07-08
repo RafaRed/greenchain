@@ -66,14 +66,15 @@ module.exports.retrieveFile = async function (cid, filename) {
   }
 
   module.exports.generateNameKey = async function (){
-
+	
 	Name.create().then(name=>{
+		//console.log(name.key)
 		fs.promises.writeFile('priv.key', name.key.bytes)
 	})
 		
   }
 
-  module.exports.publishContent = function (_name, _value){
+  module.exports.publishContent = function (_value){
 	const client = makeStorageClient();
 	fs.promises.readFile('priv.key').then(bkey =>{
 		Name.from(bkey).then(name => {
@@ -86,9 +87,4 @@ module.exports.retrieveFile = async function (cid, filename) {
 		})
 
 	})
-	
-	
-	
-	
-
   }

@@ -14,6 +14,7 @@ const {
 	publishContent,
 	generateNameKey,
 } = require("./model/ipfs");
+const { CreateRoot, AddNode } = require("./model/ipfs_tree");
 
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
@@ -60,12 +61,8 @@ app.post("/ipfs-get", (req, res) => {
 });
 
 app.post("/root", (req, res) => {
-	const name = "k51qzi5uqu5dj3yedzwblg1mzwf518rngk4o345oab5m69pthwt8ptjxsm4m5o"
-	const value = "test"
-	publishContent(name,value).then((result) => {
-		res.send(result);
-	});
-	
+	//CreateRoot("Report")
+	AddNode("Report",{"title":"report title 3"})
 });
 
 app.post("/getname", (req, res) => {
@@ -76,8 +73,8 @@ app.post("/getname", (req, res) => {
 });
 
 app.post("/generatekey", (req, res) => {
-	//generateNameKey();
-	//res.send("done")
+	generateNameKey();
+	res.send("done")
 });
 
 exports.app = functions.https.onRequest(app);
