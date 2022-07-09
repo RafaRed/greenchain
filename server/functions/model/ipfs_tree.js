@@ -113,7 +113,6 @@ module.exports.UpdateNode = async function (path, content) {
 
 module.exports.GetNodeByPath = async function (path) {
     path = path.split("/"); // Split node path
-    id = path.pop()
     const path_data = [];	
     await pushRootToPathData(path[0],path_data)
 	await pushNodesToPathData(path,path_data)
