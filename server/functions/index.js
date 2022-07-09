@@ -5,16 +5,7 @@ const { initializeApp } = require("firebase-admin/app");
 var admin = require("firebase-admin");
 var serviceAccount = require("./config.json");
 const rateLimit = require("express-rate-limit");
-const {
-	getAccessToken,
-	makeStorageClient,
-	uploadStringToJsonFile,
-	retrieveFile,
-	getName,
-	publishContent,
-	generateNameKey,
-} = require("./model/ipfs");
-const { CreateRoot, AddNode } = require("./model/ipfs_tree");
+const { CreateRoot, AddNode, UpdateNode, GetNodeByPath } = require("./model/ipfs_tree");
 
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
@@ -60,9 +51,14 @@ app.post("/ipfs-get", (req, res) => {
 	});
 });
 
-app.post("/root", (req, res) => {
-	//CreateRoot("Report")
-	AddNode("Report",{"title":"report title 3"})
+app.post("/root", async (req, res) => {
+	await CreateRoot("Report")
+	await AddNode("Report",{"title":"first report"})
+	await AddNode("Report",{"title":"secound report"})
+	await AddNode("Report/0",{"task":"task do rafa"})
+	await UpdateNode("Report/0/0",{"task":"task atualizada"})
+	console.log(await GetNodeByPath("Report/0/0"))
+	res.send("success")
 });
 
 app.post("/getname", (req, res) => {
