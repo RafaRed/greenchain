@@ -80,3 +80,15 @@ function getAccessToken() {
 	let ipfs_config = JSON.parse(rawdata);
 	return ipfs_config["api-key"];
 }
+
+module.exports.checkKeyExist = function(key){
+	fs.stat("./tree/"+key+".key", function(err, stat) {
+		if (err == null) {
+		  return true
+		} else if (err.code === 'ENOENT') {
+		  return false
+		} else {
+		  console.log('Some other error: ', err.code);
+		}
+	  });
+}

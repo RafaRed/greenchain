@@ -4,8 +4,16 @@ const {
 	uploadFile,
 	retrieveFile,
 	resolveNameService,
+    checkKeyExist,
 } = require("./ipfs_connect");
 
+
+module.exports.InitRoot = async function (name, content = {}){
+    if(!checkKeyExist(name)){
+        return await createNameService(name, content);
+    }
+    return
+}
 
 module.exports.CreateRoot = function (name, content = {}) {
 	return createNameService(name, content);
@@ -20,8 +28,9 @@ module.exports.UpdateRoot = async function (name, value = {}) {
 module.exports.AddNode = async function (path, content) {
 	path = path.split("/"); // Split node path
 	const cid = await uploadFile(content);
-	await module.exports.UpdateTreeParents(path, cid);
-    return
+	const new_id = await module.exports.UpdateTreeParents(path, cid);
+    const object = {"cid":cid,"new_id":new_id}
+    return object
 };
 
 /**Update the parents points for the new node and new parents hash */
@@ -30,8 +39,8 @@ module.exports.UpdateTreeParents = async function (path, new_cid, new_node_id=-1
     await pushRootToPathData(path[0],path_data)
 	await pushNodesToPathData(path,path_data)
     const tree = await rebuildNodesPointers(path,path_data,new_cid,new_node_id)
-	const id = await module.exports.UpdateRoot(path[0], tree);
-    return
+	await module.exports.UpdateRoot(path[0], tree['tree']['cid']);
+    return tree['new_id']
 };
 
 /**Add root cid and content to path_data */
@@ -53,19 +62,22 @@ async function pushNodesToPathData(path, path_data){
 /** */
 async function rebuildNodesPointers(path,path_data,new_cid,new_node_id){
     var point_me = await pointNodeToNewCid(path,path_data,new_cid,new_node_id)
+    var new_id =  Object.keys(point_me['content']['id'])[
+        Object.keys(point_me['content']['id']).length - 1
+    ];
     for (var i = path.length-2; i >= 0 ; i--) {
-        const node_content = AppendNodeId(path_data[i]['content'], point_me, path_data[i+1]['id']);
+        const node_content = AppendNodeId(path_data[i]['content'], point_me['cid'], path_data[i+1]['id']);
         const node_cid = await uploadFile(node_content);
-        point_me = node_cid;
+        point_me = {"content":node_content,"cid":node_cid};
     }
-    return point_me
+    return {"tree":point_me, "new_id":new_id}
 }
 
 async function pointNodeToNewCid(path,path_data,new_cid,new_node_id)
 {
     const pointer_content = AppendNodeId(path_data[path.length-1]['content'], new_cid, new_node_id);
     const pointer_cid = await uploadFile(pointer_content);
-    return pointer_cid
+    return {"content":pointer_content,"cid":pointer_cid}
 }
 
 
