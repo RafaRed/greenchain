@@ -55,6 +55,7 @@ app.use(function (req, res, next) {
 
 app.post("/create-report", async (req, res) => {
 	var report = await AddNode("Report",req.body)
+	var task = await AddNode("Task",report['new_id'])
 	res.send(report)
 });
 
@@ -67,6 +68,33 @@ app.post("/get-report", async (req, res) => {
 	var id = req.body.id;
 	var report = await GetNodeByPath("Report/"+id)
 	res.send(report)
+});
+
+//CreateTask(reportid,title,comply,teamsize,requirements,details,orientation,estimateddays,maxdate,requestedvalue)
+
+app.post("/create-task", async (req, res) => {
+	var task = req.body;
+	var report = await GetNodeByPath("Task/"+task["report_id"])
+	/*if(report === undefined){
+		var create_report = await AddNode("Task",{},task["report_id"])
+		console.log(create_report)
+	}*/
+	var task_id = await AddNode("Task/"+task["report_id"],task)
+	console.log(task_id)
+	res.send(task_id)
+});
+
+app.post("/get-tasks", async (req, res) => {
+	var report_id = req.body.report_id
+	var tasks = await GetNodeByPath("Task/"+report_id)
+	res.send(tasks)
+});
+
+app.post("/get-task", async (req, res) => {
+	var report_id = req.body.report_id
+	var task_id = req.body.report_id
+	var task = await GetNodeByPath("Task/"+report_id+"/"+task_id)
+	res.send(task)
 });
 
 
