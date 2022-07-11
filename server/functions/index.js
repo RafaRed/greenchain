@@ -76,12 +76,14 @@ app.post("/get-report", async (req, res) => {
 
 app.post("/create-task", async (req, res) => {
 	var task = req.body;
-	var report = await GetNodeByPath("Task/"+task["report_id"])
-	/*if(report === undefined){
+	/*var report = await GetNodeByPath("Task/"+task["report_id"])
+	if(report === undefined){
 		var create_report = await AddNode("Task",{},task["report_id"])
 		console.log(create_report)
-	}*/
+	}
+	console.log(task)*/
 	var task_id = await AddNode("Task/"+task["report_id"],task)
+	var task_id = await AddNode(`Task/${task["report_id"]}/${task_id}/members`,{})
 	res.send(task_id)
 });
 
@@ -110,7 +112,15 @@ app.post("/join-task", async (req, res) => {
 	var user_id = req.body.user_id;
 	var task_id = req.body.task_id;
 	var report_id = req.body.report_id;
-	UpdateNode('Task/${}')
+	var user = await GetNodeByPath(`User/${user_id}`)
+	/*var members = await GetNodeByPath(`Task/${report_id}/${task_id}/members`)
+	if(members === undefined){
+		var members_path = `Task/${report_id}/${task_id}`
+		await AddNode(members_path,{},"members")
+	}*/
+	var path = `Task/${report_id}/${task_id}/members/${user_id}`;
+	UpdateNode(path,user)
+
 });
 
 app.post("/get-user-id", async (req, res) => {

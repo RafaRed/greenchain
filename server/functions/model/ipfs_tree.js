@@ -24,7 +24,7 @@ module.exports.UpdateRoot = async function (name, value = {}) {
 
 
 /**Add node and update the tree */
-module.exports.AddNode = async function (path, content, new_node_id = -1) {
+module.exports.AddNode = async function (path, content, new_node_id = "-1") {
 
 	path = path.split("/"); // Split node path
 	const cid = await uploadFile(content);
@@ -116,7 +116,7 @@ function GetCidById(content, id) {
 
 function AppendNodeId(content, cid, new_node_id) {
 	if ("id" in content) {
-		if (new_node_id === -1) {
+		if (new_node_id === "-1") {
 			const last_key = Object.keys(content["id"])[
 				Object.keys(content["id"]).length - 1
 			];
