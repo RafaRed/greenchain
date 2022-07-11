@@ -5,10 +5,10 @@ const fetch = require("node-fetch");
 const { resolve } = require("path");
 
 
-module.exports.createNameService = async function(_name,  _content) {
+module.exports.createNameService = async function(_name,  _content, path="./tree/") {
 	var cid = await module.exports.uploadFile(_content)
     const name = await Name.create()
-	fs.promises.writeFile("./tree/"+_name + ".key", name.key.bytes);
+	fs.promises.writeFile(path+_name + ".key", name.key.bytes);
 
 	const client = makeStorageClient();
     const revision = await Name.v0(name, cid)
@@ -16,9 +16,9 @@ module.exports.createNameService = async function(_name,  _content) {
 	return name.toString()
 }
 
-module.exports.updateNameService = async function(_name, _value){
+module.exports.updateNameService = async function(_name, _value,path="./tree/"){
     const client = makeStorageClient();
-	const bkey = await fs.promises.readFile("./tree/"+_name+'.key')
+	const bkey = await fs.promises.readFile(path+_name+'.key')
     const name = await Name.from(bkey);
 	const revision = await Name.resolve(client, name)
     const nextRevision = await Name.increment(revision, _value)
@@ -44,9 +44,9 @@ module.exports.uploadFile = async function (_value,_filename="file.json"){
     })
   }
 
-  module.exports.resolveNameService = async function (_name){
+  module.exports.resolveNameService = async function (_name,path="./tree/"){
 	const client = makeStorageClient();
-	const bkey = await fs.promises.readFile("./tree/"+_name+'.key')
+	const bkey = await fs.promises.readFile(path+_name+'.key')
     const name = await Name.from(bkey);
 	const revision = await Name.resolve(client, name)
 	return revision.value
@@ -81,8 +81,8 @@ function getAccessToken() {
 	return ipfs_config["api-key"];
 }
 
-module.exports.checkKeyExist = function(key){
-	fs.stat("./tree/"+key+".key", function(err, stat) {
+module.exports.checkKeyExist = function(key,path="./tree/"){
+	fs.stat(path+key+".key", function(err, stat) {
 		if (err == null) {
 		  return true
 		} else if (err.code === 'ENOENT') {

@@ -22,6 +22,7 @@ module.exports.UpdateRoot = async function (name, value = {}) {
 	return await updateNameService(name, value);
 };
 
+
 /**Add node and update the tree */
 module.exports.AddNode = async function (path, content, new_node_id = -1) {
 
@@ -40,9 +41,7 @@ module.exports.UpdateTreeParents = async function (
 ) {
 	const path_data = [];
 	await pushRootToPathData(path[0], path_data);
-	console.log(path_data);
 	await pushNodesToPathData(path, path_data);
-	console.log(path_data);
 	const tree = await rebuildNodesPointers(path, path_data, new_cid, new_node_id);
 	await module.exports.UpdateRoot(path[0], tree["tree"]["cid"]);
 	return tree["new_id"];
@@ -61,7 +60,6 @@ async function pushNodesToPathData(path, path_data) {
 
 			var cid = GetCidById(path_data[i - 1]["content"], path[i]);
             if(cid === undefined){
-                console.log("notfound")
                 return undefined
             }
             else{
@@ -149,7 +147,6 @@ module.exports.UpdateNode = async function (path, content) {
 };
 
 module.exports.GetNodeByPath = async function (path) {
-	console.log("get path");
 	path = path.split("/"); // Split node path
 	const path_data = [];
 	await pushRootToPathData(path[0], path_data);
