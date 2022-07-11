@@ -126,8 +126,16 @@ function AppendNodeId(content, cid, new_node_id) {
 			content["id"][new_node_id] = cid;
 		}
 	} else {
-		content["id"] = {};
-		content["id"]["0"] = cid;
+        if (new_node_id === "-1") {
+            content["id"] = {};
+		    content["id"]["0"] = cid;
+            
+        }
+        else{
+            content["id"] = {};
+            content["id"][new_node_id] = cid;
+        }
+		
 	}
 	return content;
 }
