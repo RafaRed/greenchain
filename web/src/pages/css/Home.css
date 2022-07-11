@@ -1,0 +1,145 @@
+.Home {
+    background-color: var(--BackgroundColor);
+    height: 100vh;
+}
+
+/* top*/
+.top-container {
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+}
+
+.topframe-leftside {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    margin-left: 16px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.toptitle-label {
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: var(--PrimaryTextColor);
+}
+
+.topdescription-label {
+    font-family: 'Spectral', 'sans-serif';
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--SecondaryTextColor);
+}
+
+.topframe-rightside {
+    display: flex;
+}
+
+.topframe-rightside img {
+    height: 640px;
+    width: 640px;
+}
+
+.topbtn-frame {
+    flex: wrap;
+    margin-top: 1.2rem;
+}
+
+
+/* top medias queries */
+@media (max-width: 768px) {
+
+    .top-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .topframe-rightside {
+        order: -1
+    }
+
+    .topframe-leftside {
+        text-align: center;
+        align-items: center;
+    }
+
+    .topframe-rightside img {
+        height: 250px;
+        width: 250px;
+    }
+
+    @media (max-width: 425px) {
+        html {
+            font-size: 70%;
+        }
+    }
+}
+
+/* mid*/
+.mid-container {
+    background-color: var(--PrimaryColor);
+    padding: 1.2rem;
+
+}
+
+.midtitle-label {
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--PrimaryBoldTextColor);
+    margin-left: 16px;
+}
+
+
+.middescription-label {
+    font-family: 'Spectral', 'sans-serif';
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--SecondaryTextColor);
+    margin-left: 16px;
+}
+
+.midcards-frame {
+    display: flex;
+    gap: 16px;
+    padding: 1.2rem;
+    justify-content: space-between;
+}
+
+.midinfo-container {
+    margin-left: 16px;
+    width: 60%;
+    padding: 1.4rem;
+    background-color: #97C5AB;
+}
+
+.info1-label,
+.info2-label,
+.info3-label {
+    margin: 4px;
+    color: #53725D;
+    font-weight: 500;
+}
+
+.info1-label .info2-label,
+span {
+    font-weight: bold;
+}
+
+
+/* bottom*/
+.bottom-container {
+    background-color: #A4D2B4;
+    padding: 1.2rem;
+}
+
+.bottom-title {
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 16px;
+    color: var(--PrimaryBoldTextColor);
+}

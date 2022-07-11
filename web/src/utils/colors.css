@@ -1,0 +1,22 @@
+:root {
+    /*Main Colors*/
+    --PrimaryColor: #B4DDC2;
+    --SecondaryColor: #FEFCE8;
+    --BackgroundColor: #BEE7CC;
+    --AccentColor: #FE393C;
+    --SurfaceColor: #D6FBE3;
+    --ErrorColor: #FFD2D2;
+
+    /*Text Colors*/
+    --PrimaryTextColor: #4D6154;
+    --PrimaryBoldTextColor: #41614B;
+    --SecondaryTextColor: #3C5E47;
+    --NavTextColor: #484636;
+    --InfoContainerTextColor: #53725D;
+    --PrimaryButtonTextColor: #DCFCE7;
+    --SecondaryButtonTextColor: #CB6B6D;
+
+    /*Elements Colors*/
+    --DividerColor: #9DC5A7;
+    --InfoContainerColor: #97C5AB;
+}

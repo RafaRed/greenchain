@@ -1,0 +1,33 @@
+.card-container {
+    display: flex;
+    height: 256px;
+    width: 256px;
+    padding: 1.2rem;
+    background-color: var(--SurfaceColor);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.card-img {
+    height: 96px;
+    width: 96px;
+}
+
+.cardtitle-label {
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--SecondaryTextColor);
+}
+
+.carddescription-label {
+    font-family: 'Spectral', 'sans-serif';
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--SecondaryTextColor);
+    text-align: center;
+}
