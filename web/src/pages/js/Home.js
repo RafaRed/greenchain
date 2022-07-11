@@ -60,21 +60,32 @@ function Home() {
         <div className='bottom-title'>
           Reports
         </div>
-        <div className='bottom-reportcards-frame'>
 
-          <ReportCard
-            title={'ACCUMULATION OF GARBAGE IN AN INAPPROPRIATE PLACE.'}
-            tasknumber={3}
-            membersnumber={20}
-            countryimg={'/images/Brazil.svg'}
-            state={'São Paulo'}
-            citycountry={'Campinas - Brazil'}
-          ></ReportCard>
+
+        <div className='reports-container'>
+          <LoadReports></LoadReports>
         </div>
-
       </div>
     </div >
   );
+}
+
+
+function LoadReports() {
+  var reports = []
+  for (var i = 0; i < 5; i++) {
+    reports.push(
+      <ReportCard
+        title={'ACCUMULATION OF GARBAGE IN AN INAPPROPRIATE PLACE.'}
+        tasknumber={3}
+        membersnumber={20}
+        countryimg={'/images/Brazil.svg'}
+        state={'São Paulo'}
+        citycountry={'Campinas - Brazil'}
+      ></ReportCard>
+    )
+  }
+  return reports;
 }
 
 export default Home;

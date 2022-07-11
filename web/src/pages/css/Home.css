@@ -136,6 +136,14 @@ span {
     padding: 1.2rem;
 }
 
+.reports-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem;
+    row-gap: 48px;
+    flex-wrap: wrap;
+}
+
 .bottom-title {
     font-family: 'DM Sans', 'sans-serif';
     font-size: 1rem;

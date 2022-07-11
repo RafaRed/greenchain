@@ -3,7 +3,6 @@ import '../css/ReportCard.css';
 
 export function ReportCard(props) {
     return (<div className='reportcard'>
-
         <img src='/images/report-img.svg' />
 
         <div className='reportinfo-container'>
@@ -43,8 +42,6 @@ export function ReportCard(props) {
             </div>
             <CardButton text='View'></CardButton>
         </div>
-
-
-
-    </div>);
+    </div>
+    );
 }
