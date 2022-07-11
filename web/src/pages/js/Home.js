@@ -4,7 +4,6 @@ import { PrimaryButton } from '../../components/js/PrimaryButton';
 import { MidCard } from '../../components/js/MidCard';
 import { ReportCard } from '../../components/js/ReportCard';
 
-
 function Home() {
   return (
     <div className="Home">
@@ -56,12 +55,9 @@ function Home() {
       </div>
 
       <div className='bottom-container'>
-
         <div className='bottom-title'>
           Reports
         </div>
-
-
         <div className='reports-container'>
           <LoadReports></LoadReports>
         </div>
@@ -70,19 +66,50 @@ function Home() {
   );
 }
 
-
 function LoadReports() {
   var reports = []
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 1; i++) {
     reports.push(
       <ReportCard
         title={'ACCUMULATION OF GARBAGE IN AN INAPPROPRIATE PLACE.'}
+        status={"open"}
         tasknumber={3}
         membersnumber={20}
         countryimg={'/images/Brazil.svg'}
         state={'São Paulo'}
         citycountry={'Campinas - Brazil'}
-      ></ReportCard>
+        key={i}
+      ></ReportCard>,
+      <ReportCard
+        title={'ACCUMULATION OF GARBAGE IN AN INAPPROPRIATE PLACE.'}
+        status={"completed"}
+        tasknumber={3}
+        membersnumber={20}
+        countryimg={'/images/Brazil.svg'}
+        state={'São Paulo'}
+        citycountry={'Campinas - Brazil'}
+        key={i}
+      ></ReportCard>,
+      <ReportCard
+        title={'ACCUMULATION OF GARBAGE IN AN INAPPROPRIATE PLACE.'}
+        status={"expired"}
+        tasknumber={3}
+        membersnumber={20}
+        countryimg={'/images/Brazil.svg'}
+        state={'São Paulo'}
+        citycountry={'Campinas - Brazil'}
+        key={i}
+      ></ReportCard>,
+      <ReportCard
+        title={'ACCUMULATION OF GARBAGE IN AN INAPPROPRIATE PLACE.'}
+        status={"expired"}
+        tasknumber={3}
+        membersnumber={20}
+        countryimg={'/images/Brazil.svg'}
+        state={'São Paulo'}
+        citycountry={'Campinas - Brazil'}
+        key={i}
+      ></ReportCard>,
     )
   }
   return reports;

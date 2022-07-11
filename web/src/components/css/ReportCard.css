@@ -4,9 +4,14 @@
     flex-direction: column;
 }
 
-.reportcard img {
+.imgstatus {
     width: 400px;
     height: 280px;
+    position: relative;
+}
+
+.reportcard .imgstatus img {
+    position: absolute;
 }
 
 .bottom-reportcards-frame {
@@ -43,6 +48,7 @@
 
 .task-label {
     font-family: 'DM Sans', 'sans-serif';
+    font-size: 0.8rem;
     font-weight: medium;
     color: #969CA3;
 }
@@ -50,18 +56,21 @@
 .task-label span {
     font-family: 'DM Sans', 'sans-serif';
     font-weight: bold;
+    font-size: 1rem;
     color: #36463C;
 }
 
 .members-label {
     font-family: 'DM Sans', 'sans-serif';
     font-weight: medium;
+    font-size: 0.8rem;
     color: #969CA3;
 }
 
 .members-label span {
     font-family: 'DM Sans', 'sans-serif';
     font-weight: bold;
+    font-size: 1rem;
     color: #36463C;
 }
 

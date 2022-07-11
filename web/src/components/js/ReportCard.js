@@ -1,19 +1,18 @@
 import { CardButton } from './CardButton';
 import '../css/ReportCard.css';
+import { Chips } from './Chips';
 
 export function ReportCard(props) {
     return (<div className='reportcard'>
-        <img src='/images/report-img.svg' />
-
+        <div className='imgstatus'>
+            <img src='/images/report-img.svg' />
+            <Chips status={props.status}></Chips>
+        </div>
         <div className='reportinfo-container'>
-
             <div className='report-title'>
                 {props.title}
-
             </div>
-
             <div className='divider'></div>
-
             <div className='info-frame'>
                 <div className='task-label'>
                     <span>{props.tasknumber}</span> Task
@@ -22,7 +21,6 @@ export function ReportCard(props) {
                     <span>{props.membersnumber}</span> Members
                 </div>
             </div>
-
             <div className='report-location-frame'>
 
                 <div className='report-country-image'>
@@ -37,8 +35,6 @@ export function ReportCard(props) {
                         {props.citycountry}
                     </div>
                 </div>
-
-
             </div>
             <CardButton text='View'></CardButton>
         </div>

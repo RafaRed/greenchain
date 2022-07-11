@@ -12,7 +12,7 @@ export function NavBar() {
             </div>
 
             <div className='menu-frame noselect'>
-                <li><a href="#">How its Work?</a></li>
+                <li><a href="/Signup">How its Work?</a></li>
                 <li><a href="#">Reports</a></li>
             </div>
         </div>

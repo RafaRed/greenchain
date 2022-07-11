@@ -1,0 +1,56 @@
+.chip-open {
+    position: absolute;
+    margin-right: 16px;
+    margin-top: 4px;
+    font-weight: 500;
+    right: 0;
+    top: 0;
+    width: 64px;
+    background-color: #B2F5AC;
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    font-family: 'DM Sans', 'sans-serif';
+    border: 1px solid #4DCA78;
+    color: #40653D;
+    text-align: center;
+    margin-top: 8px;
+    border-radius: 30px;
+}
+
+.chip-completed {
+    position: absolute;
+    margin-right: 16px;
+    font-weight: 500;
+    margin-top: 4px;
+    right: 0;
+    top: 0;
+    width: 96px;
+    background-color: #ACE8F5;
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    font-family: 'DM Sans', 'sans-serif';
+    border: 1px solid #4DACCA;
+    color: #3D5765;
+    text-align: center;
+    margin-top: 8px;
+    border-radius: 30px;
+}
+
+.chip-expired {
+    position: absolute;
+    margin-right: 16px;
+    font-weight: 500;
+    margin-top: 4px;
+    right: 0;
+    top: 0;
+    width: 64px;
+    background-color: #EEF6ED;
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    font-family: 'DM Sans', 'sans-serif';
+    border: 1px solid #ACAFAD;
+    color: #686A68;
+    text-align: center;
+    margin-top: 8px;
+    border-radius: 30px;
+}
