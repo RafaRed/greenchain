@@ -20,18 +20,91 @@
     font-size: 1.2rem;
 }
 
-textarea {
+.textarea-frame {
+    display: flex;
+    height: 192px;
     width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
 }
 
-.textarea:focus {
+textarea {
+    display: inline-block;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0.8rem;
+    box-sizing: border-box;
+    font-family: 'DM Sans', 'sans-serif';
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.25);
+    resize: none;
+    transition: background-color 0.5s ease;
+}
+
+textarea:focus {
     background-color: rgba(0, 0, 0, 0.45);
+}
+
+
+.addphotos-frame {
+    display: flex;
+    justify-content: left;
+}
+
+.row-inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+}
+
+.buttonchipsphotos-frame {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chipphoto-text {
+    font-weight: 500;
+    font-size: 0.8rem;
+    font-family: 'DM Sans', 'sans-serif';
+    color: #686A68;
+}
+
+.nameimageanddelete-container {
+    display: flex;
+    gap: 8px;
+    background-color: #EEF6ED;
+    padding: 0.4rem;
+    border: 2px solid #ACAFAD;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+
+}
+
+.nameimageanddelete-container:hover {
+    top: -5px;
+
+}
+
+.close-img {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 8px;
+    height: 8px;
+}
+
+.close-img img {
+    width: 8px;
+    height: 8px;
+}
+
+.label-input-country,
+.label-input-citydistrict,
+.label-input-stateprovice {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
 }
