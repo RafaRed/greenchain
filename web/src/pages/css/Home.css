@@ -138,9 +138,9 @@ span {
 
 .reports-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     padding: 1.2rem;
-    row-gap: 48px;
+    gap: 48px;
     flex-wrap: wrap;
 }
 

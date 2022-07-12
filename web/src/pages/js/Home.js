@@ -115,10 +115,11 @@ function RenderReports(props) {
 				title={reports[i].title}
 				status={"open"}
 				tasknumber={3}
+        image={"data:image/png;base64,"+reports[i].images[0]}
 				membersnumber={20}
 				countryimg={"/images/Brazil.svg"}
-				state={"São Paulo"}
-				citycountry={"Campinas - Brazil"}
+				state={reports[i].state}
+				citycountry={reports[i].location.state+" - "+reports[i].location.country}
 				key={i}></ReportCard>
 		);
 	}

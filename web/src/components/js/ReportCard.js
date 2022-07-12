@@ -5,7 +5,7 @@ import { Chips } from './Chips';
 export function ReportCard(props) {
     return (<div className='reportcard'>
         <div className='imgstatus'>
-            <img src='/images/report-img.svg' />
+            <img src={props.image} />
             <Chips status={props.status}></Chips>
         </div>
         <div className='reportinfo-container'>

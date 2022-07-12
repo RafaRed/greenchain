@@ -8,10 +8,14 @@
     width: 400px;
     height: 280px;
     position: relative;
+    
 }
 
 .reportcard .imgstatus img {
     position: absolute;
+    width: 400px;
+    height: 280px;
+    object-fit: cover;
 }
 
 .bottom-reportcards-frame {
