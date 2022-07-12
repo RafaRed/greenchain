@@ -40,7 +40,7 @@
     justify-content: space-around;
 }
 
-.divider {
+.card-divider {
     border: 0;
     border-top: 2px solid #F2FBF5;
 }

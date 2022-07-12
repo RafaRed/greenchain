@@ -1,5 +1,5 @@
 import "../css/Home.css";
-import {useEffect,useState, React} from 'react';
+import { useEffect, useState, React } from 'react';
 import { NavBar } from "../../components/js/NavBar";
 import { PrimaryButton } from "../../components/js/PrimaryButton";
 import { MidCard } from "../../components/js/MidCard";
@@ -8,10 +8,10 @@ import { getReports } from "../../model/Calls/server";
 import { getCID } from "../../model/Calls/ipfs";
 
 function Home() {
-  const [reports,setReports] = useState([])
-  useEffect(()=>{
-    loadReports(setReports)
-  },[])
+	const [reports, setReports] = useState([])
+	useEffect(() => {
+		loadReports(setReports)
+	}, [])
 	return (
 		<div className="Home">
 			<NavBar></NavBar>
@@ -92,37 +92,37 @@ function Home() {
 }
 
 
-async function loadReports(setReports){
-  var reports_list = []
-  var reports = await getReports();
-  for (const [key, value] of Object.entries(reports["content"]["id"])) {
+async function loadReports(setReports) {
+	var reports_list = []
+	var reports = await getReports();
+	for (const [key, value] of Object.entries(reports["content"]["id"])) {
 		var report_cid = reports["content"]["id"][key];
 		var content = await getCID(report_cid);
-    reports_list.push(content)
-  }
-  setReports(reports_list)
+		reports_list.push(content)
+	}
+	setReports(reports_list)
 }
 
 function RenderReports(props) {
+
 	var reports_list = [];
-  var reports = props.reports;
-  console.log(reports)
-	
-    for( var i = 0 ; i < reports.length; i++){
-      reports_list.push(
-        <ReportCard
-          title={reports[i].title}
-          status={"open"}
-          tasknumber={3}
-          membersnumber={20}
-          countryimg={"/images/Brazil.svg"}
-          state={"São Paulo"}
-          citycountry={"Campinas - Brazil"}
-          key={i}></ReportCard>
-      );
-    }
-		
-	
+	var reports = props.reports;
+	console.log(reports)
+
+	for (var i = 0; i < reports.length; i++) {
+		reports_list.push(
+			<ReportCard
+				title={reports[i].title}
+				status={"open"}
+				tasknumber={3}
+				membersnumber={20}
+				countryimg={"/images/Brazil.svg"}
+				state={"São Paulo"}
+				citycountry={"Campinas - Brazil"}
+				key={i}></ReportCard>
+		);
+	}
+
 	console.log(reports_list);
 	return reports_list;
 }

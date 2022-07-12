@@ -12,7 +12,7 @@ export function ReportCard(props) {
             <div className='report-title'>
                 {props.title}
             </div>
-            <div className='divider'></div>
+            <div className='card-divider'></div>
             <div className='info-frame'>
                 <div className='task-label'>
                     <span>{props.tasknumber}</span> Task
