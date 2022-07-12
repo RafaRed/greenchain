@@ -47,7 +47,7 @@ module.exports.AddNode = async function (path, content, new_node_id = "-1") {
 module.exports.UpdateTreeParents = async function (
 	path,
 	new_cid,
-	new_node_id = -1
+	new_node_id = "-1"
 ) {
 	const path_data = [];
 	await pushRootToPathData(path[0], path_data);

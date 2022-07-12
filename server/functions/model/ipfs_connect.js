@@ -51,6 +51,7 @@ module.exports.uploadFile = async function (_value,_filename="file.json"){
 	const bkey = await fs.promises.readFile(path+_name+'.key')
     const name = await Name.from(bkey);
 	const revision = await Name.resolve(client, name)
+	console.log(_name + "----->" + revision.value + "| " + name)
 	return revision.value
   }
 
