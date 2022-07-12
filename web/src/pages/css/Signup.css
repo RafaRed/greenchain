@@ -1,0 +1,101 @@
+.Signup {
+    background-color: var(--BackgroundColor);
+    height: 100vh;
+}
+
+.userinfo-title,
+.contact-title {
+    font-weight: bold;
+    color: #3D5445;
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1.2rem;
+}
+
+.username-label,
+.wallet-label,
+.birthday-label,
+.username-label,
+.name-label,
+.email-label,
+.phone-label,
+.discord-label,
+.twitter-label {
+    font-family: 'DM Sans', 'sans-serif';
+    font-weight: 400;
+    color: #4F6758;
+    font-size: 1rem;
+}
+
+.form {
+    display: flex;
+}
+
+.profile-img {
+    margin-left: 36px;
+    margin-right: 36px;
+}
+
+.userinfo-left-frame {
+    display: flex;
+    flex-direction: column;
+    margin-left: 36px;
+    margin-right: 36px;
+    gap: 16px
+}
+
+.contact-right-frame {
+    display: flex;
+    flex-direction: column;
+    margin-left: 36px;
+    margin-right: 36px;
+    gap: 16px
+}
+
+input[type=text] {
+    display: inline-block;
+    color: #fff;
+    font-family: 'DM Sans', 'sans-serif';
+    width: 300px;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: none;
+    transition: background-color 0.5s ease;
+}
+
+input[type=text]:focus {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #9DC5A7;
+}
+
+.addwallet-frame {
+    display: flex;
+    justify-content: left;
+}
+
+.register-btn-frame {
+    display: flex;
+    justify-content: right;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: white;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: white;
+}
+
+:-ms-input-placeholder {
+    color: white;
+}

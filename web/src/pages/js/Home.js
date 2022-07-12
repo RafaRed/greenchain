@@ -19,7 +19,7 @@ function Home() {
             Now you can report environmental problems and propose actions<br /> that need community support to solve them.
           </div>
           <div className='topbtn-frame'>
-            <PrimaryButton text={'New Report'}></PrimaryButton>
+            <PrimaryButton text={'New Report'} path='/newreport'></PrimaryButton>
           </div>
         </div>
         <div className='topframe-rightside noselect'>
@@ -46,7 +46,7 @@ function Home() {
             • All transactions are recorded on the <span>blockchain</span> ensuring complete security for the community.
           </div>
           <div className='info2-label'>
-            • All transactions are made in <span>USDT</span> in your registered.
+            • All transactions are made in <span>USDT</span> on your registered wallet.
           </div>
           <div className='info3-label'>
             • If a task is not executed as intended, all supporters will have their <span>money refunded</span>, and the <span>action is canceled</span>.

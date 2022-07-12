@@ -1,0 +1,10 @@
+.backbar {
+    padding: 1.2rem;
+    display: flex;
+    margin-left: 16px;
+    gap: 16px;
+    font-family: 'DM Sans';
+    font-weight: 700;
+    color: #3D5445;
+    align-items: center;
+}

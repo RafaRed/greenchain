@@ -19,7 +19,7 @@ export function NavBar() {
 
         <div className='navbar-rightside'>
             <div className='btnlogin-frame'>
-                <PrimaryButton text={'Login'}></PrimaryButton>
+                <PrimaryButton text={'Login'} path={'signup'}></PrimaryButton>
             </div>
         </div>
     </div>);

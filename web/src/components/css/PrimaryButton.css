@@ -1,8 +1,5 @@
 .PrimaryButton {
     position: relative;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
     width: 128px;
     height: 48px;
     background: #E74C3C;
@@ -14,7 +11,15 @@
     /* Typo */
     line-height: 48px;
     text-align: center;
+}
+
+.btn-frame a {
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
     color: white;
+
 }
 
 .PrimaryButton:after {
