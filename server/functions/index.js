@@ -159,4 +159,15 @@ app.post("/add-task-photo", async (req, res) => {
 	res.send({ status: "Updated" });
 });
 
+app.post("/get-members", async (req, res) => {
+	var report_id = req.body.report_id;
+	var task_id = req.body.task_id;
+	var members = await GetNodeByPath("Members/" + report_id + "/" + task_id);
+	res.send(members);
+});
+
+
+
+
+
 exports.app = functions.https.onRequest(app);
