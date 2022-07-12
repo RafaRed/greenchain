@@ -1,13 +1,9 @@
-.input-frame {
-    display: flex;
-}
-
 input[type=text] {
     display: inline-block;
     color: #fff;
     font-family: 'DM Sans', 'sans-serif';
-    width: 300px;
-    padding: 12px;
+    width: 100%;
+    padding: 0.8rem;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.25);
     border: none;
