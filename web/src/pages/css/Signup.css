@@ -15,14 +15,6 @@
     gap: 16px
 }
 
-.userinfo-title,
-.contact-title {
-    font-weight: bold;
-    color: #3D5445;
-    font-family: 'DM Sans', 'sans-serif';
-    font-size: 1.2rem;
-}
-
 .profile-img {
     margin-left: 36px;
     margin-right: 36px;
@@ -34,59 +26,6 @@
     margin-left: 36px;
     margin-right: 36px;
     gap: 16px
-}
-
-.username-label,
-.wallet-label,
-.birthday-label,
-.username-label,
-.name-label,
-.email-label,
-.phone-label,
-.discord-label,
-.twitter-label {
-    font-family: 'DM Sans', 'sans-serif';
-    font-weight: 400;
-    color: #4F6758;
-    font-size: 1rem;
-}
-
-.username-input-frame,
-.wallet-input-frame,
-.birthday-input-frame,
-.username-input-frame,
-.name-input-frame,
-.email-input-frame,
-.phone-input-frame,
-.discord-input-frame,
-.twitter-input-frame {
-    display: flex;
-}
-
-
-
-
-
-
-input[type=text] {
-    display: inline-block;
-    color: #fff;
-    font-family: 'DM Sans', 'sans-serif';
-    width: 300px;
-    padding: 12px;
-    box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.25);
-    border: none;
-    transition: background-color 0.5s ease;
-}
-
-input[type=text]:focus {
-    background-color: rgba(0, 0, 0, 0.45);
-}
-
-.divider {
-    border: 0;
-    border-top: 1px solid #9DC5A7;
 }
 
 .addwallet-frame {

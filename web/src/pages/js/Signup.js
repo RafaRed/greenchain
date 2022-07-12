@@ -3,6 +3,12 @@ import { NavBar } from '../../components/js/NavBar';
 import '../css/Signup.css';
 import { BackBar } from '../../components/js/BackBar';
 import { PrimaryButton } from '../../components/js/PrimaryButton';
+import { Title } from '../../components/js/Title';
+import { Label } from '../../components/js/Label';
+import { InputText } from '../../components/js/InputText';
+
+
+
 
 
 function Signup() {
@@ -20,25 +26,13 @@ function Signup() {
 
                 <div className='userinfo-left-frame'>
 
-                    <div className='userinfo-title'>
-                        User Information
-                    </div>
+                    <Title title={'User Informations'}></Title>
 
-                    <div className='username-label'>
-                        Username
-                    </div>
+                    <Label label={'Username'}></Label>
+                    <InputText></InputText>
 
-                    <div className='username-input-frame'>
-                        <input className='input-username' type="text" />
-                    </div>
-
-                    <div className='wallet-label'>
-                        Wallet
-                    </div>
-
-                    <div className='wallet-input-frame'>
-                        <input className='input-wallet' type="text" />
-                    </div>
+                    <Label label={'Wallet'}></Label>
+                    <InputText></InputText>
 
                     <div className='addwallet-frame'>
                         <div className='addwallet-btn'>
@@ -46,65 +40,29 @@ function Signup() {
                         </div>
                     </div>
 
+                    <Label label={'Name'}></Label>
+                    <InputText></InputText>
 
-                    <div className='name-label'>
-                        Name
-                    </div>
+                    <Label label={'Birthday'}></Label>
+                    <InputText></InputText>
 
-                    <div className='name-input-frame'>
-                        <input className='input-name' type="text" />
-                    </div>
-
-
-
-                    <div className='birthday-label'>
-                        Birthday
-                    </div>
-
-                    <div className='birthday-input-frame'>
-                        <input className='input-birthday' type="text" />
-                    </div>
                 </div>
-
 
                 <div className='contact-right-frame'>
 
-                    <div className='contact-title'>
-                        Contact
-                    </div>
+                    <Title title={'Contact'}></Title>
 
-                    <div className='email-label'>
-                        E-mail
-                    </div>
+                    <Label label={'E-mail'}></Label>
+                    <InputText></InputText>
 
-                    <div className='email-input-frame'>
-                        <input className='input-email' type="text" />
-                    </div>
+                    <Label label={'Phone Number'}></Label>
+                    <InputText></InputText>
 
-                    <div className='phone-label'>
-                        Phone Number
-                    </div>
+                    <Label label={'Discord'}></Label>
+                    <InputText></InputText>
 
-                    <div className='phone-input-frame'>
-                        <input className='input-phone' type="text" />
-                    </div>
-
-                    <div className='discord-label'>
-                        Discord
-                    </div>
-
-                    <div className='discord-input-frame'>
-                        <input className='input-discord' type="text" />
-                    </div>
-
-
-                    <div className='twitter-label'>
-                        Twitter
-                    </div>
-
-                    <div className='twitter-input-frame'>
-                        <input className='input-twitter' type="text" />
-                    </div>
+                    <Label label={'Twitter'}></Label>
+                    <InputText></InputText>
 
                     <div className='register-btn-frame'>
                         <div className='register-btn'>
@@ -112,17 +70,11 @@ function Signup() {
                         </div>
                     </div>
 
-
                 </div>
-
 
             </form>
 
-
         </div>
-
-
-
 
     );
 }
