@@ -118,8 +118,8 @@ function RenderReports(props) {
         image={"data:image/png;base64,"+reports[i].images[0]}
 				membersnumber={20}
 				countryimg={"/images/Brazil.svg"}
-				state={reports[i].state}
-				citycountry={reports[i].location.state+" - "+reports[i].location.country}
+				state={reports[i].location.state}
+				citycountry={reports[i].location.city+" - "+reports[i].location.country}
 				key={i}></ReportCard>
 		);
 	}
