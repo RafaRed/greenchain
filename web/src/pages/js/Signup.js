@@ -27,12 +27,18 @@ function Signup() {
                     <div className='username-label'>
                         Username
                     </div>
-                    <input className='input-username' type="text" placeholder="" />
+
+                    <div className='username-input-frame'>
+                        <input className='input-username' type="text" />
+                    </div>
 
                     <div className='wallet-label'>
                         Wallet
                     </div>
-                    <input className='input-wallet' type="text" placeholder="" />
+
+                    <div className='wallet-input-frame'>
+                        <input className='input-wallet' type="text" />
+                    </div>
 
                     <div className='addwallet-frame'>
                         <div className='addwallet-btn'>
@@ -40,16 +46,24 @@ function Signup() {
                         </div>
                     </div>
 
+
                     <div className='name-label'>
                         Name
                     </div>
-                    <input className='input-name' type="text" placeholder="" />
+
+                    <div className='name-input-frame'>
+                        <input className='input-name' type="text" />
+                    </div>
+
+
 
                     <div className='birthday-label'>
                         Birthday
                     </div>
-                    <input className='input-birthday' type="text" placeholder="" />
 
+                    <div className='birthday-input-frame'>
+                        <input className='input-birthday' type="text" />
+                    </div>
                 </div>
 
 
@@ -62,22 +76,35 @@ function Signup() {
                     <div className='email-label'>
                         E-mail
                     </div>
-                    <input className='input-email' type="text" placeholder="" />
+
+                    <div className='email-input-frame'>
+                        <input className='input-email' type="text" />
+                    </div>
 
                     <div className='phone-label'>
                         Phone Number
                     </div>
-                    <input className='input-phone' type="text" placeholder="" />
+
+                    <div className='phone-input-frame'>
+                        <input className='input-phone' type="text" />
+                    </div>
 
                     <div className='discord-label'>
                         Discord
                     </div>
-                    <input className='input-discord' type="text" placeholder="" />
+
+                    <div className='discord-input-frame'>
+                        <input className='input-discord' type="text" />
+                    </div>
+
 
                     <div className='twitter-label'>
                         Twitter
                     </div>
-                    <input className='input-twitter' type="text" placeholder="" />
+
+                    <div className='twitter-input-frame'>
+                        <input className='input-twitter' type="text" />
+                    </div>
 
                     <div className='register-btn-frame'>
                         <div className='register-btn'>

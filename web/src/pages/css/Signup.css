@@ -3,12 +3,37 @@
     height: 100vh;
 }
 
+.form {
+    display: flex;
+}
+
+.userinfo-left-frame {
+    display: flex;
+    flex-direction: column;
+    margin-left: 36px;
+    margin-right: 36px;
+    gap: 16px
+}
+
 .userinfo-title,
 .contact-title {
     font-weight: bold;
     color: #3D5445;
     font-family: 'DM Sans', 'sans-serif';
     font-size: 1.2rem;
+}
+
+.profile-img {
+    margin-left: 36px;
+    margin-right: 36px;
+}
+
+.contact-right-frame {
+    display: flex;
+    flex-direction: column;
+    margin-left: 36px;
+    margin-right: 36px;
+    gap: 16px
 }
 
 .username-label,
@@ -26,30 +51,22 @@
     font-size: 1rem;
 }
 
-.form {
+.username-input-frame,
+.wallet-input-frame,
+.birthday-input-frame,
+.username-input-frame,
+.name-input-frame,
+.email-input-frame,
+.phone-input-frame,
+.discord-input-frame,
+.twitter-input-frame {
     display: flex;
 }
 
-.profile-img {
-    margin-left: 36px;
-    margin-right: 36px;
-}
 
-.userinfo-left-frame {
-    display: flex;
-    flex-direction: column;
-    margin-left: 36px;
-    margin-right: 36px;
-    gap: 16px
-}
 
-.contact-right-frame {
-    display: flex;
-    flex-direction: column;
-    margin-left: 36px;
-    margin-right: 36px;
-    gap: 16px
-}
+
+
 
 input[type=text] {
     display: inline-block;
