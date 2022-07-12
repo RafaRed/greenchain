@@ -33,3 +33,11 @@
     transform: translateY(-80%);
     transition: transform .3s;
 }
+
+.CardButton a {
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: white;
+}

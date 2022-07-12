@@ -1,6 +1,12 @@
 import '../css/CardButton.css';
 export function CardButton(props) {
-    return (<div className={'CardButton noselect'} >
-        {props.text}
-    </div>);
+    return (
+        <div className='btn-frame'>
+            <a href={props.path}>
+                <div className={'CardButton noselect'}>
+                    {props.text}
+                </div>
+            </a>
+        </div>
+    );
 }
