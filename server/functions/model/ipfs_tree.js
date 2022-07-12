@@ -4,14 +4,24 @@ const {
 	uploadFile,
 	retrieveFile,
 	resolveNameService,
-	checkKeyExist,
+	checkKeyNotExist,
 } = require("./ipfs_connect");
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
 module.exports.InitRoot = async function (name, content = {}) {
-	if (!checkKeyExist(name)) {
-		return await createNameService(name, content);
+    console.log("Checking file: "+name)
+	if (await checkKeyNotExist(name)) {
+        console.log("Creating file: "+name)
+        await delay(1000);
+        await createNameService(name, content);
+		return 
 	}
-	return;
+    else{
+        console.log("OK")
+        return;
+    }
+    
 };
 
 module.exports.CreateRoot = function (name, content = {}) {

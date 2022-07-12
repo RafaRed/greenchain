@@ -4,12 +4,12 @@ const {
 	uploadFile,
 	retrieveFile,
 	resolveNameService,
-	checkKeyExist,
+	checkKeyNotExist,
 } = require("./ipfs_connect");
 
 
 module.exports.InitHashtable = async function (name, content = {}) {
-	if (!checkKeyExist(name)) {
+	if (await checkKeyNotExist(name,"./hashtable/")) {
 		return await createNameService(name, content, "./hashtable/");
 	}
 	return;

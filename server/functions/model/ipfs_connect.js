@@ -3,6 +3,8 @@ const Name = require("web3.storage/name");
 const fs = require("fs");
 const fetch = require("node-fetch");
 const { resolve } = require("path");
+const { promises: Fs } = require('fs')
+
 
 
 module.exports.createNameService = async function(_name,  _content, path="./tree/") {
@@ -81,14 +83,13 @@ function getAccessToken() {
 	return ipfs_config["api-key"];
 }
 
-module.exports.checkKeyExist = function(key,path="./tree/"){
-	fs.stat(path+key+".key", function(err, stat) {
-		if (err == null) {
-		  return true
-		} else if (err.code === 'ENOENT') {
-		  return false
-		} else {
-		  console.log('Some other error: ', err.code);
-		}
-	  });
+module.exports.checkKeyNotExist = async function(key,path="./tree/"){
+	const file = path+key+".key"
+	
+	try {
+		await Fs.access(file)
+		return false
+	  } catch {
+		return true
+	  }
 }

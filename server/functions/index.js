@@ -15,18 +15,22 @@ admin.initializeApp({
 	databaseURL: "https://greenchaindb-default-rtdb.firebaseio.com",
 });
 
-function initTree(){
-	console.log("Starting the tree")
-	InitRoot("Report")
-	InitRoot("Task")
-	InitRoot("User")
-	InitRoot("Donate")
-	InitHashtable("UserWallet")
+async function initTree(){
+
+		await InitRoot("Report")
+		await InitRoot("Task")
+		await InitRoot("User")
+		await InitRoot("Donate")
+		await InitRoot("Members")
+		await InitRoot("Photos")
+		await InitHashtable("UserWallet")
+			
 } 
+
 
 var db = admin.database();
 const app = express();
-//initTree();
+
 
 app.use(cors());
 app.use(
@@ -43,9 +47,16 @@ app.use(function (req, res, next) {
 	next();
 });
 
+app.post("/initialize", async (req, res) => {
+	await initTree()
+	res.send("sucess")
+});
+
 app.post("/create-report", async (req, res) => {
 	var report = await AddNode("Report",req.body)
-	var task = await AddNode("Task",report['new_id'])
+	var task = await AddNode("Task",{},report['new_id'])
+	var members = await AddNode("Members",{},report['new_id'])
+	var photos = await AddNode("Photos",{},report['new_id'])
 	res.send(report)
 });
 
@@ -73,7 +84,9 @@ app.post("/create-task", async (req, res) => {
 	console.log(task_id)
 	var path = `Task/${task["report_id"]}/${task_id['new_id']}`
 	console.log(path)
-	var task_members = await AddNode(path,{},"members")
+	var members = await AddNode(`Members/${task["report_id"]}`,{},task_id['new_id'])
+	var photos = await AddNode(`Photos/${task["report_id"]}`,{},task_id['new_id'])
+	//var task_members = await AddNode(path,{},"members")
 	res.send(task_id)
 });
 
@@ -85,7 +98,7 @@ app.post("/get-tasks", async (req, res) => {
 
 app.post("/get-task", async (req, res) => {
 	var report_id = req.body.report_id
-	var task_id = req.body.report_id
+	var task_id = req.body.task_id
 	var task = await GetNodeByPath("Task/"+report_id+"/"+task_id)
 	res.send(task)
 });
@@ -103,13 +116,11 @@ app.post("/join-task", async (req, res) => {
 	var task_id = req.body.task_id;
 	var report_id = req.body.report_id;
 	var user = await GetNodeByPath(`User/${user_id}`)
-	/*var members = await GetNodeByPath(`Task/${report_id}/${task_id}/members`)
-	if(members === undefined){
-		var members_path = `Task/${report_id}/${task_id}`
-		await AddNode(members_path,{},"members")
-	}*/
-	var path = `Task/${report_id}/${task_id}/members/${user_id}`;
-	await UpdateNode(path,user)
+	console.log(user)
+	var members_path = `Members/${report_id}/${task_id}`;
+	await AddNode(members_path,user['content'],user_id)
+	var photos_path = `Photos/${report_id}/${task_id}`;
+	var photos = await AddNode(members_path,{},user_id)
 	res.send({"status":"success"})
 
 });
@@ -128,6 +139,61 @@ app.post("/start-work", async (req, res) => {
 	var user_id = req.body.user_id;
 	var task_id = req.body.task_id;
 	var report_id = req.body.report_id;
+	var task = await GetNodeByPath("Task/"+report_id+"/"+task_id)
+	if(user_id === task['content']['creator']){
+		task['content']['status'] = "working"
+		await UpdateNode("Task/"+report_id+"/"+task_id,task['content'])
+		res.send({"status":"Updated"})
+	}
+	else{
+		res.send({"status":"Invalid user"})
+	}
+	 
+});
+
+app.post("/start-work", async (req, res) => {
+	var user_id = req.body.user_id;
+	var task_id = req.body.task_id;
+	var report_id = req.body.report_id;
+	var task = await GetNodeByPath("Task/"+report_id+"/"+task_id)
+	if(user_id === task['content']['creator']){
+		task['content']['status'] = "working"
+		await UpdateNode("Task/"+report_id+"/"+task_id,task['content'])
+		res.send({"status":"Updated"})
+	}
+	else{
+		res.send({"status":"Invalid user"})
+	}
+	 
+});
+
+app.post("/send-work", async (req, res) => {
+	var user_id = req.body.user_id;
+	var task_id = req.body.task_id;
+	var report_id = req.body.report_id;
+	var task = await GetNodeByPath("Task/"+report_id+"/"+task_id)
+	if(user_id === task['content']['creator']){
+		task['content']['status'] = "done"
+		await UpdateNode("Task/"+report_id+"/"+task_id,task['content'])
+		res.send({"status":"Updated"})
+	}
+	else{
+		res.send({"status":"Invalid user"})
+	}
+	 
+});
+
+
+app.post("/add-task-photo", async (req, res) => {
+	var user_id = req.body.user_id;
+	var task_id = req.body.task_id;
+	var report_id = req.body.report_id;
+	var photos = req.body.photos;
+	var photos_path = `Task/${report_id}/${task_id}/members/`
+	await GetNodeByPath("Task/"+report_id+"/"+task_id)
+	var path = +`${photos_path}${user_id}`
+	await UpdateNode(path,photos)
+	res.send({"status":"Updated"})
 });
 
 
