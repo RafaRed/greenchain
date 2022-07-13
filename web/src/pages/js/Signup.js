@@ -11,6 +11,7 @@ import { sendRegister } from '../../model/Calls/server';
 
 function Signup() {
     const [register, setRegister] = useState({})
+    var wallet = localStorage.setItem("greenchain-account", response);
     return (
         <>
             <NavBar></NavBar>
@@ -35,7 +36,7 @@ function Signup() {
                         }></InputText>
 
                         <Label label={'Wallet'}></Label>
-                        <InputText onChange={(e) =>
+                        <InputText value={wallet} onChange={(e) =>
                             handleOnChangeData(e, register, setRegister, "wallet")
                         }></InputText>
 

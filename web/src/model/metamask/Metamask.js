@@ -5,8 +5,7 @@ import { PrimaryButton } from "../../components/js/PrimaryButton";
 
 
 function Metamask(props) {
-	const { active, account, library, connector, activate, deactivate } =
-		useWeb3React();
+	const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
 	const {
 		active: networkActive,
@@ -26,6 +25,7 @@ function Metamask(props) {
         injected.getAccount().then((response)=>{
           setWallet(response)
           acc = localStorage.setItem("greenchain-account", response);
+          redirectToRegister()
         })
         
         
@@ -33,11 +33,23 @@ function Metamask(props) {
 		});
 	}
 
+  async function redirectToRegister(){
+    console.log(username_local)
+    console.log()
+    if(acc !== null && username_local === null){
+      if(window.location.pathname !== "/Signup"){
+        window.location.href = "/Signup"
+      }
+      
+    }
+  }
+
   async function logout(){
     console.log("logout")
     localStorage.clear()
     deactivate();
     setWallet(account);
+    window.location.href = "/"
     
   }
 
@@ -47,9 +59,11 @@ function Metamask(props) {
     await activate(injected);
     updateLocalstorageWithWallet();
 	}
+
   var username = username_local === null ? "Username" : username_local 
   var buttonText = acc === null ? "Connect" : username
   var action = acc === null ? ()=>connect() : ()=>logout()
+  redirectToRegister();
   
  	return (
 		<PrimaryButton text={buttonText} onClick={action}></PrimaryButton>
