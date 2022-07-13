@@ -18,7 +18,11 @@
 
 .profile-img {
     margin-left: 36px;
-    margin-right: 36px;
+}
+
+.profile-img img {
+    height: 96px;
+    width: 96px;
 }
 
 .contact-right-frame {

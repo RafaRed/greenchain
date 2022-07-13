@@ -20,7 +20,7 @@ function Signup() {
                 <BackBar title={'Sign Up'} path={'/'}></BackBar>
 
                 <div className='profile-img'>
-                    <img src='images/profile.svg'></img>
+                    <img src='images/mavatar.svg'></img>
                 </div>
 
                 <form class="form">

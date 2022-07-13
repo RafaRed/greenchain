@@ -1,0 +1,15 @@
+.Viewtask {
+    background-color: var(--BackgroundColor);
+    height: 100vh;
+}
+
+.wrapper-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 16px
+}
+
+.Viewtask-frame {
+    margin-left: 34px;
+    margin-right: 34px;
+}

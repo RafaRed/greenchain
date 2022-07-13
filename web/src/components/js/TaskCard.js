@@ -4,7 +4,7 @@ import { SecondaryButton } from './SecondaryButton';
 import '../css/TaskCard.css';
 
 export function TaskCard(props) {
-    return (<a href='/' className='containerpath'>
+    return (<a href={props.path} className='containerpath'>
         <div className='taskcard-container'>
 
             <div className='taskcard-top'>
