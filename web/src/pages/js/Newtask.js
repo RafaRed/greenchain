@@ -14,7 +14,7 @@ function Newtask() {
         <div className='Newtask'>
 
             <NavBar></NavBar>
-            <BackBar title='New Task'></BackBar>
+            <BackBar title='New Task' path='/viewreport'></BackBar>
 
             <div className='aboutform-frame-pt1'>
 

@@ -8,13 +8,13 @@
 }
 
 label {
-    width: 80px;
-    height: 39px;
+    width: 60px;
+    height: 28px;
     background-color: #d55050;
     box-shadow: inset 0px 6px 0px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    border-radius: 5px;
     top: 290px;
-    left: 21%;
+    left: 20%;
     position: absolute;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -26,14 +26,14 @@ input:checked~label {
 }
 
 input:checked~label div.s {
-    margin-left: 38px;
+    margin-left: 25px;
 }
 
 label div.s {
-    width: 36px;
-    height: 28px;
+    width: 30px;
+    height: 18px;
     background-color: #fafafa;
-    border-radius: 8px;
+    border-radius: 5px;
     position: relative;
     top: 3px;
     left: 3px;
@@ -42,9 +42,9 @@ label div.s {
 }
 
 label div div.d {
-    width: 4px;
-    height: 18px;
-    top: 4px;
+    width: 3px;
+    height: 13px;
+    top: 3px;
     background-color: #d2d2d2;
     position: relative;
     border-radius: 2.5px;
@@ -53,15 +53,15 @@ label div div.d {
 }
 
 label div div.d:nth-child(1) {
-    left: 6px;
+    left: 5px;
 }
 
 label div div.d:nth-child(2) {
-    left: 16px;
+    left: 13px;
 }
 
 label div div.d:nth-child(3) {
-    left: 26px;
+    left: 21px;
 }
 
 input {
