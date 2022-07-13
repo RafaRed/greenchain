@@ -4,6 +4,7 @@ import { BackBar } from '../../components/js/BackBar';
 import { Chips } from '../../components/js/Chips';
 import { Title } from '../../components/js/Title';
 import { PrimaryButton } from '../../components/js/PrimaryButton';
+import { TaskCard } from '../../components/js/TaskCard';
 
 function Viewreport() {
     return (
@@ -18,7 +19,7 @@ function Viewreport() {
                     <div className='left-user'>
 
                         <div className='avataruser-wrapper'>
-                            <div className='avatar'>
+                            <div className='avatar noselect'>
                                 <img src='images/favatar.svg'></img>
                             </div>
 
@@ -58,72 +59,15 @@ function Viewreport() {
                 <div className='proposedtask-frame'>
                     <div className='proposed-tasks'>
                         <Title title='Proposed Task'></Title>
-                        <PrimaryButton text='New Task' path='#'></PrimaryButton>
+                        <PrimaryButton text='New Task' path='/newtask'></PrimaryButton>
                     </div>
 
-                    <div className='taskcard-container'>
-                        <div className='taskcard-top'>
-
-                            <div className='expiredate-label'>
-                                Expire in <span>6</span> days
-                            </div>
-                            <div className='values-wrapper'>
-                                <div className='goal-wrapper'>
-                                    <div className='valuegoal-label'>
-                                        $ 2000
-                                    </div>
-                                    <div className='goal-label'>
-                                        Goal
-                                    </div>
-                                </div>
-
-                                <div class="vl"></div>
-
-                                <div className='raised-wrapper'>
-                                    <div className='totalraised-label'>
-                                        $ 1000
-                                    </div>
-                                    <div className='raised-label'>
-                                        Raised
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='taskcard-mid'>
-
-                            <div className='task-avataruser-wrapper'>
-                                <div className='avatar'>
-                                    <img src='images/favatar.svg'></img>
-                                </div>
-                                <div className='username-label'>
-                                    username
-                                </div>
-                            </div>
-
-                            <div className='tasktitledesc-wrapper'>
-                                <div className='chipmembers-wrapped'>
-                                    <Chips status='open'></Chips>
-                                    <div className='members-label'>
-                                        <span>10</span> Members Missing
-                                    </div>
-                                </div>
-                                <div className='taskcard-title'>
-                                    Transporting garbage to the Aldeota ecopoint
-                                </div>
-                                <div className='taskdescription-label'>
-                                    One of the main environmental issues of the contemporary era is, without a doubt, the enormous amount of waste produced on the planet. Associated with this, another even more challenging problem arises: the non-appropriate reuse of these materials due to rampant consumption, waste and incorrect disposal of garbage.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='taskcard-bottom'>
-                            <div className='task-buttons'>
-                                <PrimaryButton text='Join'></PrimaryButton>
-                                <PrimaryButton text='Fund'></PrimaryButton>
-                            </div>
-                        </div>
+                    <div className='taskcards-frame'>
+                        <TaskCard
+                            title='Cartão teste' description='testando cartão'
+                            goal='3000' membersmissing='3' daysleft='12' status='open' raised='1200' username='Rafael' image='images/mavatar.svg'></TaskCard>
                     </div>
+
                 </div>
             </div>
         </>);

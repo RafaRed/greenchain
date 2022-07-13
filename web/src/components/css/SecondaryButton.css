@@ -1,0 +1,39 @@
+.SecondaryButton {
+    position: relative;
+    width: 128px;
+    height: 48px;
+    background: #9BD596;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    transition: color .3s;
+    /* Typo */
+    line-height: 48px;
+    text-align: center;
+}
+
+.secondarybtn-frame a {
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.SecondaryButton:after {
+    position: absolute;
+    top: 90%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #86bb81;
+    content: "";
+    z-index: -2;
+    transition: transform .3s;
+}
+
+.SecondaryButton:hover::after {
+    transform: translateY(-80%);
+    transition: transform .3s;
+}
