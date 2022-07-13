@@ -110,12 +110,13 @@ function RenderReports(props) {
 	console.log(reports)
 
 	for (var i = 0; i < reports.length; i++) {
+		console.log(reports[i].images[0])
 		reports_list.push(
 			<ReportCard
 				title={reports[i].title}
 				status={"open"}
 				tasknumber={3}
-        image={"data:image/png;base64,"+reports[i].images[0]}
+        image={reports[i].images[0]}
 				membersnumber={20}
 				countryimg={"/images/Brazil.svg"}
 				state={reports[i].location.state}
