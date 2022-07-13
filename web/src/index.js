@@ -9,10 +9,19 @@ import Newtask from './pages/js/Newtask';
 import './utils/utils.css'
 import './utils/colors.css'
 import './index.css'
+import {Web3ReactProvider} from "@web3-react/core"
+import {Web3Provider} from "@ethersproject/providers";
+
+function getLibrary(provider) {
+  const library = new Web3Provider(provider)
+  library.pollingInterval = 12000
+  return library
+}
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <Web3ReactProvider getLibrary={getLibrary}>
   <Router>
     <Routes>
       <Route exact path="/" element={<Home />} />
@@ -22,4 +31,5 @@ root.render(
       <Route exact path="/newtask" element={<Newtask />} />
     </Routes>
   </Router>
+  </Web3ReactProvider>
 );

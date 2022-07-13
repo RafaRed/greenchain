@@ -107,10 +107,8 @@ function RenderReports(props) {
 
 	var reports_list = [];
 	var reports = props.reports;
-	console.log(reports)
 
 	for (var i = 0; i < reports.length; i++) {
-		console.log(reports[i].images[0])
 		reports_list.push(
 			<ReportCard
 				title={reports[i].title}
@@ -125,7 +123,6 @@ function RenderReports(props) {
 		);
 	}
 
-	console.log(reports_list);
 	return reports_list;
 }
 

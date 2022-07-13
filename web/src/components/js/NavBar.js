@@ -1,4 +1,5 @@
 import { PrimaryButton } from '../../components/js/PrimaryButton';
+import Metamask from '../../model/metamask/Metamask';
 import '../css/NavBar.css';
 
 export function NavBar() {
@@ -19,7 +20,7 @@ export function NavBar() {
 
         <div className='navbar-rightside'>
             <div className='btnlogin-frame'>
-                <PrimaryButton text={'Login'} path={'signup'}></PrimaryButton>
+                <Metamask></Metamask>
             </div>
         </div>
     </div>);
