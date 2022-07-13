@@ -42,7 +42,7 @@ function Newtask() {
 
                     <div className='inputinfo-rw'>
                         <div className='xxs-input-frame'>
-                            <InputText></InputText>
+                            <InputText type='number'></InputText>
                         </div>
                         <div className='infomaxmembers-label'>
                             <span>20</span> members limit
@@ -79,7 +79,7 @@ function Newtask() {
                 <Label label='Estimated time in days to complete your task'></Label>
                 <div className='inputinfo-rw'>
                     <div className='xxs-input-frame'>
-                        <InputText></InputText>
+                        <InputText type='number'></InputText>
                     </div>
                     <div className='infomaxmembers-label'>
                         <span>20</span> days limit
@@ -103,7 +103,7 @@ function Newtask() {
 
                 <Label label='How much USDT in total your team request to do this task?'></Label>
                 <div className='xxs-input-frame'>
-                    <InputText placeholder='$ USDT'></InputText>
+                    <InputText type={'number'} placeholder='$ USDT'></InputText>
                 </div>
 
                 <div className='register-btn-frame'>

@@ -5,9 +5,9 @@ export function Switch() {
             <input id="checkbox" type="checkbox" />
             <label for="checkbox">
                 <div class="s">
-                    <div class="d"></div>
-                    <div class="d"></div>
-                    <div class="d"></div>
+                    <div className="d"></div>
+                    <div className="d"></div>
+                    <div className="d"></div>
                 </div>
             </label>
 

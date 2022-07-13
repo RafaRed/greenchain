@@ -24,7 +24,7 @@ function Viewreport() {
                             </div>
 
                             <div className='username-label'>
-                                username
+                                Fernanda
                             </div>
                         </div>
 
@@ -64,6 +64,7 @@ function Viewreport() {
 
                     <div className='taskcards-frame'>
                         <TaskCard
+                            path='/viewtask'
                             title='Cartão teste' description='testando cartão'
                             goal='3000' membersmissing='3' daysleft='12' status='open' raised='1200' username='Rafael' image='images/mavatar.svg'></TaskCard>
                     </div>
