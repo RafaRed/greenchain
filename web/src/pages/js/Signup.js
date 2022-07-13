@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState,React} from 'react'
 import { NavBar } from '../../components/js/NavBar';
 import '../css/Signup.css';
 import { BackBar } from '../../components/js/BackBar';
@@ -6,8 +6,11 @@ import { PrimaryButton } from '../../components/js/PrimaryButton';
 import { Title } from '../../components/js/Title';
 import { Label } from '../../components/js/Label';
 import { InputText } from '../../components/js/InputText';
+import { handleOnChangeData } from '../../utils/utils';
+import { sendRegister } from '../../model/Calls/server';
 
 function Signup() {
+    const [register,setRegister] = useState({})
     return (
         <>
             <NavBar></NavBar>
@@ -27,10 +30,14 @@ function Signup() {
                         <Title title={'User Informations'}></Title>
 
                         <Label label={'Username'}></Label>
-                        <InputText></InputText>
+                        <InputText onChange={(e) =>
+									handleOnChangeData(e, register, setRegister, "username")
+								}></InputText>
 
                         <Label label={'Wallet'}></Label>
-                        <InputText></InputText>
+                        <InputText onChange={(e) =>
+									handleOnChangeData(e, register, setRegister, "wallet")
+								}></InputText>
 
                         <div className='addwallet-frame'>
                             <div className='addwallet-btn'>
@@ -39,10 +46,14 @@ function Signup() {
                         </div>
 
                         <Label label={'Name'}></Label>
-                        <InputText></InputText>
+                        <InputText onChange={(e) =>
+									handleOnChangeData(e, register, setRegister, "name")
+								}></InputText>
 
                         <Label label={'Birthday'}></Label>
-                        <InputText></InputText>
+                        <InputText onChange={(e) =>
+									handleOnChangeData(e, register, setRegister, "birthday")
+								}></InputText>
 
                     </div>
 
@@ -51,20 +62,28 @@ function Signup() {
                         <Title title={'Contact'}></Title>
 
                         <Label label={'E-mail'}></Label>
-                        <InputText></InputText>
+                        <InputText onChange={(e) =>
+									handleOnChangeData(e, register, setRegister, "email")
+								}></InputText>
 
                         <Label label={'Phone Number'}></Label>
-                        <InputText></InputText>
+                        <InputText onChange={(e) =>
+									handleOnChangeData(e, register, setRegister, "phone")
+								}></InputText>
 
                         <Label label={'Discord'}></Label>
-                        <InputText></InputText>
+                        <InputText onChange={(e) =>
+									handleOnChangeData(e, register, setRegister, "discord")
+								}></InputText>
 
                         <Label label={'Twitter'}></Label>
-                        <InputText></InputText>
+                        <InputText onChange={(e) =>
+									handleOnChangeData(e, register, setRegister, "twitter")
+								}></InputText>
 
                         <div className='register-btn-frame'>
                             <div className='register-btn'>
-                                <PrimaryButton text={'Register'}></PrimaryButton>
+                                <PrimaryButton text={'Register'} onClick={()=>UserRegister(register)}></PrimaryButton>
                             </div>
                         </div>
 
@@ -75,6 +94,13 @@ function Signup() {
             </div>
 
         </>);
+}
+
+function UserRegister(register){
+    register['avatar'] = ""
+    sendRegister(register).then(response=>{
+
+    })
 }
 
 export default Signup;

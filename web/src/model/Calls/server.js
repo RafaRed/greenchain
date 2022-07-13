@@ -1,4 +1,20 @@
-import { get_reports_path, server } from "../repository";
+import { get_reports_path, register_path, report_path, server } from "../repository";
+
+
+export async function endpointCall(data, endpoint) {
+	const requestOptions = {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(data),
+	};
+	return new Promise((resolve, reject) => {
+		fetch(server + endpoint, requestOptions)
+			.then((response) => response.json())
+			.then((data) => resolve(data));
+	});
+}
+
+
 
 export async function getReports(contestid) {
 	const requestOptions = {
@@ -36,4 +52,12 @@ export async function getTasks(report_id) {
 			.then((response) => response.json())
 			.then((data) => resolve(data));
 	});
+}
+
+export async function sendReport(data){
+	return endpointCall(data,report_path)
+}
+
+export async function sendRegister(data){
+	return endpointCall(data,register_path)
 }
