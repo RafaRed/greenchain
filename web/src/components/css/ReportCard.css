@@ -8,7 +8,7 @@
     width: 400px;
     height: 280px;
     position: relative;
-    
+
 }
 
 .reportcard .imgstatus img {
@@ -108,6 +108,8 @@
 }
 
 .report-country-image img {
+    display: flex;
+    justify-content: center;
     margin-left: 8px;
     width: 32px;
     height: 32px;

@@ -1,4 +1,231 @@
 .Viewreport {
     background-color: var(--BackgroundColor);
-    height: 100vh;
+    height: 100%;
+}
+
+.avatar img {
+    width: 96px;
+    height: 96px;
+}
+
+.report-container {
+    padding: 1.2rem;
+    margin-left: 32px;
+    margin-right: 32px;
+    display: flex;
+    background-color: var(--SurfaceColor);
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.left-user {
+    display: flex;
+    width: 10%;
+    justify-content: center;
+}
+
+.right-report {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+}
+
+.avataruser-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: top;
+}
+
+.username-label {
+    font-family: 'DM Sans', 'sans-serif';
+    color: #3D5445;
+    font-size: 0.8rem;
+}
+
+.report-img {
+    height: 350px;
+    width: 550px;
+}
+
+.report-complete-location-label {
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1rem;
+    color: #3D5445;
+    margin-bottom: 16px;
+}
+
+.description-label {
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1rem;
+    margin-top: 4px;
+    margin-bottom: 24px;
+    color: #4F6758;
+}
+
+.desc-title {
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1rem;
+    margin-top: 32px;
+    font-weight: 500;
+    color: #3D5445;
+}
+
+.Viewreport .title {
+    margin-top: 8px;
+}
+
+.proposed-tasks {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.taskcard-top {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.taskcard-container {
+    display: flex;
+    background-color: var(--SurfaceColor);
+    padding: 1.2rem;
+    height: 284px;
+    flex-direction: column;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}
+
+.proposedtask-frame {
+    display: flex;
+    padding: 32px;
+    flex-direction: column;
+}
+
+.taskcard-mid {
+    display: flex;
+}
+
+.vl {
+    border-left: 1px solid #809C87;
+    height: 30px;
+}
+
+.top-taskcard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.values-wrapper {
+    display: flex;
+}
+
+.task-avataruser-wrapper {
+    justify-content: center;
+    margin-left: 16px;
+    align-items: center;
+    text-align: center;
+}
+
+.taskdescription-label {
+    display: flex;
+    align-items: center;
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1rem;
+    color: #5F7159;
+    margin-bottom: 16px;
+}
+
+.task-buttons {
+    justify-content: end;
+    gap: 16px;
+    display: flex;
+}
+
+.taskcard-bottom {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+.tasktitledesc-wrapper {
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.taskcard-title {
+    margin-top: 4px;
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 1rem;
+    color: #243322;
+    font-weight: bold;
+
+}
+
+.chipmembers-wrapped {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.expiredate-label {
+    font-family: 'DM Sans', 'sans-serif';
+    font-size: 0.9rem;
+    color: #809C87;
+}
+
+.expiredate-label span {
+    font-family: 'DM Sans', 'sans-serif';
+    color: #809C87;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.members-label {
+    color: #809C87;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', 'sans-serif';
+}
+
+.members-label span {
+    color: #809C87;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', 'sans-serif';
+
+}
+
+.valuegoal-label {
+    color: #809C87;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'DM Sans', 'sans-serif';
+    text-align: right;
+}
+
+.goal-label {
+    font-family: 'DM Sans', 'sans-serif';
+    color: #6C8573;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.totalraised-label {
+    color: #243322;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: right;
+    font-family: 'DM Sans', 'sans-serif';
+}
+
+.raised-label {
+    font-family: 'DM Sans', 'sans-serif';
+    color: #6C8573;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.values-wrapper {
+    display: flex;
+    gap: 8px;
 }

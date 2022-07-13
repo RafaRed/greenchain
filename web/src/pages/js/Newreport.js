@@ -1,5 +1,5 @@
 import '../css/Newreport.css';
-import {React,useState} from 'react';
+import { React, useState } from 'react';
 import { BackBar } from '../../components/js/BackBar';
 import { NavBar } from '../../components/js/NavBar';
 import { Label } from '../../components/js/Label';
@@ -11,16 +11,14 @@ import { handleOnChangeData, handleOnChangeDataData } from '../../utils/utils';
 
 
 function Newreport() {
-    const [report,setReport] = useState({})
-    const [location,setLocation] = useState({})
-    const [userid,setUserid] = useState(0)
+    const [report, setReport] = useState({})
+    const [location, setLocation] = useState({})
+    const [userid, setUserid] = useState(0)
     return (
         <>
             <NavBar></NavBar>
 
             <div className="Newreport">
-
-
 
                 <BackBar title={'New Report'} path={'/'}></BackBar>
 
@@ -28,12 +26,12 @@ function Newreport() {
                     <Title title='Informations'></Title>
 
                     <Label label={'Report Title'}></Label>
-                    <InputText onChange={(e) =>handleOnChangeData(e, report, setReport, "title")}></InputText>
+                    <InputText onChange={(e) => handleOnChangeData(e, report, setReport, "title")}></InputText>
 
                     <Label label={'Description'}></Label>
 
                     <div className='textarea-frame'>
-                        <textarea placeholder="" rows="4" cols="50" onChange={(e) =>handleOnChangeData(e, report, setReport, "description")}> </textarea>
+                        <textarea placeholder="" rows="4" cols="50" onChange={(e) => handleOnChangeData(e, report, setReport, "description")}> </textarea>
                     </div>
 
                     <div className='images-title'>
@@ -66,34 +64,33 @@ function Newreport() {
                     <Title title='Report Location'></Title>
 
                     <Label label='Address'></Label>
-                    <InputText onChange={(e) =>handleOnChangeData(e, location, setLocation, "address")}></InputText>
+                    <InputText onChange={(e) => handleOnChangeData(e, location, setLocation, "address")}></InputText>
 
                     <div className='row-inputs'>
                         <div className='label-input-country'>
                             <Label label='Country'></Label>
-                            <InputText onChange={(e) =>handleOnChangeData(e, location, setLocation, "country")}></InputText>
+                            <InputText onChange={(e) => handleOnChangeData(e, location, setLocation, "country")}></InputText>
                         </div>
 
                         <div className='label-input-citydistrict'>
                             <Label label='City / District'></Label>
-                            <InputText onChange={(e) =>handleOnChangeData(e, location, setLocation, "city")}></InputText>
+                            <InputText onChange={(e) => handleOnChangeData(e, location, setLocation, "city")}></InputText>
                         </div>
 
                         <div className='label-input-stateprovice'>
                             <Label label='State / Provice'></Label>
-                            <InputText onChange={(e) =>handleOnChangeData(e, location, setLocation, "state")}></InputText>
+                            <InputText onChange={(e) => handleOnChangeData(e, location, setLocation, "state")}></InputText>
                         </div>
                     </div>
 
 
                     <div className='register-btn-frame'>
                         <div className='register-btn'>
-                            <PrimaryButton text={'Submit'} onClick={()=>console.log(location)}></PrimaryButton>
+                            <PrimaryButton text={'Submit'} onClick={() => console.log(location)}></PrimaryButton>
                         </div>
                     </div>
 
                 </div>
-
 
             </div>
         </>
