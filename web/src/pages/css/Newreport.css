@@ -44,6 +44,10 @@ textarea:focus {
     background-color: rgba(0, 0, 0, 0.45);
 }
 
+textarea::placeholder {
+    color: #b6d4be
+}
+
 
 .addphotos-frame {
     display: flex;

@@ -1,4 +1,92 @@
 .Newtask {
     background-color: var(--BackgroundColor);
-    height: 100vh;
+    height: 100%;
+}
+
+.aboutform-frame-pt1 {
+    display: flex;
+    padding: 1.2rem;
+    margin-left: 16px;
+    margin-right: 16px;
+    flex-direction: column;
+    gap: 16px
+}
+
+
+.wrapper-label-switch {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.s-input-frame {
+    width: 40%;
+}
+
+.xxs-input-frame {
+    width: 10%;
+}
+
+.teamsize-frame {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.teamsizeinfos-rw {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 4px;
+}
+
+.inputinfo-col {
+    font-family: 'DM Sans', 'Sans-serif';
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #809C87;
+}
+
+.inputinfo-col span {
+    font-family: 'DM Sans', 'Sans-serif';
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #809C87;
+}
+
+.includ-label {
+    font-family: 'DM Sans', 'Sans-serif';
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #809C87;
+}
+
+.inputinfo-rw {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.infomaxmembers-label {
+    font-family: 'DM Sans', 'Sans-serif';
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #809C87;
+}
+
+.infomaxmembers-label span {
+    font-family: 'DM Sans', 'Sans-serif';
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #809C87;
+}
+
+.s-textarea-frame {
+    height: 100px;
+}
+
+.m-textarea-frame {
+    height: 200px;
 }

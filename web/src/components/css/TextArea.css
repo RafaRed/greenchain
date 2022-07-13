@@ -1,19 +1,21 @@
-input[type=text] {
+textarea {
     display: inline-block;
-    color: #fff;
-    font-family: 'DM Sans', 'sans-serif';
+    border: none;
     width: 100%;
+    height: 100%;
     padding: 0.8rem;
     box-sizing: border-box;
+    font-family: 'DM Sans', 'sans-serif';
+    color: #fff;
     background-color: rgba(0, 0, 0, 0.25);
-    border: none;
+    resize: none;
     transition: background-color 0.5s ease;
 }
 
-input[type=text]:focus {
+textarea:focus {
     background-color: rgba(0, 0, 0, 0.45);
 }
 
-input::placeholder {
+textarea::placeholder {
     color: #b6d4be
 }
