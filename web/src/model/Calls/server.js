@@ -1,4 +1,4 @@
-import { get_reports_path, report_path, server } from "../repository";
+import { get_reports_path, register_path, report_path, server } from "../repository";
 
 
 export async function endpointCall(data, endpoint) {
@@ -56,5 +56,8 @@ export async function getTasks(report_id) {
 
 export async function sendReport(data){
 	return endpointCall(data,report_path)
+}
 
+export async function sendRegister(data){
+	return endpointCall(data,register_path)
 }
