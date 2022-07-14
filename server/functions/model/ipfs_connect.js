@@ -47,6 +47,7 @@ module.exports.updateNameService = async function (_name, _value, path = "./tree
 module.exports.uploadFile = async function (_value, _filename = "file.json") {
 	var files = makeFileObjects(_value, _filename);
 	var cid = await storeFiles(files)
+	saveOnCache(cid,_value)
 	return cid;
 }
 
