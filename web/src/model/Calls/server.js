@@ -33,7 +33,7 @@ export async function getMembers(report_id, task_id) {
 	const requestOptions = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({"report_id":report_id, "task_id":task_id}),
+		body: JSON.stringify({ "report_id": report_id, "task_id": task_id }),
 	};
 	return new Promise((resolve, reject) => {
 		fetch(server + get_reports_path, requestOptions)
@@ -45,7 +45,7 @@ export async function getTasks(report_id) {
 	const requestOptions = {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({"report_id":report_id}),
+		body: JSON.stringify({ "report_id": report_id }),
 	};
 	return new Promise((resolve, reject) => {
 		fetch(server + get_reports_path, requestOptions)
@@ -54,22 +54,22 @@ export async function getTasks(report_id) {
 	});
 }
 
-export async function sendReport(data){
-	return endpointCall(data,report_path)
+export async function sendReport(data) {
+	return endpointCall(data, report_path)
 }
 
-export async function sendRegister(data){
-	return endpointCall(data,register_path)
+export async function sendRegister(data) {
+	return endpointCall(data, register_path)
 }
 
-export async function getUserId(data){
-	return endpointCall(data,get_user_id_path)
+export async function getUserId(data) {
+	return endpointCall(data, get_user_id_path)
 }
 
-export async function getUsername(data){
-	return endpointCall(data,get_username_path)
+export async function getUsername(data) {
+	return endpointCall(data, get_username_path)
 }
 
-export async function getReport(data){
-	return endpointCall(data,get_report_path)
+export async function getReport(data) {
+	return endpointCall(data, get_report_path)
 }

@@ -10,13 +10,13 @@ import { getReport, getUsername } from '../../model/Calls/server';
 import { useEffect, useState } from 'react';
 
 function Viewreport() {
-    const {reportid} = useParams();
-    const [report,setReport] = useState({"location":{}, "images":{}})
+    const { reportid } = useParams();
+    const [report, setReport] = useState({ "location": {}, "images": {} })
     const [loaded, setLoaded] = useState(false)
     var lazy = loaded ? "" : "lazy"
-    useEffect(()=>{
-        loadReport(reportid,setReport,setLoaded)
-    },[])
+    useEffect(() => {
+        loadReport(reportid, setReport, setLoaded)
+    }, [])
     return (
         <>
             <NavBar></NavBar>
@@ -47,21 +47,21 @@ function Viewreport() {
                                 <Chips status='open'></Chips>
                             </div>
                         </div>
-                        {loaded ? <Title title={report.title}></Title> : <div className='lazy'/> }
-                       
+                        {loaded ? <Title title={report.title}></Title> : <div className='lazy' />}
+
 
                         <div className={'report-complete-location-label'}>
-                            {loaded ? report.location.address+" - "+report.location.city+", "+report.location.state+" - "+report.location.country : <div className='lazy'/>}
+                            {loaded ? report.location.address + " - " + report.location.city + ", " + report.location.state + " - " + report.location.country : <div className='lazy' />}
                         </div>
 
                         <div className='report-img'>
-                            {loaded ? <img src={report.images[0]}></img> : <img src="/images/noimg.png"></img>}
+                            {loaded ? <img src={report.images[0]}></img> : <img src="/images/noimage.svg"></img>}
                         </div>
                         <div className='desc-title'>
                             Description
                         </div>
                         <div className={'description-label'}>
-                        {loaded ? report.description : <div className='lazy'/> }
+                            {loaded ? report.description : <div className='lazy' />}
                         </div>
                     </div>
                 </div>
@@ -78,15 +78,14 @@ function Viewreport() {
                             title='Cartão teste' description='testando cartão'
                             goal='3000' membersmissing='3' daysleft='12' status='open' raised='1200' username='Rafael' image='/images/mavatar.svg'></TaskCard>
                     </div>
-
                 </div>
             </div>
         </>);
 }
 
 
-function loadReport(id,setReport,setLoaded){
-    getReport({"id":id}).then(data=>{
+function loadReport(id, setReport, setLoaded) {
+    getReport({ "id": id }).then(data => {
         setReport(data["content"])
         setLoaded(true)
         console.log(data)
@@ -94,7 +93,7 @@ function loadReport(id,setReport,setLoaded){
             console.log(username)
         })*/
     })
-    
+
 }
 
 export default Viewreport;

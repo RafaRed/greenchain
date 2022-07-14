@@ -1,6 +1,6 @@
 .Viewtask {
     background-color: var(--BackgroundColor);
-    height: 100vh;
+    height: 100%;
 }
 
 .wrapper-buttons {
@@ -13,8 +13,9 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-left: 34px;
-    margin-right: 34px;
+    padding: 1.2rem;
+    margin-left: 16px;
+    margin-right: 16px;
 }
 
 .user-avatar-profile {
@@ -205,4 +206,36 @@
 .vt-progress-wrapper-card-button .btn-frame {
     width: 100%;
     justify-content: space-between;
+}
+
+.validation-frame {
+    display: flex;
+}
+
+.col-vt-left {
+    padding: 1.2rem;
+    background-color: #E6FAE4;
+    height: 600px;
+    width: 80%;
+}
+
+.col-vt-right {
+    padding: 1.2rem;
+    background-color: #ADDCBD;
+    height: 600px;
+    width: 20%;
+}
+
+.title-validation-label {
+    font-family: 'DM Sans';
+    font-weight: 500;
+    font-size: 1rem;
+    color: #4F6758;
+}
+
+.hline {
+
+    border: 0;
+    border-top: 1px solid #B3E4C4;
+
 }

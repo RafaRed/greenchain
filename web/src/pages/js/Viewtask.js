@@ -3,6 +3,7 @@ import { NavBar } from "../../components/js/NavBar";
 import { BackBar } from '../../components/js/BackBar';
 import { PrimaryButton } from '../../components/js/PrimaryButton';
 import { SecondaryButton } from '../../components/js/SecondaryButton';
+import { Label } from '../../components/js/Label';
 import { Chips } from '../../components/js/Chips';
 import { Title } from '../../components/js/Title';
 import { ProgressViewTaskCard } from '../../components/js/ProgressViewTaskCard';
@@ -20,8 +21,8 @@ function Viewtask() {
             <div className='Viewtask-frame'>
 
                 <div className='wrapper-buttons'>
-                    <SecondaryButton text='Join'></SecondaryButton>
-                    <PrimaryButton text='Fund'></PrimaryButton>
+                    <SecondaryButton text='Fund'></SecondaryButton>
+                    <PrimaryButton text='Join'></PrimaryButton>
                 </div>
 
                 <div className='viewtaskrows-frame'>
@@ -121,12 +122,46 @@ function Viewtask() {
                         <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/photos-ico.svg' isActive={false}></ProgressViewTaskCard>
                         <PrimaryButton text='Done'></PrimaryButton>
                     </div>
-
-
-
                     <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={false}></ProgressViewTaskCard>
                     <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={false}></ProgressViewTaskCard>
                 </div>
+
+                <Title title='Task Validation'></Title>
+
+                <div className='wrapper-buttons'>
+                    <SecondaryButton text='Accept'></SecondaryButton>
+                    <PrimaryButton text='Reject'></PrimaryButton>
+                </div>
+
+                <div className='validation-frame'>
+
+                    <div className='col-vt-left'>
+                        <div className='title-validation-label'>
+                            Members Photos
+                        </div>
+
+                        <div className='hline'></div>
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <div className='col-vt-right'>
+
+                    </div>
+
+                </div>
+
 
 
 

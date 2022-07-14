@@ -78,8 +78,8 @@ export function TaskCard(props) {
 
             <div className='taskcard-bottom'>
                 <div className='task-buttons'>
-                    <SecondaryButton text='Join'></SecondaryButton>
-                    <PrimaryButton text='Fund'></PrimaryButton>
+                    <SecondaryButton text='Fund'></SecondaryButton>
+                    <PrimaryButton text='Join'></PrimaryButton>
                 </div>
             </div>
         </div>

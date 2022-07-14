@@ -1,37 +1,37 @@
 * {
-    font-family: 'DM Sans', sans-serif;
-    font-family: 'Spectral', serif;
-    text-rendering: optimizelegibility;
-    -webkit-font-smoothing: antialiased;
-    user-select: none;
-    transition: 0.5s;
+  font-family: 'DM Sans', sans-serif;
+  font-family: 'Spectral', serif;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  transition: 0.5s;
 }
 
 .noselect {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -khtml-user-select: none;
-    /* Konqueror HTML */
-    -moz-user-select: none;
-    /* Old versions of Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
     supported by Chrome, Edge, Opera and Firefox */
 }
 
-.lazy{
-    background-color: #D4E9D2;
-    width: 30%;
-    height: 20px;
-    margin-top: 4px;
-    margin-bottom: 1px;
-    border-radius: 4px;
-  }
+.lazy {
+  background-color: #D3F6DF;
+  width: 30%;
+  height: 25px;
+  margin-top: 4px;
+  margin-bottom: 1px;
+  border-radius: 4px;
+}
 
-  .lazy img{
-    border-radius: 0px;
-  }
+.lazy img {
+  border-radius: 0px;
+}
