@@ -29,8 +29,8 @@ root.render(
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/newreport" element={<Newreport />} />
         <Route exact path="/viewreport/:reportid" element={<Viewreport />} />
-        <Route exact path="/newtask" element={<Newtask />} />
-        <Route exact path="/viewtask" element={<Viewtask />} />
+        <Route exact path="/newtask/:reportid" element={<Newtask />} />
+        <Route exact path="/viewtask/:taskid" element={<Viewtask />} />
       </Routes>
     </Router>
   </Web3ReactProvider>

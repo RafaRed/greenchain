@@ -107,8 +107,13 @@ function RenderReports(props) {
 
 	var reports_list = [];
 	var reports = props.reports;
+	
 
 	for (var i = 0; i < reports.length; i++) {
+		var country = reports[i].location.country;
+		if(country === undefined){
+			country = ""
+		}
 		reports_list.push(
 			<ReportCard
 				title={reports[i].title}
@@ -117,7 +122,7 @@ function RenderReports(props) {
 				reportid={i}
         image={reports[i].images[0]}
 				membersnumber={20}
-				countryimg={"/images/Brazil.svg"}
+				countryimg={"/images/flag/"+country.toLowerCase()+".svg"}
 				state={reports[i].location.state}
 				citycountry={reports[i].location.city+" - "+reports[i].location.country}
 				key={i}></ReportCard>

@@ -1,5 +1,5 @@
 import '../css/TaskCard.css';
 export function TextArea(props) {
-    return (<textarea placeholder={props.placeholder} rows={props.rows} cols={props.cols}>
+    return (<textarea placeholder={props.placeholder} rows={props.rows} cols={props.cols} onChange={props.onChange}>
     </textarea>);
 }

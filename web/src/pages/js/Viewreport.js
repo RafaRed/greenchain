@@ -6,16 +6,19 @@ import { Title } from '../../components/js/Title';
 import { PrimaryButton } from '../../components/js/PrimaryButton';
 import { TaskCard } from '../../components/js/TaskCard';
 import { useParams } from 'react-router-dom';
-import { getReport, getUsername } from '../../model/Calls/server';
+import { getReport, getTasks, getUsername } from '../../model/Calls/server';
 import { useEffect, useState } from 'react';
+import { getCID } from '../../model/Calls/ipfs';
 
 function Viewreport() {
     const {reportid} = useParams();
     const [report,setReport] = useState({"location":{}, "images":{}})
+    const [tasks,setTasks] = useState({})
     const [loaded, setLoaded] = useState(false)
     var lazy = loaded ? "" : "lazy"
     useEffect(()=>{
         loadReport(reportid,setReport,setLoaded)
+        loadTasks(reportid,setTasks)
     },[])
     return (
         <>
@@ -69,14 +72,11 @@ function Viewreport() {
                 <div className='proposedtask-frame'>
                     <div className='proposed-tasks'>
                         <Title title='Proposed Task'></Title>
-                        <PrimaryButton text='New Task' path='/newtask'></PrimaryButton>
+                        <PrimaryButton text='New Task' path={'/newtask/'+reportid}></PrimaryButton>
                     </div>
 
                     <div className='taskcards-frame'>
-                        <TaskCard
-                            path='/viewtask'
-                            title='Cartão teste' description='testando cartão'
-                            goal='3000' membersmissing='3' daysleft='12' status='open' raised='1200' username='Rafael' image='/images/mavatar.svg'></TaskCard>
+                        <RenderTasks tasks={tasks}></RenderTasks>
                     </div>
 
                 </div>
@@ -93,8 +93,32 @@ function loadReport(id,setReport,setLoaded){
         /*getUsername(id).then(username=>{
             console.log(username)
         })*/
-    })
-    
+    })   
+}
+
+async function loadTasks(id,setTasks){
+    var task_list = []
+    console.log(id)
+    var tasks = await getTasks({"report_id":id})
+    for (const [key, value] of Object.entries(tasks["content"]["id"])) {
+        var task_cid = tasks["content"]["id"][key];
+        var content = await getCID(task_cid)
+        task_list.push(content)
+       
+    }
+    setTasks(task_list)
+}
+
+function RenderTasks(props){
+ var task_list = []
+ for(var i = 0; i < props.tasks.length; i++)
+ {
+    task_list.push( <TaskCard
+        path={'/viewtask/'+i}
+        title={props.tasks[i].title} description={props.tasks[i].description}
+        goal={props.tasks[i].requested_value} membersmissing={props.tasks[i].team_size} daysleft='12' status='open' raised='1200' username='Rafael' image='/images/mavatar.svg'></TaskCard>)
+ }
+ return task_list
 }
 
 export default Viewreport;
