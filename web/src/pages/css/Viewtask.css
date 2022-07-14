@@ -239,3 +239,7 @@
     border-top: 1px solid #B3E4C4;
 
 }
+
+.taskcards-frame {
+    min-height: 284px;
+}

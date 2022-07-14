@@ -14,7 +14,6 @@
     margin-right: 32px;
     display: flex;
     background-color: var(--SurfaceColor);
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 }
 
 .left-user {
