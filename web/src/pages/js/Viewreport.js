@@ -111,11 +111,13 @@ async function loadTasks(id,setTasks){
 
 function RenderTasks(props){
  var task_list = []
+
  for(var i = 0; i < props.tasks.length; i++)
  {
     task_list.push( <TaskCard
         path={'/viewtask/'+i}
-        title={props.tasks[i].title} description={props.tasks[i].description}
+        title={props.tasks[i].title}
+        description={props.tasks[i].details}
         goal={props.tasks[i].requested_value} membersmissing={props.tasks[i].team_size} daysleft='12' status='open' raised='1200' username='Rafael' image='/images/mavatar.svg'></TaskCard>)
  }
  return task_list
