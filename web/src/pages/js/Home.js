@@ -114,6 +114,7 @@ function RenderReports(props) {
 				title={reports[i].title}
 				status={"open"}
 				tasknumber={3}
+				reportid={i}
         image={reports[i].images[0]}
 				membersnumber={20}
 				countryimg={"/images/Brazil.svg"}

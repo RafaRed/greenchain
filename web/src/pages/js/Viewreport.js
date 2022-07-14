@@ -5,8 +5,18 @@ import { Chips } from '../../components/js/Chips';
 import { Title } from '../../components/js/Title';
 import { PrimaryButton } from '../../components/js/PrimaryButton';
 import { TaskCard } from '../../components/js/TaskCard';
+import { useParams } from 'react-router-dom';
+import { getReport, getUsername } from '../../model/Calls/server';
+import { useEffect, useState } from 'react';
 
 function Viewreport() {
+    const {reportid} = useParams();
+    const [report,setReport] = useState({"location":{}, "images":{}})
+    const [loaded, setLoaded] = useState(false)
+    var lazy = loaded ? "" : "lazy"
+    useEffect(()=>{
+        loadReport(reportid,setReport,setLoaded)
+    },[])
     return (
         <>
             <NavBar></NavBar>
@@ -20,7 +30,7 @@ function Viewreport() {
 
                         <div className='avataruser-wrapper'>
                             <div className='avatar noselect'>
-                                <img src='images/favatar.svg'></img>
+                                <img src='/images/favatar.svg'></img>
                             </div>
 
                             <div className='username-label'>
@@ -37,21 +47,21 @@ function Viewreport() {
                                 <Chips status='open'></Chips>
                             </div>
                         </div>
+                        {loaded ? <Title title={report.title}></Title> : <div className='lazy'/> }
+                       
 
-                        <Title title='Accumulation of garbage in an inappropriate place'></Title>
-
-                        <div className='report-complete-location-label'>
-                            Av. Avenida Francisco Glicério - Campinas, São Paulo - Brasil
+                        <div className={'report-complete-location-label'}>
+                            {loaded ? report.location.address+" - "+report.location.city+", "+report.location.state+" - "+report.location.country : <div className='lazy'/>}
                         </div>
 
                         <div className='report-img'>
-                            <img src='images/report2-img.svg'></img>
+                            {loaded ? <img src={report.images[0]}></img> : <img src="/images/noimg.png"></img>}
                         </div>
                         <div className='desc-title'>
                             Description
                         </div>
-                        <div className='description-label'>
-                            One of the main environmental issues of the contemporary era is, without a doubt, the enormous amount of waste produced on the planet. Associated with this, another even more challenging problem arises: the non-appropriate reuse of these materials due to rampant consumption, waste and incorrect disposal of garbage.
+                        <div className={'description-label'}>
+                        {loaded ? report.description : <div className='lazy'/> }
                         </div>
                     </div>
                 </div>
@@ -66,11 +76,25 @@ function Viewreport() {
                         <TaskCard
                             path='/viewtask'
                             title='Cartão teste' description='testando cartão'
-                            goal='3000' membersmissing='3' daysleft='12' status='open' raised='1200' username='Rafael' image='images/mavatar.svg'></TaskCard>
+                            goal='3000' membersmissing='3' daysleft='12' status='open' raised='1200' username='Rafael' image='/images/mavatar.svg'></TaskCard>
                     </div>
 
                 </div>
             </div>
         </>);
 }
+
+
+function loadReport(id,setReport,setLoaded){
+    getReport({"id":id}).then(data=>{
+        setReport(data["content"])
+        setLoaded(true)
+        console.log(data)
+        /*getUsername(id).then(username=>{
+            console.log(username)
+        })*/
+    })
+    
+}
+
 export default Viewreport;

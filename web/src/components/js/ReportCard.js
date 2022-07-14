@@ -36,7 +36,7 @@ export function ReportCard(props) {
                     </div>
                 </div>
             </div>
-            <CardButton text='View' path='/viewreport'></CardButton>
+            <CardButton text='View' path={'/viewreport/'+props.reportid}></CardButton>
         </div>
     </div>
     );
