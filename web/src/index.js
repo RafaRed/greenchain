@@ -28,7 +28,7 @@ root.render(
         <Route exact path="/" element={<Home />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/newreport" element={<Newreport />} />
-        <Route exact path="/viewreport" element={<Viewreport />} />
+        <Route exact path="/viewreport/:reportid" element={<Viewreport />} />
         <Route exact path="/newtask" element={<Newtask />} />
         <Route exact path="/viewtask" element={<Viewtask />} />
       </Routes>

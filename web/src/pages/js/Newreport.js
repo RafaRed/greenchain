@@ -156,7 +156,7 @@ function RenderFiles(props) {
 					{props.files[i].name}
 				</div>
 				<div className="close-img">
-					<img src="images/xmark.svg"></img>
+					<img src="/images/xmark.svg"></img>
 				</div>
 			</div>
 		);

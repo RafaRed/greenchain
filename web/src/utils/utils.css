@@ -3,6 +3,8 @@
     font-family: 'Spectral', serif;
     text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
+    user-select: none;
+    transition: 0.5s;
 }
 
 .noselect {
@@ -20,3 +22,16 @@
     /* Non-prefixed version, currently
     supported by Chrome, Edge, Opera and Firefox */
 }
+
+.lazy{
+    background-color: #D4E9D2;
+    width: 30%;
+    height: 20px;
+    margin-top: 4px;
+    margin-bottom: 1px;
+    border-radius: 4px;
+  }
+
+  .lazy img{
+    border-radius: 0px;
+  }

@@ -62,7 +62,7 @@ function Viewtask() {
                                     $1500
                                 </div>
                                 <div className='vt-usdt-logo'>
-                                    <img src='images/usdt-logo.svg'></img>
+                                    <img src='/images/usdt-logo.svg'></img>
                                 </div>
                             </div>
 
@@ -74,7 +74,7 @@ function Viewtask() {
 
                     <div className='rw3-userframe'>
                         <div className='user-avatar-profile'>
-                            <img src='images/favatar.svg'></img>
+                            <img src='/images/favatar.svg'></img>
                         </div>
                         <div className='user-infos-frame'>
                             <div className='col-user-infos-profile'>
@@ -88,8 +88,8 @@ function Viewtask() {
                                     fernanda@gmail.com
                                 </div>
                                 <div className='col4-user-contact-icons'>
-                                    <img src='images/discord-ico.svg'></img>
-                                    <img src='images/twitter-ico.svg'></img>
+                                    <img src='/images/discord-ico.svg'></img>
+                                    <img src='/images/twitter-ico.svg'></img>
                                 </div>
                             </div>
                         </div>

@@ -42,7 +42,7 @@ export function TaskCard(props) {
 
                     <div className='usdtlogo-frame'>
                         <div className='col4-usdtlogo'>
-                            <img src='images/usdt-logo.svg'></img>
+                            <img src='/images/usdt-logo.svg'></img>
                         </div>
                     </div>
                 </div>
