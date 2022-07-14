@@ -47,7 +47,6 @@
     margin-top: 1.2rem;
 }
 
-
 /* top medias queries */
 @media (max-width: 768px) {
 
@@ -82,7 +81,6 @@
 .mid-container {
     background-color: var(--PrimaryColor);
     padding: 1.2rem;
-
 }
 
 .midtitle-label {
@@ -116,7 +114,6 @@
     right: 0;
     top: 0;
 }
-
 
 .midinfo-container {
     margin-left: 16px;
