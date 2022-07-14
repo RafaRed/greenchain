@@ -40,16 +40,16 @@
 }
 
 .inputinfo-col {
-    font-family: 'DM Sans', 'Sans-serif';
-    font-size: 0.8rem;
+    font-family: 'Spectral', 'Sans-serif';
+    font-size: 0.9rem;
     font-weight: 400;
     color: #809C87;
 }
 
 .inputinfo-col span {
-    font-family: 'DM Sans', 'Sans-serif';
+    font-family: 'Spectral', 'Sans-serif';
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #809C87;
 }
 

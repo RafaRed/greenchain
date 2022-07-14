@@ -5,6 +5,9 @@ import { PrimaryButton } from '../../components/js/PrimaryButton';
 import { SecondaryButton } from '../../components/js/SecondaryButton';
 import { Chips } from '../../components/js/Chips';
 import { Title } from '../../components/js/Title';
+import { ProgressViewTaskCard } from '../../components/js/ProgressViewTaskCard';
+
+
 
 
 function Viewtask() {
@@ -93,8 +96,40 @@ function Viewtask() {
                     </div>
                 </div>
 
-
                 <Title title='Progress'> </Title>
+
+                <div className='rw-tv-info-frame-label'>
+                    <div className='inputinfo-col'>
+                        • The execution of the proposed tasks and the posting of photos are mandatory for the team to receive payments;
+                    </div>
+                    <div className='inputinfo-col'>
+                        • You must complete your tasks before the task end date.
+                    </div>
+                </div>
+
+                <div className='vt-progress-frame'>
+                    <ProgressViewTaskCard title='OPEN TASK' image='/images/opentask-ico.svg' isActive={true}></ProgressViewTaskCard>
+                    <ProgressViewTaskCard title='COMPLETE TEAM' image='/images/team-ico.svg' isActive={false}></ProgressViewTaskCard>
+
+                    <div className='vt-progress-wrapper-card-button'>
+                        <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/value-ico.svg' isActive={false}></ProgressViewTaskCard>
+                        <PrimaryButton text='Start'></PrimaryButton>
+                    </div>
+
+
+                    <div className='vt-progress-wrapper-card-button'>
+                        <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/photos-ico.svg' isActive={false}></ProgressViewTaskCard>
+                        <PrimaryButton text='Done'></PrimaryButton>
+                    </div>
+
+
+
+                    <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={false}></ProgressViewTaskCard>
+                    <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={false}></ProgressViewTaskCard>
+                </div>
+
+
+
 
             </div>
         </div >

@@ -118,7 +118,7 @@
 }
 
 .col3-user-email-label {
-    font-family: 'DM Sans', 'sans-serif';
+    font-family: 'Spectral', 'sans-serif';
     color: #809C87;
     font-weight: 500;
     font-size: 0.9rem;
@@ -195,4 +195,14 @@
     margin-left: 4px;
     height: 20px;
     width: 20px;
+}
+
+.vt-progress-frame {
+    display: flex;
+    justify-content: space-between;
+}
+
+.vt-progress-wrapper-card-button .btn-frame {
+    width: 100%;
+    justify-content: space-between;
 }

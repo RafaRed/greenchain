@@ -1,0 +1,56 @@
+.rw-tv-info-frame-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.vt-container-progress {
+    display: flex;
+    justify-content: center;
+    height: 256px;
+    width: 256px;
+    background-color: #BDD1C4;
+}
+
+.vt-container-progress img {
+    height: 128px;
+    width: 128px;
+}
+
+.col-vt-wrapped-ico-label {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.vt-progress-card-label {
+    font-family: 'DM Sans';
+    color: #86938A;
+    font-weight: bold;
+    font-weight: 1.2rem;
+}
+
+.vt-container-progress-active {
+    display: flex;
+    justify-content: center;
+    height: 256px;
+    width: 256px;
+    background-color: #34D399;
+}
+
+.vt-container-progress-active .vt-progress-card-label {
+    font-family: 'DM Sans';
+    color: #A7F3D0;
+    font-weight: bold;
+    font-weight: 1.2rem;
+}
+
+.vt-container-progress-active img {
+    height: 128px;
+    width: 128px;
+}
+
+.vt-progress-wrapper-card-button {
+    display: flex;
+    flex-direction: column;
+}

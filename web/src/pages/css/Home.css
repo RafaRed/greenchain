@@ -44,6 +44,7 @@
 
 .topbtn-frame {
     flex: wrap;
+    width: 128px;
     margin-top: 1.2rem;
 }
 

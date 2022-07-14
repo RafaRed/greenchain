@@ -39,6 +39,7 @@
 .username-label {
     font-family: 'DM Sans', 'sans-serif';
     color: #3D5445;
+    font-weight: 400;
     font-size: 0.8rem;
 }
 
@@ -48,15 +49,15 @@
 }
 
 .report-complete-location-label {
-    font-family: 'DM Sans', 'sans-serif';
+    font-family: 'Spectral', 'sans-serif';
     font-size: 1rem;
     color: #3D5445;
     margin-bottom: 16px;
 }
 
 .description-label {
-    font-family: 'DM Sans', 'sans-serif';
-    font-size: 1rem;
+    font-family: 'Spectral', 'sans-serif';
+    font-size: 1.1rem;
     margin-top: 4px;
     margin-bottom: 24px;
     color: #4F6758;
