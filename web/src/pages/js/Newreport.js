@@ -125,7 +125,7 @@ function Newreport() {
 
 async function createReport(location, report, files, setButtonSubmitName) {
 	report["location"] = location;
-	report["userid"] = "0";
+	report["userid"] = localStorage.getItem("greenchain-userid");
 	report["images"] = [];
 	for (var i = 0; i < files.length; i++) {
 		var base64 = await getBase64(files[i])
