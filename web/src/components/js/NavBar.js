@@ -1,7 +1,7 @@
 import { PrimaryButton } from '../../components/js/PrimaryButton';
 import Metamask from '../../model/metamask/Metamask';
 import '../css/NavBar.css';
-
+import "../css/Loader.css"
 export function NavBar() {
     return (<div className='navbar'>
 

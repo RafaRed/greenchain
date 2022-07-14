@@ -95,6 +95,7 @@ app.post("/get-task", async (req, res) => {
 
 app.post("/register", async (req, res) => {
 	var data = req.body;
+	console.log(data)
 	var user = await AddNode("User", data, "-1");
 	await UpdateHashtable("UserWallet", user["new_id"], data["wallet"]);
 	res.send({ status: "success" });
@@ -114,11 +115,15 @@ app.post("/join-task", async (req, res) => {
 
 app.post("/get-user-id", async (req, res) => {
 	var wallet = req.body.wallet;
+	console.log(wallet)
 	var id = await FindHashtableByValue("UserWallet", wallet);
 	if (id === undefined) {
 		res.send({ status: "not found" });
 	}
-	res.send({ id: id });
+	else{
+		res.send({ id: id });
+	}
+	
 });
 
 app.post("/start-work", async (req, res) => {
@@ -166,6 +171,11 @@ app.post("/get-members", async (req, res) => {
 	res.send(members);
 });
 
+app.post("/get-username", async (req, res) => {
+	var user_id = req.body.user_id;
+	var user = await GetNodeByPath("User/" + user_id);
+	res.send({"username":user['content']['username']});
+});
 
 
 

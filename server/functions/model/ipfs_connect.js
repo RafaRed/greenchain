@@ -4,8 +4,25 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 const { resolve } = require("path");
 const { promises: Fs } = require('fs')
+var cidCache = {}
+var max_cache = 150;
 
+function loadFromCache(cid){
+	if(cid in cidCache){
+		console.log("### Loaded "+ cid + "from cache. ###")
+		return cidCache[cid]
+	}
+	else{
+		return null
+	}
+}
 
+function saveOnCache(cid, value){
+	if(cidCache.length > max_cache){
+		cidCache = {}
+	}
+	cidCache[cid] = value
+}
 
 module.exports.createNameService = async function (_name, _content, path = "./tree/") {
 	var cid = await module.exports.uploadFile(_content)
@@ -36,12 +53,22 @@ module.exports.uploadFile = async function (_value, _filename = "file.json") {
 module.exports.retrieveFile = async function (cid, filename = "file.json") {
 
 	return new Promise((resolve, reject) => {
-		const url = "https://" + cid + '.ipfs.dweb.link/' + filename
-		fetch(url)
+		var data = loadFromCache(cid);
+		if( data !== null){
+			resolve(data);
+		}
+		else{
+			const url = "https://" + cid + '.ipfs.dweb.link/' + filename
+			fetch(url)
 			.then(response => response.json())
 			.then(data => {
+				saveOnCache(cid,data)
 				resolve(data);
+				
 			});
+		}
+		
+		
 	})
 }
 

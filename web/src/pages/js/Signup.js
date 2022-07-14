@@ -11,7 +11,8 @@ import { sendRegister } from '../../model/Calls/server';
 
 function Signup() {
     const [register, setRegister] = useState({})
-    var wallet = localStorage.setItem("greenchain-account", response);
+    const [registerStatus, setRegisterStatus] = useState("Register")
+    var wallet = localStorage.getItem("greenchain-account");
     return (
         <>
             <NavBar></NavBar>
@@ -36,15 +37,10 @@ function Signup() {
                         }></InputText>
 
                         <Label label={'Wallet'}></Label>
-                        <InputText value={wallet} onChange={(e) =>
+                        <InputText disabled={true} value={wallet} onChange={(e) =>
                             handleOnChangeData(e, register, setRegister, "wallet")
                         }></InputText>
-
-                        <div className='addwallet-frame'>
-                            <div className='addwallet-btn'>
-                                <PrimaryButton text={'Add Wallet'}></PrimaryButton>
-                            </div>
-                        </div>
+                    
 
                         <Label label={'Name'}></Label>
                         <InputText onChange={(e) =>
@@ -84,7 +80,7 @@ function Signup() {
 
                         <div className='register-btn-frame'>
                             <div className='register-btn'>
-                                <PrimaryButton text={'Register'} onClick={() => UserRegister(register)}></PrimaryButton>
+                                <PrimaryButton text={registerStatus} onClick={() => UserRegister(register,wallet,setRegisterStatus)}></PrimaryButton>
                             </div>
                         </div>
 
@@ -97,11 +93,15 @@ function Signup() {
         </>);
 }
 
-function UserRegister(register) {
+function UserRegister(register,wallet,setRegisterStatus) {
     register['avatar'] = ""
+    register['wallet'] = wallet
+    setRegisterStatus("Loader")
     sendRegister(register).then(response => {
-
+        window.location.href = "/"
+        setRegisterStatus("Register")
     })
 }
+
 
 export default Signup;

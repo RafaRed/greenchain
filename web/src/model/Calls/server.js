@@ -1,4 +1,4 @@
-import { get_reports_path, register_path, report_path, server } from "../repository";
+import { get_reports_path, get_username_path, get_user_id_path, register_path, report_path, server } from "../repository";
 
 
 export async function endpointCall(data, endpoint) {
@@ -60,4 +60,12 @@ export async function sendReport(data){
 
 export async function sendRegister(data){
 	return endpointCall(data,register_path)
+}
+
+export async function getUserId(data){
+	return endpointCall(data,get_user_id_path)
+}
+
+export async function getUsername(data){
+	return endpointCall(data,get_username_path)
 }

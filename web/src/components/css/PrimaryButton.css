@@ -8,9 +8,12 @@
     z-index: 1;
     cursor: pointer;
     transition: color .3s;
+
     /* Typo */
     line-height: 48px;
     text-align: center;
+
+
 }
 
 .btn-frame a {

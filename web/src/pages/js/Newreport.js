@@ -19,6 +19,8 @@ function Newreport() {
 	const [location, setLocation] = useState({});
 	const [userid, setUserid] = useState(0);
 	const fileInput = useRef(null);
+    const [buttonSubmitName, setButtonSubmitName] = useState("Submit");
+	
 	const selectFile = () => {
 		fileInput.current.click();
 	};
@@ -110,8 +112,8 @@ function Newreport() {
 					<div className="register-btn-frame">
 						<div className="register-btn">
 							<PrimaryButton
-								text={"Submit"}
-								onClick={() => createReport(location, report, files)}></PrimaryButton>
+								text={buttonSubmitName}
+								onClick={() => createReport(location, report, files, setButtonSubmitName)}></PrimaryButton>
 						</div>
 					</div>
 				</div>
@@ -121,7 +123,7 @@ function Newreport() {
 }
 
 
-async function createReport(location, report, files) {
+async function createReport(location, report, files, setButtonSubmitName) {
 	report["location"] = location;
 	report["userid"] = "0";
 	report["images"] = [];
@@ -130,7 +132,10 @@ async function createReport(location, report, files) {
 		report["images"].push(base64);
 	}
 	console.log(report)
-	sendReport(report)
+	setButtonSubmitName("Loader")
+	sendReport(report).then(()=>{
+		window.location.href="/"
+	})
 }
 
 function addImage(e, files, setFiles) {

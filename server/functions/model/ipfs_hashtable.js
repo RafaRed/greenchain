@@ -26,7 +26,7 @@ async function GetHashtableCid(name) {
 
 module.exports.GetHashtableData = async function (name) {
     var cid = await GetHashtableCid(name);
-    var data = retrieveFile(cid);
+    var data = await retrieveFile(cid);
     return data
 }
 
@@ -46,8 +46,13 @@ module.exports.FindHashtableByValue = async function (name, value) {
 }
 
 module.exports.UpdateHashtable = async function (name, key, value) {
-    var data = module.exports.GetHashtableData(name)
+    var data = await module.exports.GetHashtableData(name)
+    console.log(data)
+    console.log(value)
     data[key] = value;
+    console.log(data)
     const new_cid = await uploadFile(data);
-    UpdateHashtableNamespace(name, new_cid)
+    console.log(new_cid)
+    await UpdateHashtableNamespace(name, new_cid)
+    return
 };

@@ -4,6 +4,6 @@ import '../css/InputText.css';
 export function InputText(props) {
     var type = props.type === undefined ? 'text' : props.type
     return (<div className='input-frame'>
-        <input className='input' type={type} onChange={props.onChange} placeholder={props.placeholder} />
+        <input className='input' type={type} onChange={props.onChange} value={props.value} placeholder={props.placeholder} disabled={props.disabled} />
     </div>);
 }
