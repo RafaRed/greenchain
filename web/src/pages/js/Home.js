@@ -71,16 +71,19 @@ function Home() {
 				</div>
 				<div className="midinfo-container">
 					<div className="info1-label">
+						• All our data is stored using the <span>IPFS</span> protocol
+					</div>
+					<div className="info1-label">
 						• All transactions are recorded on the <span>blockchain</span> ensuring
-						complete security for the community.
+						complete security for the community
 					</div>
 					<div className="info2-label">
 						• All transactions are made in <span>USDT</span> on your registered
-						wallet.
+						wallet
 					</div>
 					<div className="info3-label">
 						• If a task is not executed as intended, all supporters will have their{" "}
-						<span>money refunded</span>, and the <span>action is canceled</span>.
+						<span>money refunded</span>, and the <span>action is canceled</span>
 					</div>
 				</div>
 			</div>
@@ -111,12 +114,12 @@ async function loadReports(setReports) {
 	setReports(reports_list)
 }
 
-async function loadMembers(setMembers){
+async function loadMembers(setMembers) {
 	var members = await getMembersSize({})
 	setMembers(members['members'])
 }
 
-async function loadTasks(setTasks){
+async function loadTasks(setTasks) {
 	var tasks = await getTasksSize({})
 	setTasks(tasks['tasks'])
 }
@@ -127,24 +130,24 @@ function RenderReports(props) {
 	var reports = props.reports;
 	var members = props.members;
 	var tasks = props.tasks;
-	
+
 
 	for (var i = 0; i < reports.length; i++) {
 		var country = reports[i].location.country;
-		if(country === undefined){
+		if (country === undefined) {
 			country = ""
 		}
 		reports_list.push(
 			<ReportCard
 				title={reports[i].title}
-				status={tasks[i] > 0 ? "help" : "open" }
+				status={tasks[i] > 0 ? "help" : "open"}
 				tasknumber={tasks[i]}
 				reportid={i}
-        image={reports[i].images[0]}
+				image={reports[i].images[0]}
 				membersnumber={members[i]}
-				countryimg={"/images/flag/"+country.toLowerCase()+".svg"}
+				countryimg={"/images/flag/" + country.toLowerCase() + ".svg"}
 				state={reports[i].location.state}
-				citycountry={reports[i].location.city+" - "+reports[i].location.country}
+				citycountry={reports[i].location.city + " - " + reports[i].location.country}
 				key={i}></ReportCard>
 		);
 	}
