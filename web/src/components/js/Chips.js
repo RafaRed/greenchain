@@ -19,5 +19,11 @@ export function Chips(props) {
                     expired
                 </div>
             );
+        case "help":
+            return (
+                <div className="chip-help noselect">
+                    expired
+                </div>
+            );
     }
 }
