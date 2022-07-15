@@ -12,7 +12,7 @@
 .Viewtask-frame {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     padding: 1.2rem;
     margin-left: 16px;
     margin-right: 16px;
@@ -210,20 +210,28 @@
 
 .validation-frame {
     display: flex;
+
 }
 
 .col-vt-left {
-    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 1.4rem;
     background-color: #E6FAE4;
-    height: 600px;
+    height: 500px;
     width: 80%;
 }
 
-.col-vt-right {
-    padding: 1.2rem;
-    background-color: #ADDCBD;
-    height: 600px;
+.col-vt-right-frame {
+    display: flex;
+    flex-direction: column;
     width: 20%;
+}
+
+.col-vt-right {
+    background-color: #ADDCBD;
+    height: 90%;
 }
 
 .title-validation-label {
@@ -250,28 +258,123 @@
 
 .membersphotos-control-container {
     display: flex;
+
+}
+
+.membersphotos-control-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .membersphotos-control-bt-left {
+    cursor: pointer;
     display: flex;
     background-color: #B3E4C4;
     align-items: center;
     justify-content: center;
-    height: 80px;
+    height: 96px;
     width: 5%;
 }
 
+.membersphotos-control-bt-left:hover {
+    background-color: #34D399;
+}
+
+.membersphotos-control-bt-right:hover {
+    background-color: #34D399;
+}
+
+
 .membersphotos-control-body {
     background-color: #fff;
-    height: 80px;
+    height: 96px;
     width: 90%;
 }
 
 .membersphotos-control-bt-right {
+    cursor: pointer;
     display: flex;
     background-color: #B3E4C4;
     align-items: center;
     justify-content: center;
-    height: 80px;
+    height: 96px;
     width: 5%;
+}
+
+.photo-gallery-frame {
+    display: flex;
+    height: 50%;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.photo-gallery-container {
+    display: flex;
+    cursor: pointer;
+    height: 90%;
+}
+
+.photo-gallery-container img {
+    height: 256px;
+    width: 256px;
+}
+
+.photo-gallery-container-btn-frame {
+    display: flex;
+    justify-content: right;
+}
+
+.photo-gallery-container img:hover {
+    transform: translateY(-5px) scale(1.000) translateZ(0);
+    box-shadow: rgba(184, 249, 211, 0.48)
+}
+
+.photo-gallery-container img:active {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 15px 24px rgba(0, 0, 0, 0.11),
+        0 15px 24px rgba(184, 249, 211, 0.48);
+}
+
+.membersphotos-funders-label-wrapper {
+    display: flex;
+    padding: 1.2rem;
+    justify-content: space-around;
+}
+
+.vt-aprov-frame {
+    height: 10%;
+}
+
+.vt-aprov-founders-wrapper {
+    display: flex;
+    background-color: #BDEECE;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.vt-aprov-founders-label {
+    font-family: 'DM Sans';
+    font-weight: 400;
+    color: #809C87;
+}
+
+.vt-aprov-founders-label span {
+    font-family: 'DM Sans';
+    font-weight: 500;
+    color: #677D6D;
+}
+
+.funder-check-wrapper {
+    display: flex;
+    padding: 0.8rem;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 16px;
+}
+
+.funder-user-label {
+    font-family: 'DM Sans';
+    font-weight: 500;
+    color: #6D8675;
 }

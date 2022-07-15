@@ -3,15 +3,25 @@ import { NavBar } from "../../components/js/NavBar";
 import { BackBar } from '../../components/js/BackBar';
 import { PrimaryButton } from '../../components/js/PrimaryButton';
 import { SecondaryButton } from '../../components/js/SecondaryButton';
+import { TextArea } from '../../components/js/TextArea';
+import { InputText } from '../../components/js/InputText';
 import { Label } from '../../components/js/Label';
+import { Divider } from '../../components/js/Divider';
 import { Chips } from '../../components/js/Chips';
 import { Title } from '../../components/js/Title';
 import { ProgressViewTaskCard } from '../../components/js/ProgressViewTaskCard';
+import { UserValidation } from '../../components/js/UserValidation';
+import { useState, useSyncExternalStore } from 'react';
+
+
 
 
 
 
 function Viewtask() {
+
+    const [selected, setSelected] = useState(0);
+
     return (
         <div className='Viewtask'>
             <NavBar></NavBar>
@@ -153,45 +163,173 @@ function Viewtask() {
                                 </div>
 
                                 <div className='membersphotos-control-body'>
-
+                                    <div className='membersphotos-username-link-frame'>
+                                        <UserValidation title='Fernanda' selected={selected} id={0} onClick={() => setSelected(0)}></UserValidation>
+                                        <UserValidation title='Rafael' selected={selected} id={1} onClick={() => setSelected(1)}></UserValidation>
+                                        <UserValidation title='Leandro' selected={selected} id={2} onClick={() => setSelected(2)}></UserValidation>
+                                        <UserValidation title='Luciano' selected={selected} id={3} onClick={() => setSelected(3)}></UserValidation>
+                                        <UserValidation title='Paola' selected={selected} id={4} onClick={() => setSelected(4)}></UserValidation>
+                                    </div>
                                 </div>
 
                                 <div className='membersphotos-control-bt-right'>
                                     <img src='/images/chavron-right-ico.svg'></img>
                                 </div>
-
                             </div>
+
                             <div className='hline'></div>
 
 
                         </div>
 
+                        <div className='photo-gallery-frame'>
 
+                            <div className='photo-gallery-container'>
+                                <img src='/images/report2-img.svg'></img>
+                            </div>
 
+                            <div className='photo-gallery-container'>
+                                <img src='/images/report2-img.svg'></img>
+                            </div>
 
+                            <div className='photo-gallery-container'>
+                                <img src='/images/report2-img.svg'></img>
+                            </div>
+
+                        </div>
+
+                        <div className='photo-gallery-container-btn-frame'>
+                            <PrimaryButton text='+ Photos'></PrimaryButton>
+                        </div>
 
 
                     </div>
 
 
+                    <div className='col-vt-right-frame'>
+                        <div className='col-vt-right'>
+                            <div className='membersphotos-funders-label-wrapper'>
+                                <div className='title-validation-label'>
+                                    Funders
+                                </div>
+                                <div className='title-validation-label'>
+                                    Verification
+                                </div>
+                            </div>
+                            <div className='hline'></div>
 
 
+                            <div className='vt-funderscheck-frame'>
+
+                                <div className='funder-check-wrapper'>
+                                    <div className='funder-user-label'>
+                                        User001
+                                    </div>
+                                    <div className='funder-checkstatus-img'>
+                                        <img src='/images/accept-ico.svg'></img>
+                                    </div>
+                                </div>
+
+                                <div className='funder-check-wrapper'>
+                                    <div className='funder-user-label'>
+                                        User002
+                                    </div>
+                                    <div className='funder-checkstatus-img'>
+                                        <img src='/images/reject-ico.svg'></img>
+                                    </div>
+                                </div>
+
+                                <div className='funder-check-wrapper'>
+                                    <div className='funder-user-label'>
+                                        User003
+                                    </div>
+                                    <div className='funder-checkstatus-img'>
+                                        <img src='/images/waiting-ico.svg'></img>
+                                    </div>
+                                </div>
+
+                            </div>
 
 
+                        </div>
 
+                        <div className='vt-aprov-frame'>
+                            <div className='vt-aprov-founders-wrapper'>
+                                <div className='vt-aprov-founders-label'>
+                                    <span>3</span> funders
+                                </div>
 
-                    <div className='col-vt-right'>
+                                <div className='vt-aprov-founders-label'>
+                                    <span>70%</span> approval
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
 
                 </div>
 
+                <Title title='About'></Title>
+
+                <Label label='Title'></Label>
+
+                <div className='s-input-frame'>
+                    <InputText></InputText>
+                </div>
+
+                <Label label='Team Size'></Label>
+
+                <div className='xxs-input-frame'>
+                    <InputText type='number'></InputText>
+                </div>
+
+                <Label label='Requeriments' />
+                <div className='s-textarea-frame'>
+                    <TextArea rows={4} cols={4}></TextArea>
+                </div>
+
+                <Label label='Task Details' />
+                <div className='m-textarea-frame'>
+                    <TextArea rows={4} cols={4}></TextArea>
+                </div>
+
+                <Label label='Orientation' />
+
+                <div className='s-textarea-frame'>
+                    <TextArea rows={4} cols={4} ></TextArea>
+                </div>
+                <Divider></Divider>
+
+                <Title title='Deadlines'></Title>
+
+                <Label label='Estimated time in days to complete this task'></Label>
+                <div className='xxs-input-frame'>
+                    <InputText type='number'></InputText>
+                </div>
 
 
+                <div className='wrapper-labelinputinfo'>
+                    <Label label='Choose an end date for your project to expire'></Label>
+                    <div className='inputinfo-col'>
+                        • Projects will be expired at <span>12:00PM UTC</span> and cannot be started after this date
+                    </div>
+                </div>
 
+                <div className='xxs-input-frame'>
+                    <InputText></InputText>
+                </div>
+
+                <Divider></Divider>
+
+                <Title title='Values'></Title>
+
+                <Label label='How much USDT in total this team requested to do this task?'></Label>
+                <div className='xxs-input-frame'>
+                    <InputText type={'number'}></InputText>
+                </div>
 
             </div>
-        </div >
+        </div>
     )
 }
 export default Viewtask;
