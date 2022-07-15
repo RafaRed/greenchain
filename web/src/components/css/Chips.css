@@ -36,3 +36,16 @@
     text-align: center;
     border-radius: 30px;
 }
+
+.chip-help {
+    font-weight: 500;
+    width: 64px;
+    background-color: #B8F6FA;
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    font-family: 'DM Sans', 'sans-serif';
+    border: 2px solid #4EBFE3;
+    color: #2E6C70;
+    text-align: center;
+    border-radius: 30px;
+}

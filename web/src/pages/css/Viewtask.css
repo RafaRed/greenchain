@@ -242,3 +242,36 @@
 .taskcards-frame {
     min-height: 284px;
 }
+
+.membersphotos-control-frame {
+    display: flex;
+    flex-direction: column;
+}
+
+.membersphotos-control-container {
+    display: flex;
+}
+
+.membersphotos-control-bt-left {
+    display: flex;
+    background-color: #B3E4C4;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 5%;
+}
+
+.membersphotos-control-body {
+    background-color: #fff;
+    height: 80px;
+    width: 90%;
+}
+
+.membersphotos-control-bt-right {
+    display: flex;
+    background-color: #B3E4C4;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 5%;
+}

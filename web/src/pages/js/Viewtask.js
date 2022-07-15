@@ -140,9 +140,31 @@ function Viewtask() {
                             Members Photos
                         </div>
 
-                        <div className='hline'></div>
 
-                        <div className=''></div>
+                        <div className='membersphotos-control-frame'>
+
+                            <div className='hline'></div>
+
+                            <div className='membersphotos-control-container'>
+
+                                <div className='membersphotos-control-bt-left'>
+                                    <img src='/images/chavron-left-ico.svg'></img>
+
+                                </div>
+
+                                <div className='membersphotos-control-body'>
+
+                                </div>
+
+                                <div className='membersphotos-control-bt-right'>
+                                    <img src='/images/chavron-right-ico.svg'></img>
+                                </div>
+
+                            </div>
+                            <div className='hline'></div>
+
+
+                        </div>
 
 
 
