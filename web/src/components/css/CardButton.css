@@ -1,7 +1,8 @@
 .CardButton {
     position: relative;
+    border: none;
     font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1rem;
     width: 400px;
     height: 48px;

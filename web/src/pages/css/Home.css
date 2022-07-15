@@ -80,7 +80,10 @@
 
 /* mid*/
 .mid-container {
+    display: flex;
+    flex-direction: column;
     background-color: var(--PrimaryColor);
+    gap: 16px;
     padding: 1.2rem;
 }
 
@@ -89,6 +92,7 @@
     font-size: 1rem;
     font-weight: bold;
     color: var(--PrimaryBoldTextColor);
+    margin-top: 16px;
     margin-left: 16px;
 }
 
@@ -121,6 +125,7 @@
     width: 60%;
     padding: 1.4rem;
     background-color: #97C5AB;
+    margin-bottom: 16px;
 }
 
 .info1-label,
