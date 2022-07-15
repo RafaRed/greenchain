@@ -4,13 +4,17 @@ import { NavBar } from "../../components/js/NavBar";
 import { PrimaryButton } from "../../components/js/PrimaryButton";
 import { MidCard } from "../../components/js/MidCard";
 import { ReportCard } from "../../components/js/ReportCard";
-import { getReports } from "../../model/Calls/server";
+import { getMembersSize, getReports, getTasksSize } from "../../model/Calls/server";
 import { getCID } from "../../model/Calls/ipfs";
 
 function Home() {
 	const [reports, setReports] = useState([])
+	const [members, setMembers] = useState([])
+	const [tasks, setTasks] = useState([])
 	useEffect(() => {
 		loadReports(setReports)
+		loadMembers(setMembers)
+		loadTasks(setTasks)
 	}, [])
 	return (
 		<div className="Home">
@@ -84,7 +88,7 @@ function Home() {
 			<div className="bottom-container">
 				<div className="bottom-title">Reports</div>
 				<div className="reports-container">
-					<RenderReports reports={reports}></RenderReports>
+					<RenderReports reports={reports} members={members} tasks={tasks}></RenderReports>
 				</div>
 			</div>
 		</div>
@@ -98,15 +102,31 @@ async function loadReports(setReports) {
 	for (const [key, value] of Object.entries(reports["content"]["id"])) {
 		var report_cid = reports["content"]["id"][key];
 		var content = await getCID(report_cid);
+		/*var members = await loadMembers(key)
+		var tasks = await loadTasks(key)
+		content['members'] = members['members']
+		content["tasks"] = tasks['tasks']*/
 		reports_list.push(content)
 	}
 	setReports(reports_list)
+}
+
+async function loadMembers(setMembers){
+	var members = await getMembersSize({})
+	setMembers(members['members'])
+}
+
+async function loadTasks(setTasks){
+	var tasks = await getTasksSize({})
+	setTasks(tasks['tasks'])
 }
 
 function RenderReports(props) {
 
 	var reports_list = [];
 	var reports = props.reports;
+	var members = props.members;
+	var tasks = props.tasks;
 	
 
 	for (var i = 0; i < reports.length; i++) {
@@ -117,11 +137,11 @@ function RenderReports(props) {
 		reports_list.push(
 			<ReportCard
 				title={reports[i].title}
-				status={"open"}
-				tasknumber={3}
+				status={tasks[i] > 0 ? "help" : "open" }
+				tasknumber={tasks[i]}
 				reportid={i}
         image={reports[i].images[0]}
-				membersnumber={20}
+				membersnumber={members[i]}
 				countryimg={"/images/flag/"+country.toLowerCase()+".svg"}
 				state={reports[i].location.state}
 				citycountry={reports[i].location.city+" - "+reports[i].location.country}

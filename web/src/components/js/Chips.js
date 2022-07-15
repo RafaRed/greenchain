@@ -22,7 +22,7 @@ export function Chips(props) {
         case "help":
             return (
                 <div className="chip-help noselect">
-                    expired
+                    help
                 </div>
             );
     }

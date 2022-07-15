@@ -32,6 +32,15 @@
   border-radius: 4px;
 }
 
+.lazy-field {
+  display:inline-block;
+  background-color: #F2FBF5;
+  width: 21px;
+  height: 21px;
+  margin: 0;
+  border-radius: 4px;
+}
+
 .lazy img {
   border-radius: 0px;
 }

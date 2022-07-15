@@ -54,6 +54,9 @@
     font-size: 0.8rem;
     font-weight: medium;
     color: #969CA3;
+    display: flex;
+    align-items: center;
+    gap:5px
 }
 
 .task-label span {
@@ -68,6 +71,9 @@
     font-size: 0.8rem;
     font-weight: medium;
     color: #969CA3;
+    display: flex;
+    align-items: center;
+    gap:5px
 }
 
 .members-label span {

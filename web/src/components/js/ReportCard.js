@@ -15,10 +15,10 @@ export function ReportCard(props) {
             <div className='card-divider'></div>
             <div className='info-frame'>
                 <div className='task-label'>
-                    <span>{props.tasknumber}</span> Task
+                <span className={props.membersnumber === undefined ? "lazy-field" : ""}>{props.tasknumber}</span> Task
                 </div>
                 <div className='members-label'>
-                    <span>{props.membersnumber}</span> Members
+                    <span className={props.membersnumber === undefined ? "lazy-field" : ""}>{props.membersnumber}</span> Members
                 </div>
             </div>
             <div className='report-location-frame'>

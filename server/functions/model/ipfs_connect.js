@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 const { resolve } = require("path");
 const { promises: Fs } = require("fs");
 var cidCache = {};
-var max_cache = 150;
+var max_cache = 300;
 
 function loadFromCache(cid) {
 	if (cid in cidCache) {

@@ -10,6 +10,7 @@ const {
 	UpdateNode,
 	GetNodeByPath,
 	InitRoot,
+	GetNodeByCid,
 } = require("./model/ipfs_tree");
 const { InitHashtable } = require("./model/ipfs_hashtable");
 const { UpdateHashtable } = require("./model/ipfs_hashtable");
@@ -63,6 +64,12 @@ app.post("/create-report", async (req, res) => {
 
 app.post("/get-reports", async (req, res) => {
 	var reports = await GetNodeByPath("Report");
+	/*if(reports !== undefined && "content" in reports && reports.content.id !== undefined){
+		for (const [key, value] of Object.entries(reports.content.id)) {
+			var report = await GetNodeByPath("Report/" + key);
+			console.log(report)
+		}
+	}*/
 	res.send(reports);
 });
 
@@ -177,6 +184,52 @@ app.post("/get-username", async (req, res) => {
 	res.send({"username":user['content']['username']});
 });
 
+app.post("/get-members-size", async (req, res) => {
+	var reports = await GetNodeByPath("Report");
+	var members_list = {}
+	if(reports !== undefined && "content" in reports && reports.content.id !== undefined){
+		for (const [key, value] of Object.entries(reports.content.id)) {
+			var members = await getMembersSize(key)
+			members_list[key] = members
+		}
+	}
+	res.send({"members":members_list});
+});
+
+async function getMembersSize(report_id){
+	var members = await GetNodeByPath("Members/" + report_id);
+	var members_num = 0
+	if(members !== undefined && "content" in members && members.content.id !== undefined){
+
+		for (const [key, value] of Object.entries(members.content.id)) {
+			var tasks = await GetNodeByCid(members.content.id[key])
+			members_num += Object.keys(tasks).length;
+		}
+	}
+	return members_num
+	
+}
+app.post("/get-tasks-size", async (req, res) => {
+	var reports = await GetNodeByPath("Report");
+	var tasks_list = {}
+	if(reports !== undefined && "content" in reports && reports.content.id !== undefined){
+		for (const [key, value] of Object.entries(reports.content.id)) {
+			var task = await getTasksSize(key)
+			tasks_list[key] = task
+		}
+	}
+	res.send({"tasks":tasks_list});
+});
+
+async function getTasksSize(report_id){
+	var tasks = await GetNodeByPath("Task/" + report_id);
+	var tasks_num = 0
+	if(tasks !== undefined && "content" in tasks && tasks.content.id !== undefined){
+		console.log(tasks)
+		tasks_num += Object.keys(tasks.content.id).length;
+	}
+	return tasks_num
+}
 
 
 

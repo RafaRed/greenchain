@@ -120,6 +120,14 @@
     top: 0;
 }
 
+.Home .chip-help {
+    position: absolute;
+    margin-right: 16px;
+    margin-top: 16px;
+    right: 0;
+    top: 0;
+}
+
 .midinfo-container {
     margin-left: 16px;
     width: 60%;
