@@ -1,4 +1,3 @@
-
 #flat-toggle label {
     margin-top: 63px;
 }
@@ -9,7 +8,7 @@ label {
     background-color: #d55050;
     box-shadow: inset 0px 6px 0px 0px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    top: 290px;
+    top: 285px;
     left: 20%;
     position: absolute;
     transform: translate(-50%, -50%);

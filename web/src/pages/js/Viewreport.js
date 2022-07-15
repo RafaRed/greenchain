@@ -45,11 +45,6 @@ function Viewreport() {
 
                     <div className='right-report'>
 
-                        <div className='chip-frame'>
-                            <div className='chip-frame-relative'>
-                                <Chips status='open'></Chips>
-                            </div>
-                        </div>
                         {loaded ? <Title title={report.title}></Title> : <div className='lazy' />}
 
 
@@ -59,9 +54,6 @@ function Viewreport() {
 
                         <div className='report-img'>
                             {loaded ? <img src={report.images[0]}></img> : <img src="/images/noimage.svg"></img>}
-                        </div>
-                        <div className='desc-title'>
-                            Description
                         </div>
                         <div className={'description-label'}>
                             {loaded ? report.description : <div className='lazy' />}

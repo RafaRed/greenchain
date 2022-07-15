@@ -4,7 +4,10 @@ import '../css/BackBar.css';
 export function BackBar(props) {
     return (<div className='backbar'>
         <a href={props.path}>
-            <img src="/images/arrowback.svg"></img>
+            <div className='arrowback-image'>
+                <img src="/images/arrowback.svg"></img>
+            </div>
+
         </a>
         {props.title}
     </div>);

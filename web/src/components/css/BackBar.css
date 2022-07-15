@@ -8,3 +8,23 @@
     color: #3D5445;
     align-items: center;
 }
+
+.arrowback-image {
+    display: flex;
+    cursor: pointer;
+    overflow: hidden;
+    flex-direction: column;
+    box-shadow: 0 14px 26px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease-out;
+}
+
+.arrowback-image:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow: rgba(184, 249, 211, 0.48)
+}
+
+.arrowback-image:active {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 15px 24px rgba(0, 0, 0, 0.11),
+        0 15px 24px rgba(184, 249, 211, 0.48);
+}

@@ -9,7 +9,7 @@
 }
 
 .report-container {
-    padding: 1.2rem;
+    padding: 1.9rem;
     margin-left: 32px;
     margin-right: 32px;
     display: flex;
@@ -56,25 +56,18 @@
 .report-complete-location-label {
     font-family: 'Spectral', 'sans-serif';
     font-size: 1rem;
+    font-style: italic;
     color: #3D5445;
     margin-bottom: 16px;
 }
 
 .description-label {
     font-family: 'Spectral', 'sans-serif';
-    font-size: 1.1rem;
-    margin-top: 4px;
-    margin-bottom: 24px;
+    font-size: 1rem;
+    margin-top: 18px;
+    margin-bottom: 36px;
     color: #4F6758;
 
-}
-
-.desc-title {
-    font-family: 'DM Sans', 'sans-serif';
-    font-size: 1rem;
-    margin-top: 32px;
-    font-weight: 500;
-    color: #3D5445;
 }
 
 .Viewreport .title {

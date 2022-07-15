@@ -62,7 +62,7 @@ export function TaskCard(props) {
                     <div className='chipmembers-wrapped'>
                         <Chips status={props.status}></Chips>
                         <div className='members-label'>
-                            <span>{props.membersmissing}</span> Members Missing
+                            <span>{props.membersmissing}</span> members missing
                         </div>
                     </div>
                     <div className='titledescription-wrapper'>
