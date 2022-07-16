@@ -40,7 +40,9 @@ function Home() {
 			</div>
 
 			<div className="mid-container">
-				<div className="midtitle-label">How it's Work?</div>
+				<div id="anchor">
+					<div className="midtitle-label">How it Works?</div>
+				</div>
 				<div className="middescription-label">
 					GreenChain is a plataform that uses the three principles of sustainability:
 					social, environmental and economic, using the resources that web 3.0
@@ -89,7 +91,9 @@ function Home() {
 			</div>
 
 			<div className="bottom-container">
-				<div className="bottom-title">Reports</div>
+				<div id="reports">
+					<div className="bottom-title">Reports</div>
+				</div>
 				<div className="reports-container">
 					<RenderReports reports={reports} members={members} tasks={tasks}></RenderReports>
 				</div>
