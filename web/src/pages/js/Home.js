@@ -82,7 +82,7 @@ function Home() {
 						wallet
 					</div>
 					<div className="info3-label">
-						• If a task is not executed as intended, all supporters will have their{" "}
+						• If a task is not executed as intended, all funders will have their{" "}
 						<span>money refunded</span>, and the <span>action is canceled</span>
 					</div>
 				</div>
