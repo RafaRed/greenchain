@@ -7,13 +7,13 @@ export function NavBar() {
 
         <div className='navbar-leftside'>
             <div className='logo-frame noselect'>
-                <div className='logo'>
+                <div className='logo' onClick={()=>{window.location.href="/"}}>
                     <img src='/images/logo.svg' />
                 </div>
             </div>
 
             <div className='menu-frame noselect'>
-                <li><a href="/Signup">How its Work?</a></li>
+                <li><a href="/">How its Work?</a></li>
                 <li><a href="#">Reports</a></li>
             </div>
         </div>
