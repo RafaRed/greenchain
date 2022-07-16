@@ -112,7 +112,7 @@ function RenderTasks(props) {
             description={props.tasks[task_id].details}
             goal={props.tasks[task_id].requested_value} 
             membersmissing={props.tasks[task_id].team_size}
-            path={"/viewtask/"+task_id}
+            path={"/viewtask/"+props.report_id+"/"+task_id}
             daysleft='12' 
             status='open' 
             raised='1200' 

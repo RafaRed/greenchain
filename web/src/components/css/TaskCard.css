@@ -64,7 +64,16 @@
     font-family: 'Spectral', 'sans-serif';
     font-size: 1rem;
     color: #5F7159;
+    max-height: 100px;
     margin-bottom: 16px;
+    
+}
+.taskdescription-label p{
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .task-buttons {

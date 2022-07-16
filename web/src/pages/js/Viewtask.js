@@ -11,7 +11,9 @@ import { Chips } from '../../components/js/Chips';
 import { Title } from '../../components/js/Title';
 import { ProgressViewTaskCard } from '../../components/js/ProgressViewTaskCard';
 import { UserValidation } from '../../components/js/UserValidation';
-import { useState, useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useParams } from 'react-router-dom';
+import { getTask } from '../../model/Calls/server';
 
 
 
@@ -21,7 +23,12 @@ import { useState, useSyncExternalStore } from 'react';
 function Viewtask() {
 
     const [selected, setSelected] = useState(0);
-
+    const [task,setTask] = useState({})
+    const { reportid } = useParams();
+    const { taskid } = useParams();
+    useEffect(()=>{
+        LoadTask(reportid,taskid,setTask)
+    },[])
     return (
         <div className='Viewtask'>
             <NavBar></NavBar>
@@ -57,7 +64,7 @@ function Viewtask() {
 
                         <div className='col-goal-wrapper-labels'>
                             <div className='vt-goal'>
-                                $2000
+                                ${task.requested_value}
                             </div>
                             <div className='vt-goal-label'>
                                 Goal
@@ -274,29 +281,29 @@ function Viewtask() {
                 <Label label='Title'></Label>
 
                 <div className='s-input-frame'>
-                    <InputText></InputText>
+                    <InputText value={task.title} disabled={true}></InputText>
                 </div>
 
                 <Label label='Team Size'></Label>
 
                 <div className='xxs-input-frame'>
-                    <InputText type='number'></InputText>
+                    <InputText type='number' value={task.team_size} disabled={true}></InputText>
                 </div>
 
                 <Label label='Requeriments' />
                 <div className='s-textarea-frame'>
-                    <TextArea rows={4} cols={4}></TextArea>
+                    <TextArea rows={4} cols={4} value={task.requirements} disabled={true}></TextArea>
                 </div>
 
                 <Label label='Task Details' />
                 <div className='m-textarea-frame'>
-                    <TextArea rows={4} cols={4}></TextArea>
+                    <TextArea rows={4} cols={4} value={task.details} disabled={true}></TextArea>
                 </div>
 
                 <Label label='Orientation' />
 
                 <div className='s-textarea-frame'>
-                    <TextArea rows={4} cols={4} ></TextArea>
+                    <TextArea rows={4} cols={4} value={task.orientation} disabled={true}></TextArea>
                 </div>
                 <Divider></Divider>
 
@@ -304,7 +311,7 @@ function Viewtask() {
 
                 <Label label='Estimated time in days to complete this task'></Label>
                 <div className='xxs-input-frame'>
-                    <InputText type='number'></InputText>
+                    <InputText type='number' value={task.estimated_days} disabled={true}></InputText>
                 </div>
 
 
@@ -316,20 +323,29 @@ function Viewtask() {
                 </div>
 
                 <div className='xxs-input-frame'>
-                    <InputText></InputText>
+                    <InputText value={task.max_date} disabled={true}></InputText>
                 </div>
 
                 <Divider></Divider>
 
-                <Title title='Values'></Title>
+                <Title title='Values' ></Title>
 
                 <Label label='How much USDT in total this team requested to do this task?'></Label>
                 <div className='xxs-input-frame'>
-                    <InputText type={'number'}></InputText>
+                    <InputText type={'number'} value={task.requested_value} disabled={true}></InputText>
                 </div>
 
             </div>
         </div>
     )
 }
+
+
+function LoadTask(reportid,taskid,setTask){
+    getTask({"report_id":reportid,"task_id":taskid}).then(result =>{
+        setTask(result['content'])
+    })
+    
+}
+
 export default Viewtask;

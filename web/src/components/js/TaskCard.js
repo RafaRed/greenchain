@@ -77,7 +77,8 @@ export function TaskCard(props) {
                             {props.title}
                         </div>
                         <div className='taskdescription-label'>
-                            {props.description}
+                            <p>{props.description}</p>
+                            
                         </div>
                     </div>
                 </div>
