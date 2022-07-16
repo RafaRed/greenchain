@@ -2,10 +2,17 @@ import { Chips } from './Chips';
 import { PrimaryButton } from './PrimaryButton';
 import { SecondaryButton } from './SecondaryButton';
 import '../css/TaskCard.css';
+import { useEffect, useState } from 'react';
+import { getMembers, sendJoinTask } from '../../model/Calls/server';
 
 export function TaskCard(props) {
-    return (<a href={props.path} className='containerpath'>
-        <div className='taskcard-container'>
+    const [joining,setJoining] = useState(false)
+    const [joinButton,setJoinButton] = useState("Join")
+    useEffect(()=>{
+        LoadJoinState(props.taskData.report_id,props.taskData.task_id,props.taskData.user_id,setJoinButton)
+    },[])
+    return (<a className='containerpath'>
+        <div className='taskcard-container' onClick={()=> window.location.href = props.path}>
 
             <div className='taskcard-top'>
 
@@ -27,7 +34,7 @@ export function TaskCard(props) {
                         </div>
 
                         <div className='col2-goal-wrapper'>
-                            <div class="vl"></div>
+                            <div className="vl"></div>
                         </div>
 
                         <div className='col3-raised-wrapper'>
@@ -79,9 +86,33 @@ export function TaskCard(props) {
             <div className='taskcard-bottom'>
                 <div className='task-buttons'>
                     <SecondaryButton text='Fund'></SecondaryButton>
-                    <PrimaryButton text='Join'></PrimaryButton>
+                    <PrimaryButton text={joinButton} onClick={(e)=>Join(props.taskData.report_id,props.taskData.task_id,props.taskData.user_id,setJoining,setJoinButton,joinButton,e)}></PrimaryButton>
                 </div>
             </div>
         </div>
     </a>);
+}
+
+function LoadJoinState(report_id, task_id, user_id,setJoinButton){
+    getMembers({"report_id":report_id,"task_id":task_id}).then(
+        result=>{
+            if(result !== undefined && "content" in result && result.content.id !== undefined){
+                if( user_id in result['content']['id']){
+                    setJoinButton("Leave")
+                }
+            }
+        }
+    )
+}
+
+function Join(report_id, task_id, user_id,setJoining,setJoinButton,joinButton,e){
+    e.stopPropagation();
+    if(joinButton === "Join"){
+        setJoining(true)
+        setJoinButton("Loader")
+        sendJoinTask({"user_id":user_id,"report_id":report_id,"task_id":task_id}).then(()=>{
+            setJoining(false)
+            setJoinButton("Leave")
+        })
+    }
 }

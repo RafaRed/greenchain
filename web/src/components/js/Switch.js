@@ -4,7 +4,7 @@ export function Switch() {
         <div id="flat-toggle">
             <input id="checkbox" type="checkbox" />
             <label for="checkbox">
-                <div class="s">
+                <div className="s">
                     <div className="d"></div>
                     <div className="d"></div>
                     <div className="d"></div>

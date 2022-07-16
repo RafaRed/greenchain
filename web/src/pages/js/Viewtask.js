@@ -64,7 +64,7 @@ function Viewtask() {
                             </div>
                         </div>
 
-                        <div class="s-verticalline"></div>
+                        <div className="s-verticalline"></div>
 
                         <div className='col-raised-wrapper-labels'>
 

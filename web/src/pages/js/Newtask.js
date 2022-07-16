@@ -147,7 +147,7 @@ function CreateTask(task,reportid,setButtonSubmitName){
     task['report_id'] = reportid
     task["userid"] = localStorage.getItem("greenchain-userid");;
 	sendTask(task).then(()=>{
-		window.location.href="/"
+		window.location.href="/viewreport/"+reportid
 	})
 
 }

@@ -25,7 +25,7 @@ function Signup() {
                     <img src='/images/mavatar.svg'></img>
                 </div>
 
-                <form class="form">
+                <form className="form">
 
                     <div className='userinfo-left-frame'>
 

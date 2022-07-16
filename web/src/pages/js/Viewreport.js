@@ -6,7 +6,7 @@ import { Title } from '../../components/js/Title';
 import { PrimaryButton } from '../../components/js/PrimaryButton';
 import { TaskCard } from '../../components/js/TaskCard';
 import { useParams } from 'react-router-dom';
-import { getReport, getTasks, getUsername } from '../../model/Calls/server';
+import { getReport, getTasks, getUsername, sendJoinTask } from '../../model/Calls/server';
 import { useEffect, useState } from 'react';
 import { getCID } from '../../model/Calls/ipfs';
 
@@ -15,6 +15,7 @@ function Viewreport() {
     const [report, setReport] = useState({ "location": {}, "images": {} })
     const [tasks, setTasks] = useState({})
     const [loaded, setLoaded] = useState(false)
+
     var lazy = loaded ? "" : "lazy"
     useEffect(() => {
         loadReport(reportid, setReport, setLoaded)
@@ -68,7 +69,7 @@ function Viewreport() {
                     </div>
 
                     <div className='taskcards-frame'>
-                        <RenderTasks tasks={tasks}></RenderTasks>
+                        <RenderTasks tasks={tasks} report_id={reportid}></RenderTasks>
                     </div>
                 </div>
             </div>
@@ -102,15 +103,28 @@ async function loadTasks(id, setTasks) {
 
 function RenderTasks(props) {
     var task_list = []
-
+    var user_id = localStorage.getItem("greenchain-userid");
     for (var i = 0; i < props.tasks.length; i++) {
+        var task_id = i
         task_list.push(<TaskCard
-            path={'/viewtask/' + i}
-            title={props.tasks[i].title}
-            description={props.tasks[i].details}
-            goal={props.tasks[i].requested_value} membersmissing={props.tasks[i].team_size} daysleft='12' status='open' raised='1200' username='Rafael' image='/images/mavatar.svg'></TaskCard>)
+            taskData={{"report_id":props.report_id,"task_id":task_id,"user_id":user_id}}
+            title={props.tasks[task_id].title}
+            description={props.tasks[task_id].details}
+            goal={props.tasks[task_id].requested_value} 
+            membersmissing={props.tasks[task_id].team_size}
+            path={"/viewtask/"+task_id}
+            daysleft='12' 
+            status='open' 
+            raised='1200' 
+            username='Rafael' 
+            image='/images/mavatar.svg'>
+            </TaskCard>)
     }
     return task_list
 }
+
+
+
+
 
 export default Viewreport;
