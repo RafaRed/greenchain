@@ -15,10 +15,11 @@ function Viewreport() {
     const [report, setReport] = useState({ "location": {}, "images": {} })
     const [tasks, setTasks] = useState({})
     const [loaded, setLoaded] = useState(false)
+    const [creatorName,setCreatorName] = useState("")
 
     var lazy = loaded ? "" : "lazy"
     useEffect(() => {
-        loadReport(reportid, setReport, setLoaded)
+        loadReport(reportid, setReport, setLoaded, setCreatorName)
         loadTasks(reportid, setTasks)
     }, [])
     return (
@@ -38,7 +39,7 @@ function Viewreport() {
                             </div>
 
                             <div className='username-label'>
-                                Fernanda
+                                {creatorName}
                             </div>
                         </div>
 
@@ -77,14 +78,14 @@ function Viewreport() {
 }
 
 
-function loadReport(id, setReport, setLoaded) {
+function loadReport(id, setReport, setLoaded, setCreatorName) {
     getReport({ "id": id }).then(data => {
         setReport(data["content"])
         setLoaded(true)
         console.log(data)
-        /*getUsername(id).then(username=>{
-            console.log(username)
-        })*/
+        getUsername({"user_id":data["content"]['userid']}).then(response=>{
+            setCreatorName(response.username)
+        })
     })
 }
 
@@ -111,12 +112,12 @@ function RenderTasks(props) {
             title={props.tasks[task_id].title}
             description={props.tasks[task_id].details}
             goal={props.tasks[task_id].requested_value} 
-            membersmissing={props.tasks[task_id].team_size}
+            team_size={props.tasks[task_id].team_size}
             path={"/viewtask/"+props.report_id+"/"+task_id}
             daysleft='12' 
             status='open' 
-            raised='1200' 
-            username='Rafael' 
+            raised='1200'
+            userid={props.tasks[task_id].userid}
             image='/images/mavatar.svg'>
             </TaskCard>)
     }

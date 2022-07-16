@@ -3,13 +3,16 @@ import { PrimaryButton } from './PrimaryButton';
 import { SecondaryButton } from './SecondaryButton';
 import '../css/TaskCard.css';
 import { useEffect, useState } from 'react';
-import { getMembers, sendJoinTask } from '../../model/Calls/server';
+import { getMembers, getUsername, sendJoinTask } from '../../model/Calls/server';
 
 export function TaskCard(props) {
     const [joining,setJoining] = useState(false)
     const [joinButton,setJoinButton] = useState("Join")
+    const [username,setUsername] = useState()
+    const [members,setMembers] = useState(0)
     useEffect(()=>{
-        LoadJoinState(props.taskData.report_id,props.taskData.task_id,props.taskData.user_id,setJoinButton)
+        LoadJoinState(props.taskData.report_id,props.taskData.task_id,props.taskData.user_id,setJoinButton, setMembers)
+        loadUsername(setUsername,props.userid)
     },[])
     return (<a className='containerpath'>
         <div className='taskcard-container' onClick={()=> window.location.href = props.path}>
@@ -61,7 +64,7 @@ export function TaskCard(props) {
                         <img src={props.image}></img>
                     </div>
                     <div className='username-label'>
-                        {props.username}
+                        {username}
                     </div>
                 </div>
 
@@ -69,7 +72,7 @@ export function TaskCard(props) {
                     <div className='chipmembers-wrapped'>
                         <Chips status={props.status}></Chips>
                         <div className='members-label'>
-                            <span>{props.membersmissing}</span> members missing
+                            <span>{props.team_size - members}</span> members missing
                         </div>
                     </div>
                     <div className='titledescription-wrapper'>
@@ -94,16 +97,23 @@ export function TaskCard(props) {
     </a>);
 }
 
-function LoadJoinState(report_id, task_id, user_id,setJoinButton){
+function LoadJoinState(report_id, task_id, user_id, setJoinButton, setMembers){
     getMembers({"report_id":report_id,"task_id":task_id}).then(
         result=>{
             if(result !== undefined && "content" in result && result.content.id !== undefined){
+                setMembers(Object.keys(result['content']['id']).length)
                 if( user_id in result['content']['id']){
                     setJoinButton("Leave")
                 }
             }
         }
     )
+}
+
+function loadUsername(setUsername,userid){
+    getUsername({"user_id":userid}).then(response=>{
+        setUsername(response.username)
+    })
 }
 
 function Join(report_id, task_id, user_id,setJoining,setJoinButton,joinButton,e){

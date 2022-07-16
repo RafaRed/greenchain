@@ -85,6 +85,15 @@ app.post("/create-task", async (req, res) => {
 	var members = await AddNode(`Members/${task["report_id"]}`,{},task_id["new_id"]);
 	var photos = await AddNode(`Photos/${task["report_id"]}`,{},task_id["new_id"]);
 	res.send(task_id);
+	// JOIN
+	var user_id = task["userid"];
+	var user = await GetNodeByPath(`User/${user_id}`);
+	var members_path = `Members/${task["report_id"]}/${task_id["new_id"]}`;
+	await AddNode(members_path, user["content"], user_id);
+	var photos_path = `Photos/${task["report_id"]}/${task_id["new_id"]}`;
+	var photos = await AddNode(photos_path, {}, user_id);
+
+	
 });
 
 app.post("/get-tasks", async (req, res) => {
