@@ -129,6 +129,7 @@ Click to access our repository:
 - Improved reports and tasks feed availability;
 - Work with concurrent changes allowing decentralized servers;
 - Use blockchain to enable transactions between users and donors in a sustainable way;
+- Implement validation of fields in all forms;
 - Fix a possible problem of the task leader being absent on the day of the task;
 - Fix the possible issue of one or more donors giving up paying after the task is completed or validated;
 - Add function to improve filters based on user profile (AI);
