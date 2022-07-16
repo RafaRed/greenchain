@@ -10,16 +10,16 @@ using the transparency and decentralization that web 3.0 provides.
 
 ## 📋 Contents
 
-- [Why?](#-why?)
-- [How to use?](#-how-to-use?)
-- [Video Demo](#-video-demo)
-- [Installation](#-installation)
-- [Technologies Used](#-technologies-used?)
-- [Public Repository](#-public-repository)
-- [Security Improvements](#-security-improvements)
-- [Upgrading](#-upgrading)
-- [FAQ](#-faq)
-- [Contact](#-contact)
+[Why?](#why)  
+[How to use?](#how-to-use)  
+[Video Demo](#video-demo)  
+[Installation](#installation)  
+[Technologies Used](#technologies-used)  
+[Public Repository](#public-repository)  
+[Security Improvements](#security-improvements)  
+[Upgrading](#upgrading-)  
+[FAQ](#faq)  
+[Contact](#contact)  
 
 ## Why?
 
@@ -146,22 +146,26 @@ Click to access our repository:
 
 01. How to validate that the task was performed honestly?
 
-> Each member of a team must present images of their collaboration, preferably showing the before and after of what was done, through which a funder will be able to evaluate and validate the team's effort before releasing its funding.
+> Each member of a team must present images of their collaboration, preferably showing the before and after of what was done, through which a funder will be able to evaluate and validate the team's effort before releasing its funding.  
+> 
 > **Improvements in the Future**: It is possible that support for other media, such as uploading videos, makes task validation easier.
 
 
 02. How to validate that the accumulated amount can already be redistributed to the team?
-> We opted for payments to be executed as soon as 60% of funders approve the project, even though we know there are vulnerabilities in the current system, such as dishonest users being able to make small donations to multiple accounts to ensure they get 60% of the votes.
+> We opted for payments to be executed as soon as 60% of funders approve the project, even though we know there are vulnerabilities in the current system, such as dishonest users being able to make small donations to multiple accounts to ensure they get 60% of the votes.  
+> 
 > **Improvements in the Future**: We imagine that in the future a smarter approach would be to use quadratic voting, where donors who invested more money have greater voting power, but without excluding smaller donors from collaborating in this decision.
 
 
 03. How to ensure that users who have done their part are not harmed by other members who have not proven their activities?
-> At the moment we are not individually validating whether all team members performed their work correctly, so we are not rewarding users according to their performance.
+> At the moment we are not individually validating whether all team members performed their work correctly, so we are not rewarding users according to their performance.  
+> 
 > **Improvements in the Future**: In the future, we hope to develop a reporting system so that the team can report users who for some reason did not collaborate with the activity or acted with malicious intent. It would also be interesting to give the possibility for funders and members to reward those users who made a greater effort.
 
 
 04. What happens if malicious funders choose to remove their money even when team members have fulfilled what was proposed in the activity?
-> At the moment it will not be allowed to remove the money used to fund activity. A funder will only receive their money back if the activity has expired or if the activity is not validated by the other funders (less than 60% validation).
+> At the moment it will not be allowed to remove the money used to fund activity. A funder will only receive their money back if the activity has expired or if the activity is not validated by the other funders (less than 60% validation).  
+> 
 > **Improvements in the Future**: In the future, we hope to develop a reporting system so that the team can report backers who for some reason did not cooperate with the payment or acted maliciously. It would also be interesting to give more visibility to more participatory funders.
 
 
