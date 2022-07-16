@@ -11,9 +11,11 @@ import { Chips } from '../../components/js/Chips';
 import { Title } from '../../components/js/Title';
 import { ProgressViewTaskCard } from '../../components/js/ProgressViewTaskCard';
 import { UserValidation } from '../../components/js/UserValidation';
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMembers, getTask, getUser, getUsername, sendJoinTask } from '../../model/Calls/server';
+import { addTaskPhoto, getMembers, getTask, getTaskPhotos, getUser, getUsername, sendJoinTask } from '../../model/Calls/server';
+import { getCID } from '../../model/Calls/ipfs';
+import { getBase64 } from '../../utils/utils';
 
 
 
@@ -22,18 +24,33 @@ import { getMembers, getTask, getUser, getUsername, sendJoinTask } from '../../m
 
 function Viewtask() {
 
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState("0");
     const [task,setTask] = useState({})
     const { reportid } = useParams();
     const { taskid } = useParams();
     const [joinButton,setJoinButton] = useState("Loader")
-    const [members,setMembers] = useState(0)
+    const [membersSize,setMembersSize] = useState(0)
+    const [members,setMembers] = useState({})
+    const [photoButtonTxt,setPhotoButtonTxt] = useState("+ Photo")
     var user_id = localStorage.getItem("greenchain-userid");
     const [creator,setCreator] = useState("")
+    const fileInput = useRef(null);
+	const selectFile = () => {
+		fileInput.current.click();
+	};
+	const [files, setFiles] = useState([]);
+    const [userPhotos, setUserPhotos] = useState([]);
+
     useEffect(()=>{
         LoadTask(reportid,taskid,setTask,setCreator)
-        LoadJoinState(reportid,taskid,user_id,setJoinButton,setMembers)
+        LoadJoinState(reportid,taskid,user_id,setJoinButton,setMembersSize)
+        LoadMembers(reportid,taskid,setMembers)
     },[])
+
+    useEffect(()=>{
+        console.log("change")
+        LoadPhotos(reportid,taskid,selected,setUserPhotos)
+    },[selected])
     return (
         <div className='Viewtask'>
             <NavBar></NavBar>
@@ -54,7 +71,7 @@ function Viewtask() {
                                 <Chips status='open'></Chips>
                             </div>
                             <div className={'members-missing-label'}>
-                                <span>{task.team_size === undefined ? 0 : task.team_size - members}</span> members missing
+                                <span>{task.team_size === undefined ? 0 : task.team_size - membersSize}</span> members missing
                             </div>
 
                             <div className='rw-daysleft-label'>
@@ -176,11 +193,7 @@ function Viewtask() {
 
                                 <div className='membersphotos-control-body'>
                                     <div className='membersphotos-username-link-frame'>
-                                        <UserValidation title='Fernanda' selected={selected} id={0} onClick={() => setSelected(0)}></UserValidation>
-                                        <UserValidation title='Rafael' selected={selected} id={1} onClick={() => setSelected(1)}></UserValidation>
-                                        <UserValidation title='Leandro' selected={selected} id={2} onClick={() => setSelected(2)}></UserValidation>
-                                        <UserValidation title='Luciano' selected={selected} id={3} onClick={() => setSelected(3)}></UserValidation>
-                                        <UserValidation title='Paola' selected={selected} id={4} onClick={() => setSelected(4)}></UserValidation>
+                                        <RenderMembers members={members} selected={selected} setSelected={setSelected}></RenderMembers>
                                     </div>
                                 </div>
 
@@ -196,22 +209,18 @@ function Viewtask() {
 
                         <div className='photo-gallery-frame'>
 
-                            <div className='photo-gallery-container'>
-                                <img src='/images/report2-img.svg'></img>
-                            </div>
-
-                            <div className='photo-gallery-container'>
-                                <img src='/images/report2-img.svg'></img>
-                            </div>
-
-                            <div className='photo-gallery-container'>
-                                <img src='/images/report2-img.svg'></img>
-                            </div>
+                            <RenderPhotos userPhotos={userPhotos} ></RenderPhotos>
 
                         </div>
 
                         <div className='photo-gallery-container-btn-frame'>
-                            <PrimaryButton text='+ Photos'></PrimaryButton>
+                            <PrimaryButton text={photoButtonTxt} onClick={selectFile}></PrimaryButton>
+                            <input
+									ref={fileInput}
+									onChange={(e) => addImage(e, reportid, taskid, user_id, userPhotos, setPhotoButtonTxt)}
+									type="file"
+									style={{ display: "none" }}
+								/>
                         </div>
 
 
@@ -345,6 +354,50 @@ function Viewtask() {
     )
 }
 
+async function LoadMembers(reportid, taskid,setMembers){
+    var members = []
+        var result = await getMembers({"report_id":reportid,"task_id":taskid})
+
+        if(result !== undefined && "content" in result && result.content.id !== undefined){
+            for (const [key, value] of Object.entries(result["content"]["id"])) {
+                members.push(await getCID(result["content"]["id"][key]))
+            }
+        }
+        setMembers(members)    
+}
+
+function LoadPhotos(report_id, task_id, selected, setUserPhotos){
+    var photos = []
+    setUserPhotos([])
+    getTaskPhotos({"user_id":selected, "task_id":task_id, "report_id":report_id}).then(result=>{
+        if(result['content'][0] !== undefined){
+            setUserPhotos(result['content'][0])
+        }
+        else{
+            setUserPhotos([])
+        }
+        
+        
+    })
+    
+    return photos
+
+}
+
+function RenderPhotos({userPhotos}){
+    var photos = []
+        if(userPhotos !== undefined){
+            for(var i = 0; i < userPhotos.length; i++){
+                //console.log(userPhotos[i])
+                photos.push(<div key={i} className='photo-gallery-container'>
+                <img src={userPhotos[i]} ></img>
+            </div>)
+            }
+        }
+    
+    return photos;
+
+}
 
 function LoadTask(reportid,taskid,setTask,setCreator){
     getTask({"report_id":reportid,"task_id":taskid}).then(result =>{
@@ -367,11 +420,11 @@ function Join(report_id, task_id, user_id,setJoinButton,joinButton){
     }
 }
 
-function LoadJoinState(report_id, task_id, user_id, setJoinButton,setMembers){
+function LoadJoinState(report_id, task_id, user_id, setJoinButton,setMembersSize){
     getMembers({"report_id":report_id,"task_id":task_id}).then(
         result=>{
             if(result !== undefined && "content" in result && result.content.id !== undefined){
-                setMembers(Object.keys(result['content']['id']).length)
+                setMembersSize(Object.keys(result['content']['id']).length)
                 if( user_id in result['content']['id']){
                     setJoinButton("Leave")
                 }
@@ -385,5 +438,35 @@ function LoadJoinState(report_id, task_id, user_id, setJoinButton,setMembers){
         }
     )
 }
+
+function RenderMembers({members, selected, setSelected}){
+    var members_card = []
+    for (const [key, value] of Object.entries(members)) {
+        members_card.push(<UserValidation title={members[key].username} selected={selected} id={key} key={key} onClick={() => setSelected(key)}></UserValidation>)
+    }
+    return members_card;
+}
+
+async function addImage(e, report_id, task_id, user_id,photos,setPhotoButtonTxt) {
+    setPhotoButtonTxt("Loader")
+	const file = e.target.files[0];
+    console.log(file)
+	if (file.type === "image/jpeg" || file.type === "image/png") {
+		var photo = await getBase64(file)
+        console.log(photos)
+        photos.push(photo)
+        UploadTaskPhoto(user_id,task_id,report_id,photos)
+	}
+}
+
+function UploadTaskPhoto(user_id,task_id,report_id,photo){
+    addTaskPhoto({user_id:user_id,task_id:task_id,report_id:report_id,photos:[photo]}).then(
+        result =>{ 
+            window.location.reload(false)
+        }
+        
+    )
+}
+
 
 export default Viewtask;

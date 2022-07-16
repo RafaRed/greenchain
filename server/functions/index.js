@@ -180,6 +180,15 @@ app.post("/add-task-photo", async (req, res) => {
 	res.send({ status: "Updated" });
 });
 
+app.post("/get-task-photos", async (req, res) => {
+	var user_id = req.body.user_id;
+	var task_id = req.body.task_id;
+	var report_id = req.body.report_id;
+	var photos_path = `Photos/${report_id}/${task_id}/${user_id}`;
+	var photos = await GetNodeByPath(photos_path);
+	res.send(photos);
+});
+
 app.post("/get-members", async (req, res) => {
 	var report_id = req.body.report_id;
 	var task_id = req.body.task_id;

@@ -322,6 +322,7 @@
 .photo-gallery-container-btn-frame {
     display: flex;
     justify-content: right;
+    gap:30px
 }
 
 .photo-gallery-container img:hover {
