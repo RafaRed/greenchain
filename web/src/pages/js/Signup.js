@@ -40,7 +40,7 @@ function Signup() {
                         <InputText disabled={true} value={wallet} onChange={(e) =>
                             handleOnChangeData(e, register, setRegister, "wallet")
                         }></InputText>
-                    
+
 
                         <Label label={'Name'}></Label>
                         <InputText onChange={(e) =>
@@ -48,7 +48,7 @@ function Signup() {
                         }></InputText>
 
                         <Label label={'Birthday'}></Label>
-                        <InputText onChange={(e) =>
+                        <InputText placeholder='mm/dd/yyyy' onChange={(e) =>
                             handleOnChangeData(e, register, setRegister, "birthday")
                         }></InputText>
 
@@ -69,18 +69,18 @@ function Signup() {
                         }></InputText>
 
                         <Label label={'Discord'}></Label>
-                        <InputText onChange={(e) =>
+                        <InputText placeholder='user#3333' onChange={(e) =>
                             handleOnChangeData(e, register, setRegister, "discord")
                         }></InputText>
 
                         <Label label={'Twitter'}></Label>
-                        <InputText onChange={(e) =>
+                        <InputText placeholder='@usertwitter' onChange={(e) =>
                             handleOnChangeData(e, register, setRegister, "twitter")
                         }></InputText>
 
                         <div className='register-btn-frame'>
                             <div className='register-btn'>
-                                <PrimaryButton text={registerStatus} onClick={() => UserRegister(register,wallet,setRegisterStatus)}></PrimaryButton>
+                                <PrimaryButton text={registerStatus} onClick={() => UserRegister(register, wallet, setRegisterStatus)}></PrimaryButton>
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@ function Signup() {
         </>);
 }
 
-function UserRegister(register,wallet,setRegisterStatus) {
+function UserRegister(register, wallet, setRegisterStatus) {
     register['avatar'] = ""
     register['wallet'] = wallet
     setRegisterStatus("Loader")
