@@ -7,9 +7,10 @@ import { getMembers, getUsername, sendJoinTask } from '../../model/Calls/server'
 
 export function TaskCard(props) {
     const [joining,setJoining] = useState(false)
-    const [joinButton,setJoinButton] = useState("Join")
+    const [joinButton,setJoinButton] = useState("Loader")
     const [username,setUsername] = useState()
     const [members,setMembers] = useState(0)
+    
     useEffect(()=>{
         LoadJoinState(props.taskData.report_id,props.taskData.task_id,props.taskData.user_id,setJoinButton, setMembers)
         loadUsername(setUsername,props.userid)
@@ -105,6 +106,12 @@ function LoadJoinState(report_id, task_id, user_id, setJoinButton, setMembers){
                 if( user_id in result['content']['id']){
                     setJoinButton("Leave")
                 }
+                else{
+                    setJoinButton("Join")
+                }
+            }
+            else{
+                setJoinButton("Join")
             }
         }
     )

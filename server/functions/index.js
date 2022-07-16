@@ -193,6 +193,12 @@ app.post("/get-username", async (req, res) => {
 	res.send({"username":user['content']['username']});
 });
 
+app.post("/get-user", async (req, res) => {
+	var user_id = req.body.user_id;
+	var user = await GetNodeByPath("User/" + user_id);
+	res.send(user['content']);
+});
+
 app.post("/get-members-size", async (req, res) => {
 	var reports = await GetNodeByPath("Report");
 	var members_list = {}

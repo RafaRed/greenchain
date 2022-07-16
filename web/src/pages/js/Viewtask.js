@@ -13,7 +13,7 @@ import { ProgressViewTaskCard } from '../../components/js/ProgressViewTaskCard';
 import { UserValidation } from '../../components/js/UserValidation';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTask } from '../../model/Calls/server';
+import { getMembers, getTask, getUser, getUsername, sendJoinTask } from '../../model/Calls/server';
 
 
 
@@ -26,20 +26,25 @@ function Viewtask() {
     const [task,setTask] = useState({})
     const { reportid } = useParams();
     const { taskid } = useParams();
+    const [joinButton,setJoinButton] = useState("Loader")
+    const [members,setMembers] = useState(0)
+    var user_id = localStorage.getItem("greenchain-userid");
+    const [creator,setCreator] = useState("")
     useEffect(()=>{
-        LoadTask(reportid,taskid,setTask)
+        LoadTask(reportid,taskid,setTask,setCreator)
+        LoadJoinState(reportid,taskid,user_id,setJoinButton,setMembers)
     },[])
     return (
         <div className='Viewtask'>
             <NavBar></NavBar>
-            <BackBar title='View Task' path='/'></BackBar>
+            <BackBar title='View Task' path={'/viewreport/'+reportid}></BackBar>
 
 
             <div className='Viewtask-frame'>
 
                 <div className='wrapper-buttons'>
                     <SecondaryButton text='Fund'></SecondaryButton>
-                    <PrimaryButton text='Join'></PrimaryButton>
+                    <PrimaryButton text={joinButton} onClick={()=>Join(reportid,taskid,user_id,setJoinButton,joinButton)}></PrimaryButton>
                 </div>
 
                 <div className='viewtaskrows-frame'>
@@ -48,8 +53,8 @@ function Viewtask() {
                             <div className='vt-chips-frame'>
                                 <Chips status='open'></Chips>
                             </div>
-                            <div className='members-missing-label'>
-                                <span>3</span> members missing
+                            <div className={'members-missing-label'}>
+                                <span>{task.team_size === undefined ? 0 : task.team_size - members}</span> members missing
                             </div>
 
                             <div className='rw-daysleft-label'>
@@ -100,10 +105,10 @@ function Viewtask() {
                                     Creator
                                 </div>
                                 <div className='col2-user-label'>
-                                    Fernanda
+                                    {creator.username}
                                 </div>
                                 <div className='col3-user-email-label'>
-                                    fernanda@gmail.com
+                                {creator.email}
                                 </div>
                                 <div className='col4-user-contact-icons'>
                                     <img src='/images/discord-ico.svg'></img>
@@ -341,11 +346,44 @@ function Viewtask() {
 }
 
 
-function LoadTask(reportid,taskid,setTask){
+function LoadTask(reportid,taskid,setTask,setCreator){
     getTask({"report_id":reportid,"task_id":taskid}).then(result =>{
         setTask(result['content'])
+        getUser({"user_id":result['content']['userid']}).then(response=>{
+            //getUser({"user_id":user_id}).then(response=>{
+            //console.log(response)
+            setCreator(response)
+        })
     })
     
+}
+
+function Join(report_id, task_id, user_id,setJoinButton,joinButton){
+    if(joinButton === "Join"){
+        setJoinButton("Loader")
+        sendJoinTask({"user_id":user_id,"report_id":report_id,"task_id":task_id}).then(()=>{
+            setJoinButton("Leave")
+        })
+    }
+}
+
+function LoadJoinState(report_id, task_id, user_id, setJoinButton,setMembers){
+    getMembers({"report_id":report_id,"task_id":task_id}).then(
+        result=>{
+            if(result !== undefined && "content" in result && result.content.id !== undefined){
+                setMembers(Object.keys(result['content']['id']).length)
+                if( user_id in result['content']['id']){
+                    setJoinButton("Leave")
+                }
+                else{
+                    setJoinButton("Join")
+                }
+            }
+            else{
+                setJoinButton("Join")
+            }
+        }
+    )
 }
 
 export default Viewtask;

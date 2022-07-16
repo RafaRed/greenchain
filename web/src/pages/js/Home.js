@@ -133,6 +133,7 @@ function RenderReports(props) {
 	var reports_list = [];
 	var reports = props.reports;
 	var members = props.members;
+	console.log(members)
 	var tasks = props.tasks;
 
 

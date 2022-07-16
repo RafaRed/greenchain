@@ -91,13 +91,14 @@ function loadReport(id, setReport, setLoaded, setCreatorName) {
 
 async function loadTasks(id, setTasks) {
     var task_list = []
-    console.log(id)
     var tasks = await getTasks({ "report_id": id })
-    for (const [key, value] of Object.entries(tasks["content"]["id"])) {
-        var task_cid = tasks["content"]["id"][key];
-        var content = await getCID(task_cid)
-        task_list.push(content)
+    if(tasks !== undefined && "content" in tasks && tasks.content.id !== undefined){
+        for (const [key, value] of Object.entries(tasks["content"]["id"])) {
+            var task_cid = tasks["content"]["id"][key];
+            var content = await getCID(task_cid)
+            task_list.push(content)
 
+        }
     }
     setTasks(task_list)
 }

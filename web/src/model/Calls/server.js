@@ -1,4 +1,4 @@
-import { get_members_path, get_members_size_path, get_reports_path, get_report_path, get_tasks_path, get_task_path, get_task_size_path, get_username_path, get_user_id_path, join_task_path, register_path, report_path, send_task_path, server } from "../repository";
+import { get_members_path, get_members_size_path, get_reports_path, get_report_path, get_tasks_path, get_task_path, get_task_size_path, get_username_path, get_user_id_path, get_user_path, join_task_path, register_path, report_path, send_task_path, server } from "../repository";
 
 
 export async function endpointCall(data, endpoint) {
@@ -76,4 +76,8 @@ export async function sendJoinTask(data) {
 
 export async function getTask(data) {
 	return endpointCall(data, get_task_path)
+}
+
+export async function getUser(data) {
+	return endpointCall(data, get_user_path)
 }
