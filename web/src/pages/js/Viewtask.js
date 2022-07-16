@@ -38,8 +38,8 @@ function Viewtask() {
 	const selectFile = () => {
 		fileInput.current.click();
 	};
-	const [files, setFiles] = useState([]);
     const [userPhotos, setUserPhotos] = useState([]);
+    const [track, setTrack] = useState(0)
 
     useEffect(()=>{
         LoadTask(reportid,taskid,setTask,setCreator)
@@ -158,7 +158,7 @@ function Viewtask() {
 
 
                     <div className='vt-progress-wrapper-card-button'>
-                        <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/photos-ico.svg' isActive={false}></ProgressViewTaskCard>
+                        <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={false}></ProgressViewTaskCard>
                         <PrimaryButton text='Done'></PrimaryButton>
                     </div>
                     <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={false}></ProgressViewTaskCard>
@@ -388,7 +388,6 @@ function RenderPhotos({userPhotos}){
     var photos = []
         if(userPhotos !== undefined){
             for(var i = 0; i < userPhotos.length; i++){
-                //console.log(userPhotos[i])
                 photos.push(<div key={i} className='photo-gallery-container'>
                 <img src={userPhotos[i]} ></img>
             </div>)
@@ -403,8 +402,6 @@ function LoadTask(reportid,taskid,setTask,setCreator){
     getTask({"report_id":reportid,"task_id":taskid}).then(result =>{
         setTask(result['content'])
         getUser({"user_id":result['content']['userid']}).then(response=>{
-            //getUser({"user_id":user_id}).then(response=>{
-            //console.log(response)
             setCreator(response)
         })
     })
@@ -467,6 +464,12 @@ function UploadTaskPhoto(user_id,task_id,report_id,photo){
         
     )
 }
+
+function trackProgress(members, requiredMembers, requestValue, valueRaised){
+    
+}
+
+
 
 
 export default Viewtask;
