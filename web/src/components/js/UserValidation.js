@@ -1,7 +1,10 @@
 import '../css/UserValidation.css'
-export function UserValidation(props) {
-    var selected = props.selected === props.id ? '-active' : '';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
+
+export function UserValidation(props) {
+
+    var selected = props.selected === props.id ? '-active' : '';
 
     return (<div className='membersphotos-username-wrapper'>
 
@@ -16,11 +19,18 @@ export function UserValidation(props) {
                 {props.title}
             </div>
 
-            <div className='membersphotos-control-profile-link'>
-                <a href='#'>
+            <div className='membersphotos-control-profile-link' >
+                <a onClick={() => clickContact(props.setContactPopup, props.setContactUser, props.member)}>
                     Contact
                 </a>
             </div>
         </div>
     </div>);
+
+
+}
+
+function clickContact(setContactPopup, setContactUser, member) {
+    setContactPopup(true);
+    setContactUser(member);
 }

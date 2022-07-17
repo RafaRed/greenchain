@@ -24,7 +24,7 @@ function FunderPopup(props) {
 
           <Label label={"How much would you like to help?"}></Label>
 
-          <InputText value={''} placeholder='$USDT' onChange={(e) =>
+          <InputText value={''} placeholder='$USDT' type='number' onChange={(e) =>
             handleOnChangeData(e, fund, setFund, "title")
           }></InputText>
 

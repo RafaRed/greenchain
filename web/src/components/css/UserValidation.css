@@ -25,6 +25,7 @@
 
 
 .membersphotos-control-profile-link a {
+    cursor: pointer;
     text-decoration: none;
     font-family: 'Spectral';
     font-size: 0.8rem;
