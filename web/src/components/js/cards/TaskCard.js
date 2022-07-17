@@ -1,22 +1,22 @@
-import { Chips } from './Chips';
-import { PrimaryButton } from './PrimaryButton';
-import { SecondaryButton } from './SecondaryButton';
-import '../css/TaskCard.css';
+import '../../css/cards/TaskCard.css';
+import { Chips } from '../Chips';
+import { PrimaryButton } from '../buttons/PrimaryButton';
+import { SecondaryButton } from '../buttons/SecondaryButton';
 import { useEffect, useState } from 'react';
-import { getMembers, getUsername, sendJoinTask } from '../../model/Calls/server';
+import { getMembers, getUsername, sendJoinTask } from '../../../model/Calls/server';
 
 export function TaskCard(props) {
-    const [joining,setJoining] = useState(false)
-    const [joinButton,setJoinButton] = useState("Loader")
-    const [username,setUsername] = useState()
-    const [members,setMembers] = useState(0)
-    
-    useEffect(()=>{
-        LoadJoinState(props.taskData.report_id,props.taskData.task_id,props.taskData.user_id,setJoinButton, setMembers)
-        loadUsername(setUsername,props.userid)
-    },[])
+    const [joining, setJoining] = useState(false)
+    const [joinButton, setJoinButton] = useState("Loader")
+    const [username, setUsername] = useState()
+    const [members, setMembers] = useState(0)
+
+    useEffect(() => {
+        LoadJoinState(props.taskData.report_id, props.taskData.task_id, props.taskData.user_id, setJoinButton, setMembers)
+        loadUsername(setUsername, props.userid)
+    }, [])
     return (<a className='containerpath'>
-        <div className='taskcard-container' onClick={()=> window.location.href = props.path}>
+        <div className='taskcard-container' onClick={() => window.location.href = props.path}>
 
             <div className='taskcard-top'>
 
@@ -82,7 +82,7 @@ export function TaskCard(props) {
                         </div>
                         <div className='taskdescription-label'>
                             <p>{props.description}</p>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -91,44 +91,44 @@ export function TaskCard(props) {
             <div className='taskcard-bottom'>
                 <div className='task-buttons'>
                     <SecondaryButton text='Fund'></SecondaryButton>
-                    <PrimaryButton text={joinButton} onClick={(e)=>Join(props.taskData.report_id,props.taskData.task_id,props.taskData.user_id,setJoining,setJoinButton,joinButton,e)}></PrimaryButton>
+                    <PrimaryButton text={joinButton} onClick={(e) => Join(props.taskData.report_id, props.taskData.task_id, props.taskData.user_id, setJoining, setJoinButton, joinButton, e)}></PrimaryButton>
                 </div>
             </div>
         </div>
     </a>);
 }
 
-function LoadJoinState(report_id, task_id, user_id, setJoinButton, setMembers){
-    getMembers({"report_id":report_id,"task_id":task_id}).then(
-        result=>{
-            if(result !== undefined && "content" in result && result.content.id !== undefined){
+function LoadJoinState(report_id, task_id, user_id, setJoinButton, setMembers) {
+    getMembers({ "report_id": report_id, "task_id": task_id }).then(
+        result => {
+            if (result !== undefined && "content" in result && result.content.id !== undefined) {
                 setMembers(Object.keys(result['content']['id']).length)
-                if( user_id in result['content']['id']){
+                if (user_id in result['content']['id']) {
                     setJoinButton("Leave")
                 }
-                else{
+                else {
                     setJoinButton("Join")
                 }
             }
-            else{
+            else {
                 setJoinButton("Join")
             }
         }
     )
 }
 
-function loadUsername(setUsername,userid){
-    getUsername({"user_id":userid}).then(response=>{
+function loadUsername(setUsername, userid) {
+    getUsername({ "user_id": userid }).then(response => {
         setUsername(response.username)
     })
 }
 
-function Join(report_id, task_id, user_id,setJoining,setJoinButton,joinButton,e){
+function Join(report_id, task_id, user_id, setJoining, setJoinButton, joinButton, e) {
     e.stopPropagation();
-    if(joinButton === "Join"){
+    if (joinButton === "Join") {
         setJoining(true)
         setJoinButton("Loader")
-        sendJoinTask({"user_id":user_id,"report_id":report_id,"task_id":task_id}).then(()=>{
+        sendJoinTask({ "user_id": user_id, "report_id": report_id, "task_id": task_id }).then(() => {
             setJoining(false)
             setJoinButton("Leave")
         })

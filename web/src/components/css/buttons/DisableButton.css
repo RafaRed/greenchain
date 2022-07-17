@@ -1,10 +1,9 @@
-.PrimaryButton {
-    
+.DisableButton {
     font-family: 'DM Sans', sans-serif;
     position: relative;
     width: 100%;
     height: 48px;
-    background: #E74C3C;
+    background: #8B9990;
     margin: 0 auto;
     overflow: hidden;
     z-index: 1;
@@ -19,8 +18,6 @@
     /* Typo */
     line-height: 48px;
     text-align: center;
-
-
 }
 
 .btn-frame {
@@ -31,20 +28,20 @@
     text-decoration: none;
 }
 
-.PrimaryButton:after {
+.DisableButton:after {
     font-family: 'DM Sans', sans-serif;
     position: absolute;
     top: 90%;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #C0392B;
+    background: #5d6660;
     content: "";
     z-index: -2;
     transition: transform .3s;
 }
 
-.PrimaryButton:hover::after {
+.DisableButton:hover::after {
     transform: translateY(-80%);
     transition: transform .3s;
 }

@@ -2,7 +2,7 @@ import { useState, React } from 'react';
 import { NavBar } from '../../components/js/NavBar';
 import '../css/Signup.css';
 import { BackBar } from '../../components/js/BackBar';
-import { PrimaryButton } from '../../components/js/PrimaryButton';
+import { PrimaryButton } from '../../components/js/buttons/PrimaryButton'
 import { Title } from '../../components/js/Title';
 import { Label } from '../../components/js/Label';
 import { InputText } from '../../components/js/InputText';

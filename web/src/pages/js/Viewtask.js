@@ -1,8 +1,8 @@
 import '../css/Viewtask.css'
 import { NavBar } from "../../components/js/NavBar";
 import { BackBar } from '../../components/js/BackBar';
-import { PrimaryButton } from '../../components/js/PrimaryButton';
-import { SecondaryButton } from '../../components/js/SecondaryButton';
+import { PrimaryButton } from '../../components/js/buttons/PrimaryButton';
+import { SecondaryButton } from '../../components/js/buttons/SecondaryButton';
 import { TextArea } from '../../components/js/TextArea';
 import { InputText } from '../../components/js/InputText';
 import { Label } from '../../components/js/Label';
@@ -18,27 +18,21 @@ import { getCID } from '../../model/Calls/ipfs';
 import { getBase64 } from '../../utils/utils';
 import FunderPopup from '../../components/js/FunderPopup';
 
-
-
-
-
-
 function Viewtask() {
-
     const [selected, setSelected] = useState("0");
-    const [task,setTask] = useState({})
+    const [task, setTask] = useState({})
     const { reportid } = useParams();
     const { taskid } = useParams();
-    const [joinButton,setJoinButton] = useState("Loader")
-    const [membersSize,setMembersSize] = useState(0)
-    const [members,setMembers] = useState({})
-    const [photoButtonTxt,setPhotoButtonTxt] = useState("+ Photo")
+    const [joinButton, setJoinButton] = useState("Loader")
+    const [membersSize, setMembersSize] = useState(0)
+    const [members, setMembers] = useState({})
+    const [photoButtonTxt, setPhotoButtonTxt] = useState("+ Photo")
     var user_id = localStorage.getItem("greenchain-userid");
-    const [creator,setCreator] = useState("")
+    const [creator, setCreator] = useState("")
     const fileInput = useRef(null);
-	const selectFile = () => {
-		fileInput.current.click();
-	};
+    const selectFile = () => {
+        fileInput.current.click();
+    };
     const [userPhotos, setUserPhotos] = useState([]);
     const [track, setTrack] = useState(0)
     const [startTask, setStartTask] = useState(false)
@@ -51,20 +45,20 @@ function Viewtask() {
         
     },[])
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log("change")
-        LoadPhotos(reportid,taskid,selected,setUserPhotos)
-    },[selected])
+        LoadPhotos(reportid, taskid, selected, setUserPhotos)
+    }, [selected])
 
-    useEffect(()=>{
-        trackProgress(membersSize,task.team_size,task.requested_value,1000,setTrack)
-    },[members,task])
+    useEffect(() => {
+        trackProgress(membersSize, task.team_size, task.requested_value, 1000, setTrack)
+    }, [members, task])
 
     return (
         <div className='Viewtask'>
             <FunderPopup openPopup={openPopup} setOpenPopup={setOpenPopup} report_id={reportid} task_id={taskid} user_id={user_id}></FunderPopup>
             <NavBar></NavBar>
-            <BackBar title='View Task' path={'/viewreport/'+reportid}></BackBar>
+            <BackBar title='View Task' path={'/viewreport/' + reportid}></BackBar>
 
 
             <div className='Viewtask-frame'>
@@ -137,7 +131,7 @@ function Viewtask() {
                                     {creator.username}
                                 </div>
                                 <div className='col3-user-email-label'>
-                                {creator.email}
+                                    {creator.email}
                                 </div>
                                 <div className='col4-user-contact-icons'>
                                     <img src='/images/discord-ico.svg'></img>
@@ -228,11 +222,11 @@ function Viewtask() {
                         <div className='photo-gallery-container-btn-frame'>
                             <PrimaryButton text={photoButtonTxt} onClick={selectFile}></PrimaryButton>
                             <input
-									ref={fileInput}
-									onChange={(e) => addImage(e, reportid, taskid, user_id, userPhotos, setPhotoButtonTxt)}
-									type="file"
-									style={{ display: "none" }}
-								/>
+                                ref={fileInput}
+                                onChange={(e) => addImage(e, reportid, taskid, user_id, userPhotos, setPhotoButtonTxt)}
+                                type="file"
+                                style={{ display: "none" }}
+                            />
                         </div>
 
 
@@ -366,89 +360,89 @@ function Viewtask() {
     )
 }
 
-async function LoadMembers(reportid, taskid,setMembers){
+async function LoadMembers(reportid, taskid, setMembers) {
     var members = []
-        var result = await getMembers({"report_id":reportid,"task_id":taskid})
+    var result = await getMembers({ "report_id": reportid, "task_id": taskid })
 
-        if(result !== undefined && "content" in result && result.content.id !== undefined){
-            for (const [key, value] of Object.entries(result["content"]["id"])) {
-                members.push(await getCID(result["content"]["id"][key]))
-            }
+    if (result !== undefined && "content" in result && result.content.id !== undefined) {
+        for (const [key, value] of Object.entries(result["content"]["id"])) {
+            members.push(await getCID(result["content"]["id"][key]))
         }
-        setMembers(members)    
+    }
+    setMembers(members)
 }
 
-function LoadPhotos(report_id, task_id, selected, setUserPhotos){
+function LoadPhotos(report_id, task_id, selected, setUserPhotos) {
     var photos = []
     setUserPhotos([])
-    getTaskPhotos({"user_id":selected, "task_id":task_id, "report_id":report_id}).then(result=>{
-        if(result['content'][0] !== undefined){
+    getTaskPhotos({ "user_id": selected, "task_id": task_id, "report_id": report_id }).then(result => {
+        if (result['content'][0] !== undefined) {
             setUserPhotos(result['content'][0])
         }
-        else{
+        else {
             setUserPhotos([])
         }
-        
-        
+
+
     })
-    
+
     return photos
 
 }
 
-function RenderPhotos({userPhotos}){
+function RenderPhotos({ userPhotos }) {
     var photos = []
-        if(userPhotos !== undefined){
-            for(var i = 0; i < userPhotos.length; i++){
-                photos.push(<div key={i} className='photo-gallery-container'>
+    if (userPhotos !== undefined) {
+        for (var i = 0; i < userPhotos.length; i++) {
+            photos.push(<div key={i} className='photo-gallery-container'>
                 <img src={userPhotos[i]} ></img>
             </div>)
-            }
         }
-    
+    }
+
     return photos;
 
 }
 
-function LoadTask(reportid,taskid,setTask,setCreator){
-    getTask({"report_id":reportid,"task_id":taskid}).then(result =>{
+function LoadTask(reportid, taskid, setTask, setCreator) {
+    getTask({ "report_id": reportid, "task_id": taskid }).then(result => {
         setTask(result['content'])
-        getUser({"user_id":result['content']['userid']}).then(response=>{
+        getUser({ "user_id": result['content']['userid'] }).then(response => {
             setCreator(response)
         })
     })
-    
+
 }
 
-function Join(report_id, task_id, user_id,setJoinButton,joinButton){
-    if(joinButton === "Join"){
+function Join(report_id, task_id, user_id, setJoinButton, joinButton) {
+    if (joinButton === "Join") {
         setJoinButton("Loader")
-        sendJoinTask({"user_id":user_id,"report_id":report_id,"task_id":task_id}).then(()=>{
+        sendJoinTask({ "user_id": user_id, "report_id": report_id, "task_id": task_id }).then(() => {
             setJoinButton("Leave")
         })
     }
 }
 
-function LoadJoinState(report_id, task_id, user_id, setJoinButton,setMembersSize){
-    getMembers({"report_id":report_id,"task_id":task_id}).then(
-        result=>{
-            if(result !== undefined && "content" in result && result.content.id !== undefined){
+function LoadJoinState(report_id, task_id, user_id, setJoinButton, setMembersSize) {
+    getMembers({ "report_id": report_id, "task_id": task_id }).then(
+        result => {
+            if (result !== undefined && "content" in result && result.content.id !== undefined) {
                 setMembersSize(Object.keys(result['content']['id']).length)
-                if( user_id in result['content']['id']){
+                if (user_id in result['content']['id']) {
                     setJoinButton("Leave")
                 }
-                else{
+                else {
                     setJoinButton("Join")
                 }
             }
-            else{
+            else {
                 setJoinButton("Join")
             }
         }
     )
 }
 
-function RenderMembers({members, selected, setSelected}){
+function RenderMembers({ members, selected, setSelected }) {
     var members_card = []
     for (const [key, value] of Object.entries(members)) {
         members_card.push(<UserValidation title={members[key].username} selected={selected} id={key} key={key} onClick={() => setSelected(key)}></UserValidation>)
@@ -456,38 +450,38 @@ function RenderMembers({members, selected, setSelected}){
     return members_card;
 }
 
-async function addImage(e, report_id, task_id, user_id,photos,setPhotoButtonTxt) {
+async function addImage(e, report_id, task_id, user_id, photos, setPhotoButtonTxt) {
     setPhotoButtonTxt("Loader")
-	const file = e.target.files[0];
+    const file = e.target.files[0];
     console.log(file)
-	if (file.type === "image/jpeg" || file.type === "image/png") {
-		var photo = await getBase64(file)
+    if (file.type === "image/jpeg" || file.type === "image/png") {
+        var photo = await getBase64(file)
         console.log(photos)
         photos.push(photo)
-        UploadTaskPhoto(user_id,task_id,report_id,photos)
-	}
+        UploadTaskPhoto(user_id, task_id, report_id, photos)
+    }
 }
 
-function UploadTaskPhoto(user_id,task_id,report_id,photo){
-    addTaskPhoto({user_id:user_id,task_id:task_id,report_id:report_id,photos:[photo]}).then(
-        result =>{ 
+function UploadTaskPhoto(user_id, task_id, report_id, photo) {
+    addTaskPhoto({ user_id: user_id, task_id: task_id, report_id: report_id, photos: [photo] }).then(
+        result => {
             window.location.reload(false)
         }
-        
+
     )
 }
 
-function trackProgress(members, requiredMembers, requestValue, valueRaised,setTrack){
+function trackProgress(members, requiredMembers, requestValue, valueRaised, setTrack) {
     var track = 0
     console.log(members)
     console.log(requiredMembers)
-    if(members >= requiredMembers){
+    if (members >= requiredMembers) {
         track = 1
-        if(valueRaised >= requestValue){
+        if (valueRaised >= requestValue) {
             track = 2
         }
     }
-    
+
     setTrack(track)
 }
 

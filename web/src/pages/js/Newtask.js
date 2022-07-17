@@ -7,7 +7,7 @@ import { InputText } from "../../components/js/InputText";
 import { Switch } from '../../components/js/Switch';
 import { TextArea } from '../../components/js/TextArea';
 import { Divider } from '../../components/js/Divider';
-import { PrimaryButton } from '../../components/js/PrimaryButton';
+import { PrimaryButton } from '../../components/js/buttons/PrimaryButton'
 import { useState } from 'react';
 import { handleOnChangeData } from '../../utils/utils';
 import { sendTask } from '../../model/Calls/server';
@@ -16,12 +16,12 @@ import { useParams } from 'react-router-dom';
 function Newtask() {
     const [task, setTask] = useState({});
     const [buttonSubmitName, setButtonSubmitName] = useState("Submit");
-    const {reportid} = useParams();
+    const { reportid } = useParams();
     return (
         <div className='Newtask'>
 
             <NavBar></NavBar>
-            <BackBar title='New Task' path={'/viewreport/'+reportid}></BackBar>
+            <BackBar title='New Task' path={'/viewreport/' + reportid}></BackBar>
 
             <div className='aboutform-frame-pt1'>
 
@@ -30,8 +30,8 @@ function Newtask() {
                 <Label label='Task Title'></Label>
                 <div className='s-input-frame'>
                     <InputText onChange={(e) =>
-							handleOnChangeData(e, task, setTask, "title")
-						}></InputText>
+                        handleOnChangeData(e, task, setTask, "title")
+                    }></InputText>
                 </div>
 
                 <div className='wrapper-label-switch'>
@@ -52,8 +52,8 @@ function Newtask() {
                     <div className='inputinfo-rw'>
                         <div className='xxs-input-frame'>
                             <InputText type='number' onChange={(e) =>
-							handleOnChangeData(e, task, setTask, "team_size")
-						}></InputText>
+                                handleOnChangeData(e, task, setTask, "team_size")
+                            }></InputText>
                         </div>
                         <div className='infomaxmembers-label'>
                             <span>20</span> members limit
@@ -64,15 +64,15 @@ function Newtask() {
                 <Label label='Requeriments' />
                 <div className='s-textarea-frame'>
                     <TextArea rows={4} cols={4} placeholder='Required behaviours, clothing, materials, items or equipment must be described here.' onChange={(e) =>
-							handleOnChangeData(e, task, setTask, "requirements")
-						}></TextArea>
+                        handleOnChangeData(e, task, setTask, "requirements")
+                    }></TextArea>
                 </div>
 
                 <Label label='Task Details' />
                 <div className='m-textarea-frame'>
                     <TextArea rows={4} cols={4} onChange={(e) =>
-							handleOnChangeData(e, task, setTask, "details")
-						} placeholder="Try to make a complete description of the activities that will be carried out, for example, If you have chosen a team, specify 
+                        handleOnChangeData(e, task, setTask, "details")
+                    } placeholder="Try to make a complete description of the activities that will be carried out, for example, If you have chosen a team, specify 
                     the team's assignments, important locations, mode of transport of the material, etc..."></TextArea>
                 </div>
 
@@ -85,8 +85,8 @@ function Newtask() {
 
                 <div className='s-textarea-frame'>
                     <TextArea rows={4} cols={4} placeholder="Use this space for additional guidelines, such as tips, alerts, or recommendations." onChange={(e) =>
-							handleOnChangeData(e, task, setTask, "orientation")
-						}></TextArea>
+                        handleOnChangeData(e, task, setTask, "orientation")
+                    }></TextArea>
                 </div>
 
                 <Divider></Divider>
@@ -97,8 +97,8 @@ function Newtask() {
                 <div className='inputinfo-rw'>
                     <div className='xxs-input-frame'>
                         <InputText type='number' onChange={(e) =>
-							handleOnChangeData(e, task, setTask, "estimated_days")
-						}></InputText>
+                            handleOnChangeData(e, task, setTask, "estimated_days")
+                        }></InputText>
                     </div>
                     <div className='infomaxmembers-label'>
                         <span>20</span> days limit
@@ -114,8 +114,8 @@ function Newtask() {
 
                 <div className='xxs-input-frame'>
                     <InputText placeholder='mm/dd/yyyy' onChange={(e) =>
-							handleOnChangeData(e, task, setTask, "max_date")
-						}></InputText>
+                        handleOnChangeData(e, task, setTask, "max_date")
+                    }></InputText>
                 </div>
 
                 <Divider></Divider>
@@ -125,13 +125,13 @@ function Newtask() {
                 <Label label='How much USDT in total your team request to do this task?'></Label>
                 <div className='xxs-input-frame'>
                     <InputText type={'number'} placeholder='$ USDT' onChange={(e) =>
-							handleOnChangeData(e, task, setTask, "requested_value")
-						}></InputText>
+                        handleOnChangeData(e, task, setTask, "requested_value")
+                    }></InputText>
                 </div>
 
                 <div className='register-btn-frame'>
                     <div className='register-btn'>
-                        <PrimaryButton text={buttonSubmitName} onClick={()=>CreateTask(task,reportid,setButtonSubmitName)}></PrimaryButton>
+                        <PrimaryButton text={buttonSubmitName} onClick={() => CreateTask(task, reportid, setButtonSubmitName)}></PrimaryButton>
                     </div>
                 </div>
             </div>
@@ -142,13 +142,13 @@ function Newtask() {
 
 }
 
-function CreateTask(task,reportid,setButtonSubmitName){
+function CreateTask(task, reportid, setButtonSubmitName) {
     setButtonSubmitName("Loader")
     task['report_id'] = reportid
     task["userid"] = localStorage.getItem("greenchain-userid");;
-	sendTask(task).then(()=>{
-		window.location.href="/viewreport/"+reportid
-	})
+    sendTask(task).then(() => {
+        window.location.href = "/viewreport/" + reportid
+    })
 
 }
 

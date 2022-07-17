@@ -1,12 +1,11 @@
 import '../css/Viewreport.css';
 import { NavBar } from '../../components/js/NavBar';
 import { BackBar } from '../../components/js/BackBar';
-import { Chips } from '../../components/js/Chips';
 import { Title } from '../../components/js/Title';
-import { PrimaryButton } from '../../components/js/PrimaryButton';
-import { TaskCard } from '../../components/js/TaskCard';
+import { PrimaryButton } from '../../components/js/buttons/PrimaryButton'
+import { TaskCard } from '../../components/js/cards/TaskCard'
 import { useParams } from 'react-router-dom';
-import { getReport, getTasks, getUsername, sendJoinTask } from '../../model/Calls/server';
+import { getReport, getTasks, getUsername } from '../../model/Calls/server';
 import { useEffect, useState } from 'react';
 import { getCID } from '../../model/Calls/ipfs';
 
@@ -15,7 +14,7 @@ function Viewreport() {
     const [report, setReport] = useState({ "location": {}, "images": {} })
     const [tasks, setTasks] = useState({})
     const [loaded, setLoaded] = useState(false)
-    const [creatorName,setCreatorName] = useState("")
+    const [creatorName, setCreatorName] = useState("")
 
     var lazy = loaded ? "" : "lazy"
     useEffect(() => {
@@ -83,7 +82,7 @@ function loadReport(id, setReport, setLoaded, setCreatorName) {
         setReport(data["content"])
         setLoaded(true)
         console.log(data)
-        getUsername({"user_id":data["content"]['userid']}).then(response=>{
+        getUsername({ "user_id": data["content"]['userid'] }).then(response => {
             setCreatorName(response.username)
         })
     })
@@ -92,7 +91,7 @@ function loadReport(id, setReport, setLoaded, setCreatorName) {
 async function loadTasks(id, setTasks) {
     var task_list = []
     var tasks = await getTasks({ "report_id": id })
-    if(tasks !== undefined && "content" in tasks && tasks.content.id !== undefined){
+    if (tasks !== undefined && "content" in tasks && tasks.content.id !== undefined) {
         for (const [key, value] of Object.entries(tasks["content"]["id"])) {
             var task_cid = tasks["content"]["id"][key];
             var content = await getCID(task_cid)
@@ -109,18 +108,18 @@ function RenderTasks(props) {
     for (var i = 0; i < props.tasks.length; i++) {
         var task_id = i
         task_list.push(<TaskCard
-            taskData={{"report_id":props.report_id,"task_id":task_id,"user_id":user_id}}
+            taskData={{ "report_id": props.report_id, "task_id": task_id, "user_id": user_id }}
             title={props.tasks[task_id].title}
             description={props.tasks[task_id].details}
-            goal={props.tasks[task_id].requested_value} 
+            goal={props.tasks[task_id].requested_value}
             team_size={props.tasks[task_id].team_size}
-            path={"/viewtask/"+props.report_id+"/"+task_id}
-            daysleft='12' 
-            status='open' 
+            path={"/viewtask/" + props.report_id + "/" + task_id}
+            daysleft='12'
+            status='open'
             raised='1200'
             userid={props.tasks[task_id].userid}
             image='/images/mavatar.svg'>
-            </TaskCard>)
+        </TaskCard>)
     }
     return task_list
 }

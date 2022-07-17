@@ -1,4 +1,4 @@
-import '../css/SecondaryButton.css';
+import '../../css/buttons/SecondaryButton.css';
 export function SecondaryButton(props) {
     return (
         <div className='secondarybtn-frame'>

@@ -1,9 +1,9 @@
 import React , {useState,useEffect} from "react";
 import { handleOnChangeData } from "../../utils/utils";
 import "../css/FunderPopup.css";
+import { PrimaryButton } from "./buttons/PrimaryButton";
 import { InputText } from "./InputText";
 import { Label } from "./Label";
-import { PrimaryButton } from "./PrimaryButton";
 
 function FunderPopup(props) {
     const [fund,setFund] = useState(0)

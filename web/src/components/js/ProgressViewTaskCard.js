@@ -1,5 +1,4 @@
 import '../css/ProgressViewTaskCard.css'
-import { PrimaryButton } from './PrimaryButton';
 
 export function ProgressViewTaskCard(props) {
     var isActive = props.isActive ? '-active' : ''

@@ -5,7 +5,7 @@ import { NavBar } from "../../components/js/NavBar";
 import { Label } from "../../components/js/Label";
 import { Title } from "../../components/js/Title";
 import { InputText } from "../../components/js/InputText";
-import { PrimaryButton } from "../../components/js/PrimaryButton";
+import { PrimaryButton } from '../../components/js/buttons/PrimaryButton'
 import { Divider } from "../../components/js/Divider";
 import {
 	getBase64,
@@ -19,8 +19,8 @@ function Newreport() {
 	const [location, setLocation] = useState({});
 	const [userid, setUserid] = useState(0);
 	const fileInput = useRef(null);
-    const [buttonSubmitName, setButtonSubmitName] = useState("Submit");
-	
+	const [buttonSubmitName, setButtonSubmitName] = useState("Submit");
+
 	const selectFile = () => {
 		fileInput.current.click();
 	};
@@ -133,8 +133,8 @@ async function createReport(location, report, files, setButtonSubmitName) {
 	}
 	console.log(report)
 	setButtonSubmitName("Loader")
-	sendReport(report).then(()=>{
-		window.location.href="/"
+	sendReport(report).then(() => {
+		window.location.href = "/"
 	})
 }
 

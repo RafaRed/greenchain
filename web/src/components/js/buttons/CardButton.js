@@ -1,4 +1,4 @@
-import '../css/CardButton.css';
+import '../../css/buttons/CardButton.css'
 export function CardButton(props) {
     return (
         <div className='btn-frame'>
