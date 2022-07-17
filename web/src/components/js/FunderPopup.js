@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { sendFundTask } from "../../model/Calls/server";
 import { handleOnChangeData } from "../../utils/utils";
 import "../css/FunderPopup.css";
 import { PrimaryButton } from "./buttons/PrimaryButton";
@@ -7,8 +8,7 @@ import { Label } from "./Label";
 import { Title } from "./Title";
 
 function FunderPopup(props) {
-  const [fund, setFund] = useState(0)
-
+  const [fund, setFund] = useState({})
   return props.openPopup ? (
     <div className="popup">
       <div className="popup-inner">
@@ -25,11 +25,11 @@ function FunderPopup(props) {
           <Label label={"How much would you like to help?"}></Label>
 
           <InputText value={''} placeholder='$USDT' type='number' onChange={(e) =>
-            handleOnChangeData(e, fund, setFund, "title")
+            handleOnChangeData(e, fund, setFund, "value")
           }></InputText>
 
           <div className='register-btn-frame'>
-            <PrimaryButton text={"Fund"}></PrimaryButton>
+            <PrimaryButton text={"Fund"} onClick={()=>FundTask(props.task_id,props.report_id,props.user_id,fund['value'])}></PrimaryButton>
           </div>
         </div>
       </div>
@@ -37,6 +37,12 @@ function FunderPopup(props) {
   ) : (
     ""
   );
+}
+
+function FundTask(task_id, report_id, user_id, donation){
+  sendFundTask({"user_id":user_id,"report_id":report_id,"task_id":task_id,"donation":donation }).then(()=>{
+    window.location.reload(false)
+  })
 }
 
 export default FunderPopup;

@@ -18,6 +18,7 @@ import { getCID } from '../../model/Calls/ipfs';
 import { getBase64 } from '../../utils/utils';
 import FunderPopup from '../../components/js/FunderPopup';
 import ContactPopup from '../../components/js/ContactPopup';
+import { DisableButton } from '../../components/js/buttons/DisableButton';
 
 function Viewtask() {
     const [selected, setSelected] = useState("0")
@@ -37,10 +38,17 @@ function Viewtask() {
     const [userPhotos, setUserPhotos] = useState([])
     const [track, setTrack] = useState(0)
     const [startTask, setStartTask] = useState(false)
-    const [completeTask, setCompletTask] = useState(false)
+    const [completeTask, setCompleteTask] = useState(false)
+    const [funderApproval, setFunderApproval] = useState(false)
     const [openPopup, setOpenPopup] = useState(false)
     const [contactPopup, setContactPopup] = useState(false)
     const [contactUser, setContactUser] = useState(0)
+    const [paid,setPaid] = useState(false)
+    
+    useEffect(() => {
+        trackProgress(membersSize, task.team_size, task.requested_value, task.raised, setTrack)
+    }, [members, task])
+
     useEffect(() => {
         LoadTask(reportid, taskid, setTask, setCreator)
         LoadJoinState(reportid, taskid, user_id, setJoinButton, setMembersSize)
@@ -53,9 +61,7 @@ function Viewtask() {
         LoadPhotos(reportid, taskid, selected, setUserPhotos)
     }, [selected])
 
-    useEffect(() => {
-        trackProgress(membersSize, task.team_size, task.requested_value, 1000, setTrack)
-    }, [members, task])
+    
 
     return (
         <div className='Viewtask'>
@@ -141,7 +147,7 @@ function Viewtask() {
                                     </a>
 
                                     <a onClick={() => window.location.replace("http://www.twitter.com/" + creator.twitter)} >
-                                        <img src='/images/twitter3-ico.svg'></img>
+                                        <img src='/images/twitter-ico.svg'></img>
                                     </a>
                                 </div>
                             </div>
@@ -165,23 +171,23 @@ function Viewtask() {
                     <ProgressViewTaskCard title='COMPLETE TEAM' image='/images/team-ico.svg' isActive={track > 0 ? true : false}></ProgressViewTaskCard>
 
                     <div className='vt-progress-wrapper-card-button'>
-                        <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/value-ico.svg' isActive={track > 1 ? true : false}></ProgressViewTaskCard>
-                        <PrimaryButton text='Start' onClick={() => track > 1 ? setStartTask(true) : {}}></PrimaryButton>
+                        <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/value-ico.svg' isActive={track > 1 && startTask ? true : false}></ProgressViewTaskCard>
+                        {track > 1 ? <PrimaryButton text='Start' onClick={() => track > 1 ? setStartTask(true) : {}}></PrimaryButton> : <DisableButton text='Start'></DisableButton>}
                     </div>
 
 
                     <div className='vt-progress-wrapper-card-button'>
-                        <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={track > 1 && startTask ? true : false}></ProgressViewTaskCard>
-                        <PrimaryButton text='Done' onClick={() => track > 1 ? setCompletTask(true) : {}}></PrimaryButton>
+                        <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={track > 1 && startTask && completeTask? true : false}></ProgressViewTaskCard>
+                        {track > 1  && startTask ? <PrimaryButton text='Done' onClick={() => track > 1 && startTask ? setCompleteTask(true) : {}}></PrimaryButton> : <DisableButton text='Done'></DisableButton>}
                     </div>
-                    <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={track > 1 && startTask && completeTask ? true : false}></ProgressViewTaskCard>
-                    <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={track > 4 ? true : false}></ProgressViewTaskCard>
+                    <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={track > 1 && startTask && completeTask && funderApproval ? true : false}></ProgressViewTaskCard>
+                    <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={track > 1 && startTask && completeTask  && funderApproval && paid? true : false}></ProgressViewTaskCard>
                 </div>
 
                 <Title title='Validation'></Title>
 
                 <div className='wrapper-buttons'>
-                    <SecondaryButton text='Accept'></SecondaryButton>
+                    <SecondaryButton text='Accept' onClick={() => AcceptTask(track, startTask, completeTask, setFunderApproval, setPaid)}></SecondaryButton>
                     <PrimaryButton text='Reject'></PrimaryButton>
                 </div>
 
@@ -358,6 +364,15 @@ function Viewtask() {
             </div>
         </div >
     )
+}
+
+async function AcceptTask(track, startTask, completeTask, setFunderApproval, setPaid) {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    if(track > 1 && startTask && completeTask){
+        setFunderApproval(true)
+        await delay(3000)
+        setPaid(true)
+    }
 }
 
 async function LoadMembers(reportid, taskid, setMembers) {

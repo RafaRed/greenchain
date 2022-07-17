@@ -269,7 +269,7 @@ app.post("/fund-task", async (req, res) => {
 	/*if(old_donate !== undefined && old_donate['content'] !== undefined){
 		donation += parseInt(old_donate['content'])
 	}*/
-	await UpdateNode(donate_path, donation);
+	//await UpdateNode(donate_path, donation);
 	res.send({ status: "Updated" });
 });
 

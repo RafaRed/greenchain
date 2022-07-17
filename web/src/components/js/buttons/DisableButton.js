@@ -1,9 +1,9 @@
 import '../../css/buttons/DisableButton.css'
-export function PrimaryButton(props) {
+export function DisableButton(props) {
     return (
         <div className='btn-frame'>
             <a href={props.path}>
-                <div className={'PrimaryButton noselect'} onClick={props.onClick}>
+                <div className={'DisableButton noselect'} onClick={props.onClick}>
                     {props.text === "Loader" ? <div className="lds-facebook"><div>
                     </div>
                         <div>
