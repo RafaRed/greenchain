@@ -108,7 +108,7 @@ firebase emulators:start
 - Firebase Functions - Serverless service to achieve fast server configuration.
 
 
-![N|GreenChain](https://i.imgur.com/JAFQwn0.png)
+![N|GreenChain](https://i.imgur.com/NxfEZsV.png)
 
 ## Public Repository
 
