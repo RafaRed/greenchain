@@ -10,7 +10,7 @@ import { Divider } from '../../components/js/Divider';
 import { PrimaryButton } from '../../components/js/buttons/PrimaryButton'
 import { useState } from 'react';
 import { handleOnChangeData } from '../../utils/utils';
-import { sendTask } from '../../model/Calls/server';
+import { sendJoinTask, sendTask } from '../../model/Calls/server';
 import { useParams } from 'react-router-dom';
 
 function Newtask() {
@@ -146,8 +146,13 @@ function CreateTask(task, reportid, setButtonSubmitName) {
     setButtonSubmitName("Loader")
     task['report_id'] = reportid
     task["userid"] = localStorage.getItem("greenchain-userid");;
-    sendTask(task).then(() => {
-        window.location.href = "/viewreport/" + reportid
+    sendTask(task).then((new_task) => {
+        console.log(new_task)
+        var user_id = localStorage.getItem("greenchain-userid");
+        sendJoinTask({ "user_id": user_id, "report_id": reportid, "task_id": new_task["new_id"] }).then(()=>{
+            window.location.href = "/viewreport/" + reportid
+        })
+        
     })
 
 }

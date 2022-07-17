@@ -5,6 +5,7 @@ const fetch = require("node-fetch");
 const { resolve } = require("path");
 const { promises: Fs } = require("fs");
 var cidCache = {};
+
 var max_cache = 300;
 
 function loadFromCache(cid) {
@@ -17,7 +18,7 @@ function loadFromCache(cid) {
 }
 
 function saveOnCache(cid, value) {
-	if (cidCache.length > max_cache) {
+	if (Object.keys(cidCache).length > max_cache) {
 		cidCache = {};
 	}
 	cidCache[cid] = value;

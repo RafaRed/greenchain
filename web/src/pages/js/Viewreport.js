@@ -116,7 +116,7 @@ function RenderTasks(props) {
             path={"/viewtask/" + props.report_id + "/" + task_id}
             daysleft='12'
             status='open'
-            raised='1200'
+            raised={props.tasks[task_id].raised}
             userid={props.tasks[task_id].userid}
             image='/images/mavatar.svg'>
         </TaskCard>)

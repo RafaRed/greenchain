@@ -1,4 +1,4 @@
-import { add_task_photo, add_task_photo_path, get_members_path, get_members_size_path, get_reports_path, get_report_path, get_tasks_path, get_task_path, get_task_photos_path, get_task_size_path, get_username_path, get_user_id_path, get_user_path, join_task_path, register_path, report_path, send_task_path, server } from "../repository";
+import { add_task_photo, add_task_photo_path, fund_task_path, get_members_path, get_members_size_path, get_reports_path, get_report_path, get_tasks_path, get_task_path, get_task_photos_path, get_task_size_path, get_username_path, get_user_id_path, get_user_path, join_task_path, register_path, report_path, send_task_path, server } from "../repository";
 
 
 export async function endpointCall(data, endpoint) {
@@ -88,4 +88,8 @@ export async function addTaskPhoto(data) {
 
 export async function getTaskPhotos(data) {
 	return endpointCall(data, get_task_photos_path)
+}
+
+export async function sendFundTask(data) {
+	return endpointCall(data, fund_task_path)
 }

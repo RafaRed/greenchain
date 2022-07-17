@@ -59,7 +59,7 @@ app.post("/create-report", async (req, res) => {
 	var task = await AddNode("Task", {}, report["new_id"]);
 	var members = await AddNode("Members", {}, report["new_id"]);
 	var photos = await AddNode("Photos", {}, report["new_id"]);
-	var donate = await AddNode("Donate", {}, report["new_id"]);
+	//var donate = await AddNode("Donate", {}, report["new_id"]);
 	res.send(report);
 });
 
@@ -82,20 +82,26 @@ app.post("/get-report", async (req, res) => {
 
 app.post("/create-task", async (req, res) => {
 	var task = req.body;
+	task['raised'] = 0
 	var task_id = await AddNode("Task/" + task["report_id"], task);
 	var members = await AddNode(`Members/${task["report_id"]}`,{},task_id["new_id"]);
 	var photos = await AddNode(`Photos/${task["report_id"]}`,{},task_id["new_id"]);
-	var donate = await AddNode(`Donate/${task["report_id"]}`,{},task_id["new_id"]);
-	res.send(task_id);
-	// JOIN
-	var user_id = task["userid"];
-	var user = await GetNodeByPath(`User/${user_id}`);
-	var members_path = `Members/${task["report_id"]}/${task_id["new_id"]}`;
-	await AddNode(members_path, user["content"], user_id);
-	var photos_path = `Photos/${task["report_id"]}/${task_id["new_id"]}`;
-	var photos = await AddNode(photos_path, {}, user_id);
+	//var donate = await AddNode(`Donate/${task["report_id"]}`,{},task_id["new_id"]);
 
+	res.send(task_id);
 	
+});
+
+app.post("/join-task", async (req, res) => {
+	var user_id = req.body.user_id;
+	var task_id = req.body.task_id;
+	var report_id = req.body.report_id;
+	var user = await GetNodeByPath(`User/${user_id}`);
+	var members_path = `Members/${report_id}/${task_id}`;
+	await AddNode(members_path, user["content"], user_id);
+	var photos_path = `Photos/${report_id}/${task_id}`;
+	var photos = await AddNode(photos_path, {}, user_id);
+	res.send({ status: "success" });
 });
 
 app.post("/get-tasks", async (req, res) => {
@@ -113,27 +119,15 @@ app.post("/get-task", async (req, res) => {
 
 app.post("/register", async (req, res) => {
 	var data = req.body;
-	console.log(data)
 	var user = await AddNode("User", data, "-1");
 	await UpdateHashtable("UserWallet", user["new_id"], data["wallet"]);
 	res.send({ status: "success" });
 });
 
-app.post("/join-task", async (req, res) => {
-	var user_id = req.body.user_id;
-	var task_id = req.body.task_id;
-	var report_id = req.body.report_id;
-	var user = await GetNodeByPath(`User/${user_id}`);
-	var members_path = `Members/${report_id}/${task_id}`;
-	await AddNode(members_path, user["content"], user_id);
-	var photos_path = `Photos/${report_id}/${task_id}`;
-	var photos = await AddNode(photos_path, {}, user_id);
-	res.send({ status: "success" });
-});
+
 
 app.post("/get-user-id", async (req, res) => {
 	var wallet = req.body.wallet;
-	console.log(wallet)
 	var id = await FindHashtableByValue("UserWallet", wallet);
 	if (id === undefined) {
 		res.send({ status: "not found" });
@@ -251,7 +245,6 @@ async function getTasksSize(report_id){
 	var tasks = await GetNodeByPath("Task/" + report_id);
 	var tasks_num = 0
 	if(tasks !== undefined && "content" in tasks && tasks.content.id !== undefined){
-		console.log(tasks)
 		tasks_num += Object.keys(tasks.content.id).length;
 	}
 	return tasks_num
@@ -262,13 +255,20 @@ app.post("/fund-task", async (req, res) => {
 	var task_id = req.body.task_id;
 	var report_id = req.body.report_id;
 	var donation = req.body.donation;
-	var donate_path = `Donate/${report_id}/${task_id}/${user_id}`;
-	var old_donate = await GetNodeByPath(donate_path)
-	if(old_donate['content'] !== undefined){
-		donation += parseInt(old_donate['content'])
+	/*var donate_path = `Donate/${report_id}/${task_id}/${user_id}`;
+	var old_donate = await GetNodeByPath(donate_path)*/
+	var task = await GetNodeByPath(`Task/${report_id}/${task_id}`)
+	var raised = 0;
+	if(task !== undefined && task['content'] !== undefined && task['content'].raised !== undefined){
+		raised = parseInt(task['content']['raised']);
 	}
-	console.log(donate_path)
-	console.log(donation)
+	raised += parseInt(donation)
+	task['content']['raised'] = raised;
+	await UpdateNode(`Task/${report_id}/${task_id}`, task['content']);
+
+	/*if(old_donate !== undefined && old_donate['content'] !== undefined){
+		donation += parseInt(old_donate['content'])
+	}*/
 	await UpdateNode(donate_path, donation);
 	res.send({ status: "Updated" });
 });

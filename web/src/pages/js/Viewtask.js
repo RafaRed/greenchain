@@ -105,7 +105,7 @@ function Viewtask() {
 
                             <div className='wrapper-vt-raised-logo'>
                                 <div className='vt-raised'>
-                                    $1500
+                                    ${task.raised}
                                 </div>
                                 <div className='vt-usdt-logo'>
                                     <img src='/images/usdt-logo.svg'></img>
