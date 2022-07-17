@@ -45,12 +45,18 @@ function Viewtask() {
         LoadTask(reportid,taskid,setTask,setCreator)
         LoadJoinState(reportid,taskid,user_id,setJoinButton,setMembersSize)
         LoadMembers(reportid,taskid,setMembers)
+        
     },[])
 
     useEffect(()=>{
         console.log("change")
         LoadPhotos(reportid,taskid,selected,setUserPhotos)
     },[selected])
+
+    useEffect(()=>{
+        trackProgress(membersSize,task.team_size,task.requested_value,1000,setTrack)
+    },[members,task])
+
     return (
         <div className='Viewtask'>
             <NavBar></NavBar>
@@ -149,20 +155,20 @@ function Viewtask() {
 
                 <div className='vt-progress-frame'>
                     <ProgressViewTaskCard title='OPEN TASK' image='/images/opentask-ico.svg' isActive={true}></ProgressViewTaskCard>
-                    <ProgressViewTaskCard title='COMPLETE TEAM' image='/images/team-ico.svg' isActive={false}></ProgressViewTaskCard>
+                    <ProgressViewTaskCard title='COMPLETE TEAM' image='/images/team-ico.svg' isActive={track > 0 ? true : false}></ProgressViewTaskCard>
 
                     <div className='vt-progress-wrapper-card-button'>
-                        <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/value-ico.svg' isActive={false}></ProgressViewTaskCard>
+                        <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/value-ico.svg' isActive={track > 1 ? true : false}></ProgressViewTaskCard>
                         <PrimaryButton text='Start'></PrimaryButton>
                     </div>
 
 
                     <div className='vt-progress-wrapper-card-button'>
-                        <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={false}></ProgressViewTaskCard>
+                        <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={track > 2 ? true : false}></ProgressViewTaskCard>
                         <PrimaryButton text='Done'></PrimaryButton>
                     </div>
-                    <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={false}></ProgressViewTaskCard>
-                    <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={false}></ProgressViewTaskCard>
+                    <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={track > 3 ? true : false}></ProgressViewTaskCard>
+                    <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={track > 4 ? true : false}></ProgressViewTaskCard>
                 </div>
 
                 <Title title='Task Validation'></Title>
@@ -465,8 +471,18 @@ function UploadTaskPhoto(user_id,task_id,report_id,photo){
     )
 }
 
-function trackProgress(members, requiredMembers, requestValue, valueRaised){
+function trackProgress(members, requiredMembers, requestValue, valueRaised,setTrack){
+    var track = 0
+    console.log(members)
+    console.log(requiredMembers)
+    if(members >= requiredMembers){
+        track = 1
+        if(valueRaised >= requestValue){
+            track = 2
+        }
+    }
     
+    setTrack(track)
 }
 
 
