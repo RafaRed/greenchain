@@ -34,9 +34,9 @@ function Newreport() {
 				<BackBar title={"New Report"} path={"/"}></BackBar>
 
 				<div className="frame">
-					<Title title="Informations"></Title>
+					<Title title="Report Informations"></Title>
 
-					<Label label={"Report Title"}></Label>
+					<Label label={"Title"}></Label>
 					<InputText
 						onChange={(e) =>
 							handleOnChangeData(e, report, setReport, "title")
@@ -75,7 +75,7 @@ function Newreport() {
 
 					<Divider></Divider>
 
-					<Title title="Report Location"></Title>
+					<Title title="Location"></Title>
 
 					<Label label="Address"></Label>
 					<InputText

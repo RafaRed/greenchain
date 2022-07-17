@@ -17,33 +17,36 @@ import { addTaskPhoto, getMembers, getTask, getTaskPhotos, getUser, getUsername,
 import { getCID } from '../../model/Calls/ipfs';
 import { getBase64 } from '../../utils/utils';
 import FunderPopup from '../../components/js/FunderPopup';
+import ContactPopup from '../../components/js/ContactPopup';
 
 function Viewtask() {
-    const [selected, setSelected] = useState("0");
-    const [task, setTask] = useState({})
+    const [selected, setSelected] = useState("0")
+    const [task, setTask] = useState({ 'title': '' })
     const { reportid } = useParams();
     const { taskid } = useParams();
     const [joinButton, setJoinButton] = useState("Loader")
     const [membersSize, setMembersSize] = useState(0)
     const [members, setMembers] = useState({})
     const [photoButtonTxt, setPhotoButtonTxt] = useState("+ Photo")
-    var user_id = localStorage.getItem("greenchain-userid");
+    var user_id = localStorage.getItem("greenchain-userid")
     const [creator, setCreator] = useState("")
     const fileInput = useRef(null);
     const selectFile = () => {
         fileInput.current.click();
     };
-    const [userPhotos, setUserPhotos] = useState([]);
+    const [userPhotos, setUserPhotos] = useState([])
     const [track, setTrack] = useState(0)
     const [startTask, setStartTask] = useState(false)
     const [completeTask, setCompletTask] = useState(false)
     const [openPopup, setOpenPopup] = useState(false)
-    useEffect(()=>{
-        LoadTask(reportid,taskid,setTask,setCreator)
-        LoadJoinState(reportid,taskid,user_id,setJoinButton,setMembersSize)
-        LoadMembers(reportid,taskid,setMembers)
-        
-    },[])
+    const [contactPopup, setContactPopup] = useState(false)
+    const [contactUser, setContactUser] = useState(0)
+    useEffect(() => {
+        LoadTask(reportid, taskid, setTask, setCreator)
+        LoadJoinState(reportid, taskid, user_id, setJoinButton, setMembersSize)
+        LoadMembers(reportid, taskid, setMembers)
+
+    }, [])
 
     useEffect(() => {
         console.log("change")
@@ -57,17 +60,18 @@ function Viewtask() {
     return (
         <div className='Viewtask'>
             <FunderPopup openPopup={openPopup} setOpenPopup={setOpenPopup} report_id={reportid} task_id={taskid} user_id={user_id}></FunderPopup>
+            <ContactPopup openPopup={contactPopup} setOpenPopup={setContactPopup} user={contactUser}></ContactPopup>
             <NavBar></NavBar>
             <BackBar title='View Task' path={'/viewreport/' + reportid}></BackBar>
 
 
             <div className='Viewtask-frame'>
+                <Title title={task.title.toUpperCase()}></Title>
 
-           
 
                 <div className='wrapper-buttons'>
-                    <SecondaryButton text='Fund' onClick={()=>setOpenPopup(true)}></SecondaryButton>
-                    <PrimaryButton text={joinButton} onClick={()=>Join(reportid,taskid,user_id,setJoinButton,joinButton)}></PrimaryButton>
+                    <SecondaryButton text='Fund' onClick={() => setOpenPopup(true)}></SecondaryButton>
+                    <PrimaryButton text={joinButton} onClick={() => Join(reportid, taskid, user_id, setJoinButton, joinButton)}></PrimaryButton>
                 </div>
 
                 <div className='viewtaskrows-frame'>
@@ -130,12 +134,15 @@ function Viewtask() {
                                 <div className='col2-user-label'>
                                     {creator.username}
                                 </div>
-                                <div className='col3-user-email-label'>
-                                    {creator.email}
-                                </div>
+
                                 <div className='col4-user-contact-icons'>
-                                    <img src='/images/discord-ico.svg'></img>
-                                    <img src='/images/twitter-ico.svg'></img>
+                                    <a onClick={() => window.location.replace("mailto:" + creator.email)} >
+                                        <img src='/images/email.png'></img>
+                                    </a>
+
+                                    <a onClick={() => window.location.replace("http://www.twitter.com/" + creator.twitter)} >
+                                        <img src='/images/twitter3-ico.svg'></img>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -159,19 +166,19 @@ function Viewtask() {
 
                     <div className='vt-progress-wrapper-card-button'>
                         <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/value-ico.svg' isActive={track > 1 ? true : false}></ProgressViewTaskCard>
-                        <PrimaryButton text='Start' onClick={()=> track > 1 ? setStartTask(true):{}}></PrimaryButton>
+                        <PrimaryButton text='Start' onClick={() => track > 1 ? setStartTask(true) : {}}></PrimaryButton>
                     </div>
 
 
                     <div className='vt-progress-wrapper-card-button'>
                         <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={track > 1 && startTask ? true : false}></ProgressViewTaskCard>
-                        <PrimaryButton text='Done' onClick={()=> track > 1 ? setCompletTask(true):{}}></PrimaryButton>
+                        <PrimaryButton text='Done' onClick={() => track > 1 ? setCompletTask(true) : {}}></PrimaryButton>
                     </div>
                     <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={track > 1 && startTask && completeTask ? true : false}></ProgressViewTaskCard>
                     <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={track > 4 ? true : false}></ProgressViewTaskCard>
                 </div>
 
-                <Title title='Task Validation'></Title>
+                <Title title='Validation'></Title>
 
                 <div className='wrapper-buttons'>
                     <SecondaryButton text='Accept'></SecondaryButton>
@@ -194,12 +201,11 @@ function Viewtask() {
 
                                 <div className='membersphotos-control-bt-left'>
                                     <img src='/images/chavron-left-ico.svg'></img>
-
                                 </div>
 
                                 <div className='membersphotos-control-body'>
                                     <div className='membersphotos-username-link-frame'>
-                                        <RenderMembers members={members} selected={selected} setSelected={setSelected}></RenderMembers>
+                                        <RenderMembers setContactUser={setContactUser} members={members} selected={selected} setSelected={setSelected} setContactPopup={setContactPopup}></RenderMembers>
                                     </div>
                                 </div>
 
@@ -296,13 +302,7 @@ function Viewtask() {
 
                 </div>
 
-                <Title title='About'></Title>
-
-                <Label label='Title'></Label>
-
-                <div className='s-input-frame'>
-                    <InputText value={task.title} disabled={true}></InputText>
-                </div>
+                <Title title='Description'></Title>
 
                 <Label label='Team Size'></Label>
 
@@ -356,7 +356,7 @@ function Viewtask() {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 
@@ -442,13 +442,14 @@ function LoadJoinState(report_id, task_id, user_id, setJoinButton, setMembersSiz
     )
 }
 
-function RenderMembers({ members, selected, setSelected }) {
+function RenderMembers({ members, selected, setSelected, setContactPopup, setContactUser }) {
     var members_card = []
     for (const [key, value] of Object.entries(members)) {
-        members_card.push(<UserValidation title={members[key].username} selected={selected} id={key} key={key} onClick={() => setSelected(key)}></UserValidation>)
+        members_card.push(<UserValidation member={members[key]} setContactUser={setContactUser} setContactPopup={setContactPopup} title={members[key].username} selected={selected} id={key} key={key} onClick={() => setSelected(key)}></UserValidation>)
     }
     return members_card;
 }
+
 
 async function addImage(e, report_id, task_id, user_id, photos, setPhotoButtonTxt) {
     setPhotoButtonTxt("Loader")
