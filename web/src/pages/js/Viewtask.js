@@ -72,7 +72,7 @@ function Viewtask() {
 
 
             <div className='Viewtask-frame'>
-                <Title title={task.title.toUpperCase()}></Title>
+                <Title title={task.title !== undefined ? task.title.toUpperCase() : ""}></Title>
 
 
                 <div className='wrapper-buttons'>

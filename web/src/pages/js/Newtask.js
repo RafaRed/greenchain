@@ -113,7 +113,7 @@ function Newtask() {
                 </div>
 
                 <div className='xxs-input-frame'>
-                    <InputText placeholder='mm/dd/yyyy' type='number' onChange={(e) =>
+                    <InputText placeholder='mm/dd/yyyy' type='text' onChange={(e) =>
                         handleOnChangeData(e, task, setTask, "max_date")
                     }></InputText>
                 </div>
