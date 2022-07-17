@@ -25,9 +25,9 @@ function Newtask() {
 
             <div className='aboutform-frame-pt1'>
 
-                <Title title='About Solution'></Title>
+                <Title title='Task Informations'></Title>
 
-                <Label label='Task Title'></Label>
+                <Label label='Title'></Label>
                 <div className='s-input-frame'>
                     <InputText onChange={(e) =>
                         handleOnChangeData(e, task, setTask, "title")
@@ -68,7 +68,7 @@ function Newtask() {
                     }></TextArea>
                 </div>
 
-                <Label label='Task Details' />
+                <Label label='Details' />
                 <div className='m-textarea-frame'>
                     <TextArea rows={4} cols={4} onChange={(e) =>
                         handleOnChangeData(e, task, setTask, "details")

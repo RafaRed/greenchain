@@ -20,7 +20,7 @@ import FunderPopup from '../../components/js/FunderPopup';
 
 function Viewtask() {
     const [selected, setSelected] = useState("0");
-    const [task, setTask] = useState({})
+    const [task, setTask] = useState({ 'title': '' })
     const { reportid } = useParams();
     const { taskid } = useParams();
     const [joinButton, setJoinButton] = useState("Loader")
@@ -38,12 +38,12 @@ function Viewtask() {
     const [startTask, setStartTask] = useState(false)
     const [completeTask, setCompletTask] = useState(false)
     const [openPopup, setOpenPopup] = useState(false)
-    useEffect(()=>{
-        LoadTask(reportid,taskid,setTask,setCreator)
-        LoadJoinState(reportid,taskid,user_id,setJoinButton,setMembersSize)
-        LoadMembers(reportid,taskid,setMembers)
-        
-    },[])
+    useEffect(() => {
+        LoadTask(reportid, taskid, setTask, setCreator)
+        LoadJoinState(reportid, taskid, user_id, setJoinButton, setMembersSize)
+        LoadMembers(reportid, taskid, setMembers)
+
+    }, [])
 
     useEffect(() => {
         console.log("change")
@@ -62,12 +62,12 @@ function Viewtask() {
 
 
             <div className='Viewtask-frame'>
+                <Title title={task.title.toUpperCase()}></Title>
 
-           
 
                 <div className='wrapper-buttons'>
-                    <SecondaryButton text='Fund' onClick={()=>setOpenPopup(true)}></SecondaryButton>
-                    <PrimaryButton text={joinButton} onClick={()=>Join(reportid,taskid,user_id,setJoinButton,joinButton)}></PrimaryButton>
+                    <SecondaryButton text='Fund' onClick={() => setOpenPopup(true)}></SecondaryButton>
+                    <PrimaryButton text={joinButton} onClick={() => Join(reportid, taskid, user_id, setJoinButton, joinButton)}></PrimaryButton>
                 </div>
 
                 <div className='viewtaskrows-frame'>
@@ -159,19 +159,19 @@ function Viewtask() {
 
                     <div className='vt-progress-wrapper-card-button'>
                         <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/value-ico.svg' isActive={track > 1 ? true : false}></ProgressViewTaskCard>
-                        <PrimaryButton text='Start' onClick={()=> track > 1 ? setStartTask(true):{}}></PrimaryButton>
+                        <PrimaryButton text='Start' onClick={() => track > 1 ? setStartTask(true) : {}}></PrimaryButton>
                     </div>
 
 
                     <div className='vt-progress-wrapper-card-button'>
                         <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={track > 1 && startTask ? true : false}></ProgressViewTaskCard>
-                        <PrimaryButton text='Done' onClick={()=> track > 1 ? setCompletTask(true):{}}></PrimaryButton>
+                        <PrimaryButton text='Done' onClick={() => track > 1 ? setCompletTask(true) : {}}></PrimaryButton>
                     </div>
                     <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={track > 1 && startTask && completeTask ? true : false}></ProgressViewTaskCard>
                     <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={track > 4 ? true : false}></ProgressViewTaskCard>
                 </div>
 
-                <Title title='Task Validation'></Title>
+                <Title title='Validation'></Title>
 
                 <div className='wrapper-buttons'>
                     <SecondaryButton text='Accept'></SecondaryButton>
@@ -296,13 +296,7 @@ function Viewtask() {
 
                 </div>
 
-                <Title title='About'></Title>
-
-                <Label label='Title'></Label>
-
-                <div className='s-input-frame'>
-                    <InputText value={task.title} disabled={true}></InputText>
-                </div>
+                <Title title='Description'></Title>
 
                 <Label label='Team Size'></Label>
 
