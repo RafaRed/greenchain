@@ -1,4 +1,4 @@
-import '../css/MidCard.css';
+import '../../css/cards/MidCard.css';
 export function MidCard(props) {
     return (<div className='card-container'>
         <div className='card-img'>

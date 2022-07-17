@@ -1,9 +1,9 @@
 import "../css/Home.css";
 import { useEffect, useState, React } from 'react';
 import { NavBar } from "../../components/js/NavBar";
-import { PrimaryButton } from "../../components/js/PrimaryButton";
-import { MidCard } from "../../components/js/MidCard";
-import { ReportCard } from "../../components/js/ReportCard";
+import { PrimaryButton } from "../../components/js/buttons/PrimaryButton";
+import { MidCard } from "../../components/js/cards/MidCard";
+import { ReportCard } from "../../components/js/cards/ReportCard";
 import { getMembersSize, getReports, getTasksSize } from "../../model/Calls/server";
 import { getCID } from "../../model/Calls/ipfs";
 
@@ -41,7 +41,7 @@ function Home() {
 
 			<div className="mid-container">
 				<div id="anchor">
-					<div className="midtitle-label">How it Works?</div>
+					<div className="midtitle-label">How does it work?</div>
 				</div>
 				<div className="middescription-label">
 					GreenChain is a plataform that uses the three principles of sustainability:

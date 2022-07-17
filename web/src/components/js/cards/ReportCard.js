@@ -1,6 +1,6 @@
-import { CardButton } from './CardButton';
-import '../css/ReportCard.css';
-import { Chips } from './Chips';
+import '../../css/cards/ReportCard.css';
+import { CardButton } from '../buttons/CardButton';
+import { Chips } from '../Chips';
 
 export function ReportCard(props) {
     return (<div className='reportcard'>
@@ -15,7 +15,7 @@ export function ReportCard(props) {
             <div className='card-divider'></div>
             <div className='info-frame'>
                 <div className='task-label'>
-                <span className={props.tasknumber === undefined ? "lazy-field" : ""}>{props.tasknumber}</span> Task
+                    <span className={props.tasknumber === undefined ? "lazy-field" : ""}>{props.tasknumber}</span> Task
                 </div>
                 <div className='members-label'>
                     <span className={props.membersnumber === undefined ? "lazy-field" : ""}>{props.membersnumber}</span> Members
@@ -36,7 +36,7 @@ export function ReportCard(props) {
                     </div>
                 </div>
             </div>
-            <CardButton text='View' path={'/viewreport/'+props.reportid}></CardButton>
+            <CardButton text='View' path={'/viewreport/' + props.reportid}></CardButton>
         </div>
     </div>
     );

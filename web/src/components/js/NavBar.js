@@ -1,4 +1,3 @@
-import { PrimaryButton } from '../../components/js/PrimaryButton';
 import Metamask from '../../model/metamask/Metamask';
 import '../css/NavBar.css';
 import "../css/Loader.css"
@@ -13,7 +12,7 @@ export function NavBar() {
             </div>
 
             <div className='menu-frame noselect'>
-                <li><a href="/#anchor">How its Work?</a></li>
+                <li><a href="/#anchor">How does it work?</a></li>
                 <li><a href="/#reports">Reports</a></li>
             </div>
         </div>

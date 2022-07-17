@@ -1,7 +1,7 @@
 import { injected } from "./Connectors";
 import { useWeb3React } from "@web3-react/core";
 import { useState, React, useEffect } from "react";
-import { PrimaryButton } from "../../components/js/PrimaryButton";
+import { PrimaryButton } from "../../components/js/buttons/PrimaryButton";
 import { getUserId, getUsername } from "../Calls/server";
 
 
@@ -32,7 +32,7 @@ function Metamask(props) {
 					if (window.location.pathname !== "/Signup") {
 						window.location.href = "/Signup";
 					}
-					else{
+					else {
 						setLoginButtonText("Registering...")
 					}
 				}
@@ -69,8 +69,8 @@ function Metamask(props) {
 		if (acc !== null && (username_local === null || userid_local === null)) {
 			updateUsername();
 			/*if(window.location.pathname !== "/Signup"){
-        window.location.href = "/Signup"
-      }*/
+		window.location.href = "/Signup"
+	  }*/
 		}
 	}
 
@@ -88,10 +88,10 @@ function Metamask(props) {
 		updateLocalstorageWithWallet();
 	}
 
-	useEffect(()=>{
+	useEffect(() => {
 		setLoginButtonText(username_local === null ? "Loader" : username_local)
-	},[])
-	
+	}, [])
+
 	var buttonText = acc === null ? "Connect" : loginButtonText;
 	var action = acc === null ? () => connect() : () => logout();
 	redirectToRegister();
