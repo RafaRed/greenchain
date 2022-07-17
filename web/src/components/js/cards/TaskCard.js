@@ -4,18 +4,21 @@ import { PrimaryButton } from '../buttons/PrimaryButton';
 import { SecondaryButton } from '../buttons/SecondaryButton';
 import { useEffect, useState } from 'react';
 import { getMembers, getUsername, sendJoinTask } from '../../../model/Calls/server';
+import FunderPopup from '../FunderPopup';
 
 export function TaskCard(props) {
     const [joining, setJoining] = useState(false)
     const [joinButton, setJoinButton] = useState("Loader")
     const [username, setUsername] = useState()
     const [members, setMembers] = useState(0)
+    const [openPopup, setOpenPopup] = useState(false)
 
     useEffect(() => {
         LoadJoinState(props.taskData.report_id, props.taskData.task_id, props.taskData.user_id, setJoinButton, setMembers)
         loadUsername(setUsername, props.userid)
     }, [])
     return (<a className='containerpath'>
+        <FunderPopup openPopup={openPopup} setOpenPopup={setOpenPopup} report_id={props.taskData.report_id} task_id={props.taskData.task_id} user_id={props.taskData.user_id}></FunderPopup>
         <div className='taskcard-container' onClick={() => window.location.href = props.path}>
 
             <div className='taskcard-top'>
@@ -90,12 +93,17 @@ export function TaskCard(props) {
 
             <div className='taskcard-bottom'>
                 <div className='task-buttons'>
-                    <SecondaryButton text='Fund'></SecondaryButton>
+                    <SecondaryButton text='Fund' onClick={(e)=>FundTask(setOpenPopup,e)}></SecondaryButton>
                     <PrimaryButton text={joinButton} onClick={(e) => Join(props.taskData.report_id, props.taskData.task_id, props.taskData.user_id, setJoining, setJoinButton, joinButton, e)}></PrimaryButton>
                 </div>
             </div>
         </div>
     </a>);
+}
+
+function FundTask(setOpenPopup,e) {
+    e.stopPropagation();
+    return setOpenPopup(true);
 }
 
 function LoadJoinState(report_id, task_id, user_id, setJoinButton, setMembers) {

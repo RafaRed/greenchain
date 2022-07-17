@@ -9,6 +9,8 @@ import { Title } from "./Title";
 
 function FunderPopup(props) {
   const [fund, setFund] = useState({})
+  const [fundButtonText, setFundButtonText] = useState("Fund")
+  console.log(props)
   return props.openPopup ? (
     <div className="popup">
       <div className="popup-inner">
@@ -29,7 +31,7 @@ function FunderPopup(props) {
           }></InputText>
 
           <div className='register-btn-frame'>
-            <PrimaryButton text={"Fund"} onClick={()=>FundTask(props.task_id,props.report_id,props.user_id,fund['value'])}></PrimaryButton>
+            <PrimaryButton text={fundButtonText} onClick={()=>FundTask(props.task_id,props.report_id,props.user_id,fund['value'],setFundButtonText)}></PrimaryButton>
           </div>
         </div>
       </div>
@@ -39,7 +41,8 @@ function FunderPopup(props) {
   );
 }
 
-function FundTask(task_id, report_id, user_id, donation){
+function FundTask(task_id, report_id, user_id, donation,setFundButtonText){
+  setFundButtonText("Loader")
   sendFundTask({"user_id":user_id,"report_id":report_id,"task_id":task_id,"donation":donation }).then(()=>{
     window.location.reload(false)
   })

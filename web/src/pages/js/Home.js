@@ -150,7 +150,7 @@ function RenderReports(props) {
 				reportid={i}
 				image={reports[i].images[0]}
 				membersnumber={members[i]}
-				countryimg={"/images/flag/" + country.toLowerCase() + ".svg"}
+				countryimg={"/images/flag/" + country.toLowerCase().replace(" ","") + ".svg"}
 				state={reports[i].location.state}
 				citycountry={reports[i].location.city + " - " + reports[i].location.country}
 				key={i}></ReportCard>
