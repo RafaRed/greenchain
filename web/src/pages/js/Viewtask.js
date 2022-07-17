@@ -16,6 +16,7 @@ import { useParams } from 'react-router-dom';
 import { addTaskPhoto, getMembers, getTask, getTaskPhotos, getUser, getUsername, sendJoinTask } from '../../model/Calls/server';
 import { getCID } from '../../model/Calls/ipfs';
 import { getBase64 } from '../../utils/utils';
+import FunderPopup from '../../components/js/FunderPopup';
 
 
 
@@ -40,7 +41,9 @@ function Viewtask() {
 	};
     const [userPhotos, setUserPhotos] = useState([]);
     const [track, setTrack] = useState(0)
-
+    const [startTask, setStartTask] = useState(false)
+    const [completeTask, setCompletTask] = useState(false)
+    const [openPopup, setOpenPopup] = useState(false)
     useEffect(()=>{
         LoadTask(reportid,taskid,setTask,setCreator)
         LoadJoinState(reportid,taskid,user_id,setJoinButton,setMembersSize)
@@ -59,14 +62,17 @@ function Viewtask() {
 
     return (
         <div className='Viewtask'>
+            <FunderPopup openPopup={openPopup} setOpenPopup={setOpenPopup} report_id={reportid} task_id={taskid} user_id={user_id}></FunderPopup>
             <NavBar></NavBar>
             <BackBar title='View Task' path={'/viewreport/'+reportid}></BackBar>
 
 
             <div className='Viewtask-frame'>
 
+           
+
                 <div className='wrapper-buttons'>
-                    <SecondaryButton text='Fund'></SecondaryButton>
+                    <SecondaryButton text='Fund' onClick={()=>setOpenPopup(true)}></SecondaryButton>
                     <PrimaryButton text={joinButton} onClick={()=>Join(reportid,taskid,user_id,setJoinButton,joinButton)}></PrimaryButton>
                 </div>
 
@@ -159,15 +165,15 @@ function Viewtask() {
 
                     <div className='vt-progress-wrapper-card-button'>
                         <ProgressViewTaskCard title='REQUEST VALUE REACHED' image='/images/value-ico.svg' isActive={track > 1 ? true : false}></ProgressViewTaskCard>
-                        <PrimaryButton text='Start'></PrimaryButton>
+                        <PrimaryButton text='Start' onClick={()=> track > 1 ? setStartTask(true):{}}></PrimaryButton>
                     </div>
 
 
                     <div className='vt-progress-wrapper-card-button'>
-                        <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={track > 2 ? true : false}></ProgressViewTaskCard>
-                        <PrimaryButton text='Done'></PrimaryButton>
+                        <ProgressViewTaskCard title='COMPLETE TASK AND POST PHOTOS ' image='/images/photos-ico.svg' isActive={track > 1 && startTask ? true : false}></ProgressViewTaskCard>
+                        <PrimaryButton text='Done' onClick={()=> track > 1 ? setCompletTask(true):{}}></PrimaryButton>
                     </div>
-                    <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={track > 3 ? true : false}></ProgressViewTaskCard>
+                    <ProgressViewTaskCard title='FUNDERS REVIEW' image='/images/funders-ico.svg' isActive={track > 1 && startTask && completeTask ? true : false}></ProgressViewTaskCard>
                     <ProgressViewTaskCard title='THE TEAM WILL BE PAID SOON' image='/images/paid-ico.svg' isActive={track > 4 ? true : false}></ProgressViewTaskCard>
                 </div>
 
