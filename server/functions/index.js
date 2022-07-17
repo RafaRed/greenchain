@@ -59,6 +59,7 @@ app.post("/create-report", async (req, res) => {
 	var task = await AddNode("Task", {}, report["new_id"]);
 	var members = await AddNode("Members", {}, report["new_id"]);
 	var photos = await AddNode("Photos", {}, report["new_id"]);
+	var donate = await AddNode("Donate", {}, report["new_id"]);
 	res.send(report);
 });
 
@@ -84,6 +85,7 @@ app.post("/create-task", async (req, res) => {
 	var task_id = await AddNode("Task/" + task["report_id"], task);
 	var members = await AddNode(`Members/${task["report_id"]}`,{},task_id["new_id"]);
 	var photos = await AddNode(`Photos/${task["report_id"]}`,{},task_id["new_id"]);
+	var donate = await AddNode(`Donate/${task["report_id"]}`,{},task_id["new_id"]);
 	res.send(task_id);
 	// JOIN
 	var user_id = task["userid"];
@@ -254,6 +256,22 @@ async function getTasksSize(report_id){
 	}
 	return tasks_num
 }
+
+app.post("/fund-task", async (req, res) => {
+	var user_id = req.body.user_id;
+	var task_id = req.body.task_id;
+	var report_id = req.body.report_id;
+	var donation = req.body.donation;
+	var donate_path = `Donate/${report_id}/${task_id}/${user_id}`;
+	var old_donate = await GetNodeByPath(donate_path)
+	if(old_donate['content'] !== undefined){
+		donation += parseInt(old_donate['content'])
+	}
+	console.log(donate_path)
+	console.log(donation)
+	await UpdateNode(donate_path, donation);
+	res.send({ status: "Updated" });
+});
 
 
 
