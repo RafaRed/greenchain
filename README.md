@@ -49,7 +49,7 @@ Users can make a wide variety of reports, such as streets full of garbage, and p
 Click to access our video demo:
 | Video | Youtube |
 | ------ | ------ |
-| GreenChain-videodemo | "link do vídeo-demo do webapp greenchain" |
+| GreenChain-videodemo | https://www.youtube.com/watch?v=FIpGUpYkr0s |
 
 ## Installation
 
