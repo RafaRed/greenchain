@@ -38,7 +38,7 @@ app.use(cors());
 app.use(
 	rateLimit({
 		windowMs: 1 * 60 * 60 * 1000, // 12 hour duration in milliseconds
-		max: 150,
+		max: 300,
 		message: "You exceeded requests hour limit!",
 		headers: true,
 	})
