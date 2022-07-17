@@ -37,7 +37,7 @@ benefit while contributing to the health of our planet.
 2. Any user can propose activities that solve a reported problem and choose an amount to execute it;
 3. The community decides if it wants to contribute financially to an activity or join it by offering its labor;
 4. Funders will validate by images if the activity was carried out as proposed;
-5. After validation, the members who performed the activity and the report creator will receive, equality, all the funds raised directly into their wallets.
+5. After validation, the members who performed the activity and the report creator will receive all the funds raised, equality, directly into their wallets.
 
 - All data is stored using the **IPFS** protocol making sure that it is immutable and decentralized.
 - Financial transactions will be carried out with full transparency using **Blockchain**.
