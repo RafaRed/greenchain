@@ -93,7 +93,7 @@ npm start
 ```
 
 **5 - Start your server**
-```sh
+```
 firebase emulators:start
 
 In the first run, you should call externally the /initialize endpoint to initialize the tree keys.
